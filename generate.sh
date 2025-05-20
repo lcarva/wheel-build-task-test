@@ -15,7 +15,7 @@ for path in "${packages[@]}"; do
     build_requirements_in="${path}/requirements-build.in"
     build_requirements_txt="${path}/requirements-build.txt"
 
-    printf "[project]\nname = "${name}_placeholder_wrapper"\nversion = \"0.0.1\"\n" > "${pyproject_toml}"
+    printf "[project]\nname = \"${name}_placeholder_wrapper\"\nversion = \"0.0.1\"\n" > "${pyproject_toml}"
 
     echo "${name}" > "${requirements_in}"
 

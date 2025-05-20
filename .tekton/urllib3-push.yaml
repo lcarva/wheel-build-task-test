@@ -26,6 +26,8 @@ spec:
     value: quay.io/redhat-user-workloads/lucarval-tenant/urllib3:{{revision}}
   - name: dockerfile
     value: Containerfile
+  - name: hermetic
+    value: "true"
   pipelineRef:
     name: build
   taskRunTemplate: {}

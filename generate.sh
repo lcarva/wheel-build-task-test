@@ -16,9 +16,9 @@ for path in "${packages[@]}"; do
 
     echo "${name}" > "${requirements_in}"
 
-    pip-compile "${requirements_in}" --generate-hashes --output-file "${requirements_txt}"
+    pip-compile "${requirements_in}" --output-file "${requirements_txt}"
 
     ./bin/pip_find_builddeps.py "${requirements_txt}" --output-file "${build_requirements_in}"
 
-    pip-compile "${build_requirements_in}" --generate-hashes --output-file "${build_requirements_txt}"
+    pip-compile "${build_requirements_in}" --output-file "${build_requirements_txt}"
 done

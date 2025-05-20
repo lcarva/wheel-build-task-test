@@ -17,3 +17,5 @@ supported.)
 
 You'll need `pip-compile` installed which is part of the
 [pip-tools](https://pypi.org/project/pip-tools/) package.
+
+[pybuild-deps](https://pypi.org/project/pybuild-deps/) is also required.

@@ -22,8 +22,5 @@ for path in "${packages[@]}"; do
     # TODO: Bring back hashes
     pip-compile "${requirements_in}" --output-file "${requirements_txt}"
 
-    # TODO: Use https://pypi.org/project/pybuild-deps/ instead.
-    ./bin/pip_find_builddeps.py "${requirements_txt}" --output-file "${build_requirements_in}"
-
-    pip-compile "${build_requirements_in}" --output-file "${build_requirements_txt}"
+    pybuild-deps compile "${requirements_txt}" --output-file "${build_requirements_txt}"
 done

@@ -9,15 +9,20 @@ for path in "${packages[@]}"; do
     name="$(basename ${path})"
     echo "Processing ${name}"
 
+    pyproject_toml="${path}/pyproject.toml"
     requirements_in="${path}/requirements.in"
     requirements_txt="${path}/requirements.txt"
-    build_requirements_in="${path}/build-requirements.in"
-    build_requirements_txt="${path}/build-requirements.txt"
+    build_requirements_in="${path}/requirements-build.in"
+    build_requirements_txt="${path}/requirements-build.txt"
+
+    printf "[project]\nname = "${name}_placeholder_wrapper"\nversion = \"0.0.1\"\n" > "${pyproject_toml}"
 
     echo "${name}" > "${requirements_in}"
 
+    # TODO: Bring back hashes
     pip-compile "${requirements_in}" --output-file "${requirements_txt}"
 
+    # TODO: Use https://pypi.org/project/pybuild-deps/ instead.
     ./bin/pip_find_builddeps.py "${requirements_txt}" --output-file "${build_requirements_in}"
 
     pip-compile "${build_requirements_in}" --output-file "${build_requirements_txt}"

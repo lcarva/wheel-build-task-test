@@ -1,0 +1,3 @@
+FROM registry.redhat.io/ubi9/python-312:latest
+
+RUN pip install build wheel

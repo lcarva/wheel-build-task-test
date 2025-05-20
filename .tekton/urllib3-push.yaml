@@ -28,6 +28,13 @@ spec:
     value: Containerfile
   - name: hermetic
     value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/urllib3",
+        "allow_binary": "false"
+      }
   pipelineRef:
     name: build
   taskRunTemplate: {}

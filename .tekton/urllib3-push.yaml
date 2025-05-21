@@ -24,8 +24,12 @@ spec:
     value: '{{revision}}'
   - name: output-image
     value: quay.io/redhat-user-workloads/lucarval-tenant/urllib3:{{revision}}
+  - name: path-context
+    value: packages/urllib3
   - name: dockerfile
     value: Containerfile
+  - name: build-args-file
+    value: packages/urllib3/argfile.conf
   - name: hermetic
     value: "true"
   - name: prefetch-input

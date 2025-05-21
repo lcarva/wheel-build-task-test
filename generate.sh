@@ -36,12 +36,11 @@ function generate_package_wrapper() {
 
     echo "${name}" > "${requirements_in}"
 
-    # TODO: Bring back hashes
-    pip-compile "${requirements_in}" --output-file "${requirements_txt}"
+    pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
 
-    pybuild-deps compile "${requirements_txt}" --output-file "${build_requirements_txt}"
+    pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${build_requirements_txt}"
 
-    version="$(grep -ioP '^'${name}'==\K.+' "${requirements_txt}")"
+    version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
 
     cat > "${argfile_conf}" <<- EOF
 		PACKAGE_NAME=${name}

@@ -28,7 +28,11 @@ function generate_package_wrapper() {
     build_requirements_txt="${path}/requirements-build.txt"
     argfile_conf="${path}/argfile.conf"
 
-    printf "[project]\nname = \"${name}_placeholder_wrapper\"\nversion = \"0.0.1\"\n" > "${pyproject_toml}"
+    cat > "${pyproject_toml}" <<- EOF
+		[project]
+		name = "${name}_placeholder_wrapper"
+		version = "0.0.1"
+		EOF
 
     echo "${name}" > "${requirements_in}"
 
@@ -39,7 +43,10 @@ function generate_package_wrapper() {
 
     version="$(grep -ioP '^'${name}'==\K.+' "${requirements_txt}")"
 
-    printf "PACKAGE_NAME=${name}\nPACKAGE_VERSION=${version}\n" > "${argfile_conf}"
+    cat > "${argfile_conf}" <<- EOF
+		PACKAGE_NAME=${name}
+		PACKAGE_VERSION=${version}
+		EOF
 }
 
 function generate_konflux_resources() {

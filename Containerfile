@@ -1,11 +1,13 @@
 FROM quay.io/lucarval/calunga-builder:latest AS builder
 
+ARG PACKAGE_NAME
+ARG PACKAGE_VERSION
+
 RUN \
-    tar -xvf "${PIP_FIND_LINKS}/urllib3-2.4.0.tar.gz" && \
-    python -m build --wheel urllib3-2.4.0 && \
     mkdir -p /opt/app-root/dist && \
-    cp urllib3-2.4.0/dist/*.whl /opt/app-root/dist/ && \
-    cp "${PIP_FIND_LINKS}/urllib3-2.4.0.tar.gz" /opt/app-root/dist/
+    cp "${PIP_FIND_LINKS}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" /opt/app-root/dist/ && \
+    tar -xvf "/opt/app-root/dist/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" && \
+    python -m build --wheel --outdir /opt/app-root/dist "${PACKAGE_NAME}-${PACKAGE_VERSION}"
 
 FROM scratch
 

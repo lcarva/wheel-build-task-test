@@ -27,8 +27,12 @@ spec:
     value: quay.io/redhat-user-workloads/lucarval-tenant/urllib3:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
+  - name: path-context
+    value: packages/urllib3
   - name: dockerfile
     value: Containerfile
+  - name: build-args-file
+    value: packages/urllib3/argfile.conf
   - name: hermetic
     value: "true"
   - name: prefetch-input

@@ -9,7 +9,7 @@ TODO: Add more info.
 ## Usage
 
 To add a new package, create a directory under the [packages](./packages) directory matching the
-package name (case-sensitive) in [pypi.org](https://pypi.org/), then run the
+package name (always lower case) in [pypi.org](https://pypi.org/), then run the
 [generate.sh](./generate.sh) script.
 
 This will create the requirements file for that package. (Currently, only the latest version is

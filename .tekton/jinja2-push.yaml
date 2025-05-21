@@ -9,13 +9,13 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-path-change: "[Containerfile, packages/Jinja2/**]"
+    pipelinesascode.tekton.dev/on-path-change: "[Containerfile, packages/jinja2/**]"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga
-    appstudio.openshift.io/component: Jinja2
+    appstudio.openshift.io/component: jinja2
     pipelines.appstudio.openshift.io/type: build
-  name: Jinja2-on-push
+  name: jinja2-on-push
   namespace: lucarval-tenant
 spec:
   params:
@@ -24,20 +24,20 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/Jinja2:{{revision}}
+    value: quay.io/redhat-user-workloads/lucarval-tenant/jinja2:{{revision}}
   - name: path-context
-    value: packages/Jinja2
+    value: packages/jinja2
   - name: dockerfile
     value: Containerfile
   - name: build-args-file
-    value: packages/Jinja2/argfile.conf
+    value: packages/jinja2/argfile.conf
   - name: hermetic
     value: "true"
   - name: prefetch-input
     value: |
       {
         "type": "pip",
-        "path": "./packages/Jinja2",
+        "path": "./packages/jinja2",
         "allow_binary": "false"
       }
   pipelineRef:

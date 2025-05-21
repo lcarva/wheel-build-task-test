@@ -28,27 +28,29 @@ function generate_package_wrapper() {
     build_requirements_txt="${path}/requirements-build.txt"
     argfile_conf="${path}/argfile.conf"
 
-    printf "[project]\nname = \"${name}_placeholder_wrapper\"\nversion = \"0.0.1\"\n" > "${pyproject_toml}"
+    cat > "${pyproject_toml}" <<- EOF
+		[project]
+		name = "${name}_placeholder_wrapper"
+		version = "0.0.1"
+		EOF
 
     echo "${name}" > "${requirements_in}"
 
-    # TODO: Bring back hashes
-    pip-compile "${requirements_in}" --output-file "${requirements_txt}"
+    pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
 
-    pybuild-deps compile "${requirements_txt}" --output-file "${build_requirements_txt}"
+    pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${build_requirements_txt}"
 
-    version="$(grep -ioP '^'${name}'==\K.+' "${requirements_txt}")"
+    version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
 
-    printf "PACKAGE_NAME=${name}\nPACKAGE_VERSION=${version}\n" > "${argfile_conf}"
+    cat > "${argfile_conf}" <<- EOF
+		PACKAGE_NAME=${name}
+		PACKAGE_VERSION=${version}
+		EOF
 }
 
 function generate_konflux_resources() {
-    local raw_name
     local name
-
-    raw_name=$1
-    # k8s doesn't allow upper case letters, make it lower case
-    name="${raw_name,,}"
+    name=$1
 
     mkdir -p "konflux/${name}"
     kustomization_yaml="konflux/${name}/kustomization.yaml"
@@ -91,6 +93,7 @@ function generate_konflux_resources() {
 function generate_pac_resources() {
     local name
     name=$1
+
     export name
 
     < '.tekton/on-push.yaml.template' envsubst '$name' > ".tekton/${name}-push.yaml"

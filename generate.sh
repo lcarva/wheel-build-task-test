@@ -97,10 +97,15 @@ function generate_konflux_resources() {
 function generate_pac_resources() {
     local name
     name=$1
-    export name
 
-    < '.tekton/on-push.yaml.template' envsubst '$name' > ".tekton/${name}-push.yaml"
-    < '.tekton/on-pull-request.yaml.template' envsubst '$name' > ".tekton/${name}-pull-request.yaml"
+    # k8s doesn't allow upper case letters, make it lower case
+    k8s_name="${name,,}"
+
+    export name
+    export k8s_name
+
+    < '.tekton/on-push.yaml.template' envsubst '$name $k8s_name' > ".tekton/${k8s_name}-push.yaml"
+    < '.tekton/on-pull-request.yaml.template' envsubst '$name $k8s_name' > ".tekton/${k8s_name}-pull-request.yaml"
 }
 
 for path in "${packages[@]}"; do

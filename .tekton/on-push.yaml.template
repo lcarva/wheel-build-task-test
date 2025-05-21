@@ -13,9 +13,9 @@ metadata:
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga
-    appstudio.openshift.io/component: ${name}
+    appstudio.openshift.io/component: ${k8s_name}
     pipelines.appstudio.openshift.io/type: build
-  name: ${name}-on-push
+  name: ${k8s_name}-on-push
   namespace: lucarval-tenant
 spec:
   params:
@@ -24,7 +24,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/${name}:{{revision}}
+    value: quay.io/redhat-user-workloads/lucarval-tenant/${k8s_name}:{{revision}}
   - name: path-context
     value: packages/${name}
   - name: dockerfile

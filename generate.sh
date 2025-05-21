@@ -5,9 +5,18 @@ cd "$(git root)"
 
 mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0)
 
-for path in "${packages[@]}"; do
-    name="$(basename ${path})"
-    echo "Processing ${name}"
+all_kustomization_yaml='konflux/kustomization.yaml'
+
+cat > "${all_kustomization_yaml}" << EOF
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+EOF
+
+function generate_package_wrapper() {
+    name=$1
+    path=$2
 
     pyproject_toml="${path}/pyproject.toml"
     requirements_in="${path}/requirements.in"
@@ -28,4 +37,76 @@ for path in "${packages[@]}"; do
     version="$(grep -ioP '^'${name}'==\K.+' "${requirements_txt}")"
 
     printf "PACKAGE_NAME=${name}\nPACKAGE_VERSION=${version}\n" > "${argfile_conf}"
+}
+
+function generate_konflux_resources() {
+    name=$1
+
+    mkdir -p "konflux/${name}"
+    kustomization_yaml="konflux/${name}/kustomization.yaml"
+    set_resource_name_yaml="konflux/${name}/set-resource-name.yaml"
+    set_package_name_yaml="konflux/${name}/set-package-name.yaml"
+
+    cp 'konflux/base/pkg-kustomization.yaml' "${kustomization_yaml}"
+
+    cat > "${set_resource_name_yaml}" <<- EOF
+		- op: replace
+		  path: /metadata/name
+		  value: ${name}
+		EOF
+
+    cat > "${set_package_name_yaml}" <<- EOF
+		---
+		apiVersion: appstudio.redhat.com/v1alpha1
+		kind: ImageRepository
+		metadata:
+		  labels:
+		    appstudio.redhat.com/component: ${name}
+		  name: ${name}
+		spec:
+		  image:
+		    name: lucarval-tenant/${name}
+
+		---
+		apiVersion: appstudio.redhat.com/v1alpha1
+		kind: Component
+		metadata:
+		  name: ${name}
+		spec:
+		  componentName: ${name}
+		  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/${name}
+		EOF
+
+    printf -- "  - %s\n" "${name}" >> "${all_kustomization_yaml}"
+}
+
+function generate_pac_resources() {
+    name=$1
+
+    < '.tekton/on-push.yaml.template' envsubst '$name' > ".tekton/${name}-push.yaml"
+    < '.tekton/on-pull-request.yaml.template' envsubst '$name' > ".tekton/${name}-pull-request.yaml"
+}
+
+for path in "${packages[@]}"; do
+    name="$(basename ${path})"
+    echo "Processing ${name}"
+
+    if [[ "${SKIP_WRAPPER:-0}" == "1" || "${SKIP_WRAPPER:-0}" == "true" ]]; then
+        echo 'WARN: Skipping package wrapper generation.'
+    else
+        generate_package_wrapper "${name}" "${path}"
+    fi
+
+    if [[ "${SKIP_KONFLUX:-0}" == "1" || "${SKIP_KONFLUX:-0}" == "true" ]]; then
+        echo 'WARN: Skipping Konflux resource generation.'
+    else
+        generate_konflux_resources "${name}"
+    fi
+
+    if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
+        echo 'WARN: Skipping Pipeline as Code generation.'
+    else
+        generate_pac_resources "${name}"
+    fi
+
 done

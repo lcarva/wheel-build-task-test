@@ -1,0 +1,12 @@
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: package-name
+spec:
+  application: calunga
+  componentName: package-name
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/package-name
+  source:
+    git:
+      dockerfileUrl: Containerfile
+      url: https://github.com/lcarva/calunga.git

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: Jinja2
+  name: Jinja2
+spec:
+  image:
+    name: lucarval-tenant/Jinja2
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: Jinja2
+spec:
+  componentName: Jinja2
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/Jinja2

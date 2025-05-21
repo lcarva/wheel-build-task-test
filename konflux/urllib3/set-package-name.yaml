@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: urllib3
+  name: urllib3
+spec:
+  image:
+    name: lucarval-tenant/urllib3
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: urllib3
+spec:
+  componentName: urllib3
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/urllib3

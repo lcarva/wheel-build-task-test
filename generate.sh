@@ -15,6 +15,9 @@ resources:
 EOF
 
 function generate_package_wrapper() {
+    local name
+    local path
+
     name=$1
     path=$2
 
@@ -40,7 +43,12 @@ function generate_package_wrapper() {
 }
 
 function generate_konflux_resources() {
-    name=$1
+    local raw_name
+    local name
+
+    raw_name=$1
+    # k8s doesn't allow upper case letters, make it lower case
+    name="${raw_name,,}"
 
     mkdir -p "konflux/${name}"
     kustomization_yaml="konflux/${name}/kustomization.yaml"
@@ -81,7 +89,9 @@ function generate_konflux_resources() {
 }
 
 function generate_pac_resources() {
+    local name
     name=$1
+    export name
 
     < '.tekton/on-push.yaml.template' envsubst '$name' > ".tekton/${name}-push.yaml"
     < '.tekton/on-pull-request.yaml.template' envsubst '$name' > ".tekton/${name}-pull-request.yaml"

@@ -43,7 +43,7 @@ function generate_package_wrapper() {
     version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
 
     cat > "${argfile_conf}" <<- EOF
-		PACKAGE_NAME=${name}
+		PACKAGE_NAME=${name//-/_}
 		PACKAGE_VERSION=${version}
 		EOF
 }

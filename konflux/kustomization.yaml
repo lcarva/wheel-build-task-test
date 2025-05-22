@@ -27,7 +27,6 @@ resources:
   - prompt-toolkit
   - pygments
   - pytest
-  - python-dateutil
   - requests
   - rich
   - tomlkit

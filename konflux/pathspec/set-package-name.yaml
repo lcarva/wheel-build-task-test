@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pathspec
+  name: pathspec
+spec:
+  image:
+    name: lucarval-tenant/pathspec
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pathspec
+spec:
+  componentName: pathspec
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/pathspec

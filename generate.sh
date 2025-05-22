@@ -36,7 +36,10 @@ function generate_package_wrapper() {
 		version = "0.0.1"
 		EOF
 
-    # echo "${name}" > "${requirements_in}"
+    if [[ ! -f "${requirements_in}" ]]; then
+      echo 'Creating requirement.in file'
+      echo "${name}" > "${requirements_in}"
+    fi
 
     pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
 

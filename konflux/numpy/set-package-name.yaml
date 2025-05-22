@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: numpy
+  name: numpy
+spec:
+  image:
+    name: lucarval-tenant/numpy
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: numpy
+spec:
+  componentName: numpy
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/numpy

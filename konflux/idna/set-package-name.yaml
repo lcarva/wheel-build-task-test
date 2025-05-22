@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: idna
+  name: idna
+spec:
+  image:
+    name: lucarval-tenant/idna
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: idna
+spec:
+  componentName: idna
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/idna

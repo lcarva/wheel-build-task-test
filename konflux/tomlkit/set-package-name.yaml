@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: tomlkit
+  name: tomlkit
+spec:
+  image:
+    name: lucarval-tenant/tomlkit
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: tomlkit
+spec:
+  componentName: tomlkit
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/tomlkit

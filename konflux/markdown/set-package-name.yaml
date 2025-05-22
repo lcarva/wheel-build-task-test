@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: markdown
+  name: markdown
+spec:
+  image:
+    name: lucarval-tenant/markdown
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: markdown
+spec:
+  componentName: markdown
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/markdown

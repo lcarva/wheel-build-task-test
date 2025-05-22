@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: humanize
+  name: humanize
+spec:
+  image:
+    name: lucarval-tenant/humanize
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: humanize
+spec:
+  componentName: humanize
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/humanize

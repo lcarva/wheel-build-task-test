@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: wheel
+  name: wheel
+spec:
+  image:
+    name: lucarval-tenant/wheel
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: wheel
+spec:
+  componentName: wheel
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/wheel

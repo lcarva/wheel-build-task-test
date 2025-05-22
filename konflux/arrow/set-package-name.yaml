@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: arrow
+  name: arrow
+spec:
+  image:
+    name: lucarval-tenant/arrow
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: arrow
+spec:
+  componentName: arrow
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/arrow

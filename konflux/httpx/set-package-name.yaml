@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: httpx
+  name: httpx
+spec:
+  image:
+    name: lucarval-tenant/httpx
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: httpx
+spec:
+  componentName: httpx
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/httpx

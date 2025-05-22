@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: click
+  name: click
+spec:
+  image:
+    name: lucarval-tenant/click
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: click
+spec:
+  componentName: click
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/click

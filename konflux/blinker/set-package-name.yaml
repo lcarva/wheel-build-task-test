@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: blinker
+  name: blinker
+spec:
+  image:
+    name: lucarval-tenant/blinker
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: blinker
+spec:
+  componentName: blinker
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/blinker

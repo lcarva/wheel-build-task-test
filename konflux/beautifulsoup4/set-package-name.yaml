@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: beautifulsoup4
+  name: beautifulsoup4
+spec:
+  image:
+    name: lucarval-tenant/beautifulsoup4
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: beautifulsoup4
+spec:
+  componentName: beautifulsoup4
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/beautifulsoup4

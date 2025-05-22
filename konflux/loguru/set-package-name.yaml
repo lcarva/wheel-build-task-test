@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: loguru
+  name: loguru
+spec:
+  image:
+    name: lucarval-tenant/loguru
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: loguru
+spec:
+  componentName: loguru
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/loguru

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: more-itertools
+  name: more-itertools
+spec:
+  image:
+    name: lucarval-tenant/more-itertools
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: more-itertools
+spec:
+  componentName: more-itertools
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/more-itertools

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: rich
+  name: rich
+spec:
+  image:
+    name: lucarval-tenant/rich
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: rich
+spec:
+  componentName: rich
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/rich

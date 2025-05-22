@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: attrs
+  name: attrs
+spec:
+  image:
+    name: lucarval-tenant/attrs
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: attrs
+spec:
+  componentName: attrs
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/attrs

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: packaging
+  name: packaging
+spec:
+  image:
+    name: lucarval-tenant/packaging
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: packaging
+spec:
+  componentName: packaging
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/packaging

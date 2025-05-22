@@ -2,9 +2,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - urllib3
-  - colorama
-  - jinja2
   - arrow
   - attrs
   - beautifulsoup4
@@ -12,6 +9,7 @@ resources:
   - blinker
   - charset-normalizer
   - click
+  - colorama
   - django
   - docutils
   - freezegun
@@ -19,6 +17,7 @@ resources:
   - humanize
   - idna
   - isort
+  - jinja2
   - loguru
   - markdown
   - marshmallow
@@ -33,4 +32,5 @@ resources:
   - tox
   - tqdm
   - typing-extensions
+  - urllib3
   - wheel

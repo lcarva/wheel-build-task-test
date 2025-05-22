@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(git root)"
 
-mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0)
+mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
 
 all_kustomization_yaml='konflux/kustomization.yaml'
 

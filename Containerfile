@@ -5,6 +5,7 @@ ARG PACKAGE_VERSION
 
 RUN \
     mkdir -p /opt/app-root/dist && \
+    ls -la "${PIP_FIND_LINKS}" && \
     cp "${PIP_FIND_LINKS}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" /opt/app-root/dist/ && \
     tar -xvf "/opt/app-root/dist/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" && \
     python -m build --wheel --outdir /opt/app-root/dist "${PACKAGE_NAME}-${PACKAGE_VERSION}"

@@ -13,6 +13,8 @@ resources:
   - django
   - docutils
   - freezegun
+  - hatch-fancy-pypi-readme
+  - hatchling
   - httpx
   - humanize
   - idna
@@ -22,8 +24,12 @@ resources:
   - markdown
   - marshmallow
   - more-itertools
+  - ninja
   - numpy
   - packaging
+  - patchelf
+  - pathspec
+  - pluggy
   - prompt-toolkit
   - pygments
   - pytest
@@ -32,6 +38,7 @@ resources:
   - tomlkit
   - tox
   - tqdm
+  - trove-classifiers
   - typing-extensions
   - urllib3
   - wheel

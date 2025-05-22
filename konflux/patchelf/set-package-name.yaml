@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: patchelf
+  name: patchelf
+spec:
+  image:
+    name: lucarval-tenant/patchelf
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: patchelf
+spec:
+  componentName: patchelf
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/patchelf

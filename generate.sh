@@ -6,6 +6,8 @@ cd "$(git root)"
 mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
 
 all_kustomization_yaml='konflux/kustomization.yaml'
+packages_on_push_yaml='.tekton/packages-on-push.yaml'
+packages_on_pull_request_yaml='.tekton/packages-on-pull-request.yaml'
 
 cat > "${all_kustomization_yaml}" << EOF
 ---
@@ -96,9 +98,16 @@ function generate_pac_resources() {
 
     export name
 
-    < '.tekton/on-push.yaml.template' envsubst '$name' > ".tekton/${name}-push.yaml"
-    < '.tekton/on-pull-request.yaml.template' envsubst '$name' > ".tekton/${name}-pull-request.yaml"
+    < '.tekton/on-push.yaml.template' envsubst '$name' >> "${packages_on_push_yaml}"
+    < '.tekton/on-pull-request.yaml.template' envsubst '$name' >> "${packages_on_pull_request_yaml}"
 }
+
+  if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
+      echo 'WARN: Skipping Pipeline as Code generation.'
+  else
+      rm -f "${packages_on_push_yaml}"
+      rm -f "${packages_on_pull_request_yaml}"
+  fi
 
 for path in "${packages[@]}"; do
     name="$(basename ${path})"

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pygments
+  name: pygments
+spec:
+  image:
+    name: lucarval-tenant/pygments
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pygments
+spec:
+  componentName: pygments
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/pygments

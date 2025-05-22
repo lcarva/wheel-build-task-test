@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pytest
+  name: pytest
+spec:
+  image:
+    name: lucarval-tenant/pytest
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pytest
+spec:
+  componentName: pytest
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/pytest

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: isort
+  name: isort
+spec:
+  image:
+    name: lucarval-tenant/isort
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: isort
+spec:
+  componentName: isort
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/isort

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: tox
+  name: tox
+spec:
+  image:
+    name: lucarval-tenant/tox
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: tox
+spec:
+  componentName: tox
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/tox

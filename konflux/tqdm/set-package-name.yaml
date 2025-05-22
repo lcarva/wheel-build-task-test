@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: tqdm
+  name: tqdm
+spec:
+  image:
+    name: lucarval-tenant/tqdm
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: tqdm
+spec:
+  componentName: tqdm
+  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/tqdm

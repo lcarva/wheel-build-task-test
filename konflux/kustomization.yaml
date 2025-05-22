@@ -5,33 +5,33 @@ resources:
   - urllib3
   - colorama
   - jinja2
-  - requests
-  - charset-normalizer
-  - idna
-  - python-dateutil
-  - typing-extensions
-  - packaging
+  - arrow
   - attrs
-  - pytest
   - beautifulsoup4
+  - black
+  - blinker
+  - charset-normalizer
   - click
   - django
   - docutils
-  - black
-  - rich
+  - freezegun
   - httpx
+  - humanize
+  - idna
+  - isort
+  - loguru
+  - markdown
+  - marshmallow
+  - more-itertools
+  - packaging
+  - prompt-toolkit
+  - pygments
+  - pytest
+  - python-dateutil
+  - requests
+  - rich
+  - tomlkit
   - tox
   - tqdm
-  - arrow
-  - blinker
-  - isort
-  - markdown
-  - more-itertools
-  - loguru
+  - typing-extensions
   - wheel
-  - pygments
-  - marshmallow
-  - tomlkit
-  - freezegun
-  - humanize
-  - prompt-toolkit

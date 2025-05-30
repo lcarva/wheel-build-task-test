@@ -26,7 +26,6 @@ function generate_package_wrapper() {
     pyproject_toml="${path}/pyproject.toml"
     requirements_in="${path}/requirements.in"
     requirements_txt="${path}/requirements.txt"
-    build_requirements_in="${path}/requirements-build.in"
     build_requirements_txt="${path}/requirements-build.txt"
     argfile_conf="${path}/argfile.conf"
 

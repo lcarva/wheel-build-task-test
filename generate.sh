@@ -26,7 +26,7 @@ function generate_package_wrapper() {
     pyproject_toml="${path}/pyproject.toml"
     requirements_in="${path}/requirements.in"
     requirements_txt="${path}/requirements.txt"
-    build_requirements_txt="${path}/requirements-build.txt"
+    requirements_build_txt="${path}/requirements-build.txt"
     argfile_conf="${path}/argfile.conf"
 
     if [[ ! -f "${pyproject_toml}" ]]; then
@@ -47,9 +47,9 @@ function generate_package_wrapper() {
       pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
     fi
 
-    if [[ ! -f "${build_requirements_txt}" ]]; then
+    if [[ ! -f "${requirements_build_txt}" ]]; then
       echo 'Creating requirements-build.txt'
-      pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${build_requirements_txt}"
+      pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${requirements_build_txt}"
     fi
 
     version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"

@@ -29,7 +29,7 @@ spec:
   - name: path-context
     value: packages/${name}
   - name: dockerfile
-    value: Containerfile
+    value: ${containerfile}
   - name: build-args-file
     value: packages/${name}/argfile.conf
   - name: hermetic

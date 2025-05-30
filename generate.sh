@@ -107,10 +107,21 @@ function generate_pac_resources() {
     local name
     name=$1
 
-    export name
+    local containerfile
+    containerfile="Containerfile"
 
-    < '.tekton/on-push.yaml.template' envsubst '$name' >> "${packages_on_push_yaml}"
-    < '.tekton/on-pull-request.yaml.template' envsubst '$name' >> "${packages_on_pull_request_yaml}"
+    local path
+    path=$2
+    pkg_containerfile="${path}/${containerfile}"
+    if [[ -f "${pkg_containerfile}" ]]; then
+      containerfile="${pkg_containerfile}"
+    fi
+
+    export name
+    export containerfile
+
+    < '.tekton/on-push.yaml.template' envsubst '$name $containerfile' >> "${packages_on_push_yaml}"
+    < '.tekton/on-pull-request.yaml.template' envsubst '$name $containerfile' >> "${packages_on_pull_request_yaml}"
 }
 
   if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
@@ -139,7 +150,7 @@ for path in "${packages[@]}"; do
     if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
         echo 'WARN: Skipping Pipeline as Code generation.'
     else
-        generate_pac_resources "${name}"
+        generate_pac_resources "${name}" "${path}"
     fi
 
 done

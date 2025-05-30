@@ -30,23 +30,32 @@ function generate_package_wrapper() {
     build_requirements_txt="${path}/requirements-build.txt"
     argfile_conf="${path}/argfile.conf"
 
-    cat > "${pyproject_toml}" <<- EOF
-		[project]
-		name = "${name}_placeholder_wrapper"
-		version = "0.0.1"
-		EOF
+    if [[ ! -f "${pyproject_toml}" ]]; then
+      cat > "${pyproject_toml}" <<- EOF
+			[project]
+			name = "${name}_placeholder_wrapper"
+			version = "0.0.1"
+			EOF
+    fi
 
     if [[ ! -f "${requirements_in}" ]]; then
       echo 'Creating requirement.in file'
       echo "${name}" > "${requirements_in}"
     fi
 
-    pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
+    if [[ ! -f "${requirements_txt}" ]]; then
+      echo 'Creating requirements.txt file'
+      pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
+    fi
 
-    pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${build_requirements_txt}"
+    if [[ ! -f "${build_requirements_txt}" ]]; then
+      echo 'Creating requirements-build.txt'
+      pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${build_requirements_txt}"
+    fi
 
     version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
 
+    # Always re-create this file as it is cheap to do so, and we want consistency in the build args.
     cat > "${argfile_conf}" <<- EOF
 		PACKAGE_NAME=${name//-/_}
 		PACKAGE_VERSION=${version}

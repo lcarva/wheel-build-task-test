@@ -7,7 +7,7 @@ metadata:
   name: hatchling
 spec:
   image:
-    name: lucarval-tenant/hatchling
+    name: calunga-tenant/hatchling
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: hatchling
 spec:
   componentName: hatchling
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/hatchling
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/hatchling

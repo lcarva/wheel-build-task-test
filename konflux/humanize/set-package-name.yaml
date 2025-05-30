@@ -7,7 +7,7 @@ metadata:
   name: humanize
 spec:
   image:
-    name: lucarval-tenant/humanize
+    name: calunga-tenant/humanize
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: humanize
 spec:
   componentName: humanize
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/humanize
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/humanize

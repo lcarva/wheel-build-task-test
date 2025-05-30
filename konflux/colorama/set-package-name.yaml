@@ -7,7 +7,7 @@ metadata:
   name: colorama
 spec:
   image:
-    name: lucarval-tenant/colorama
+    name: calunga-tenant/colorama
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: colorama
 spec:
   componentName: colorama
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/colorama
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/colorama

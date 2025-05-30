@@ -7,7 +7,7 @@ metadata:
   name: jinja2
 spec:
   image:
-    name: lucarval-tenant/jinja2
+    name: calunga-tenant/jinja2
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: jinja2
 spec:
   componentName: jinja2
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/jinja2
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/jinja2

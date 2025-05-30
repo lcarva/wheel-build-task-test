@@ -88,7 +88,7 @@ function generate_konflux_resources() {
 		  name: ${name}
 		spec:
 		  image:
-		    name: lucarval-tenant/${name}
+		    name: calunga-tenant/${name}
 
 		---
 		apiVersion: appstudio.redhat.com/v1alpha1
@@ -97,7 +97,7 @@ function generate_konflux_resources() {
 		  name: ${name}
 		spec:
 		  componentName: ${name}
-		  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/${name}
+		  containerImage: quay.io/redhat-user-workloads/calunga-tenant/${name}
 		EOF
 
     printf -- "  - %s\n" "${name}" >> "${all_kustomization_yaml}"

@@ -7,7 +7,7 @@ metadata:
   name: patchelf
 spec:
   image:
-    name: lucarval-tenant/patchelf
+    name: calunga-tenant/patchelf
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: patchelf
 spec:
   componentName: patchelf
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/patchelf
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/patchelf

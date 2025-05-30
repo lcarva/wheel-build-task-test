@@ -7,7 +7,7 @@ metadata:
   name: blinker
 spec:
   image:
-    name: lucarval-tenant/blinker
+    name: calunga-tenant/blinker
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: blinker
 spec:
   componentName: blinker
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/blinker
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/blinker

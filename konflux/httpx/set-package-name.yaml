@@ -7,7 +7,7 @@ metadata:
   name: httpx
 spec:
   image:
-    name: lucarval-tenant/httpx
+    name: calunga-tenant/httpx
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: httpx
 spec:
   componentName: httpx
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/httpx
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/httpx

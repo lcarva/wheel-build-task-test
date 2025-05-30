@@ -7,7 +7,7 @@ metadata:
   name: packaging
 spec:
   image:
-    name: lucarval-tenant/packaging
+    name: calunga-tenant/packaging
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: packaging
 spec:
   componentName: packaging
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/packaging
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/packaging

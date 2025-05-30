@@ -7,7 +7,7 @@ metadata:
   name: hatch-fancy-pypi-readme
 spec:
   image:
-    name: lucarval-tenant/hatch-fancy-pypi-readme
+    name: calunga-tenant/hatch-fancy-pypi-readme
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: hatch-fancy-pypi-readme
 spec:
   componentName: hatch-fancy-pypi-readme
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/hatch-fancy-pypi-readme
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/hatch-fancy-pypi-readme

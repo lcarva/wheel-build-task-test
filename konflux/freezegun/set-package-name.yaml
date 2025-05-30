@@ -7,7 +7,7 @@ metadata:
   name: freezegun
 spec:
   image:
-    name: lucarval-tenant/freezegun
+    name: calunga-tenant/freezegun
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: freezegun
 spec:
   componentName: freezegun
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/freezegun
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/freezegun

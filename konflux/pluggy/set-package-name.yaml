@@ -7,7 +7,7 @@ metadata:
   name: pluggy
 spec:
   image:
-    name: lucarval-tenant/pluggy
+    name: calunga-tenant/pluggy
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: pluggy
 spec:
   componentName: pluggy
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/pluggy
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pluggy

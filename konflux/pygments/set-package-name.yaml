@@ -7,7 +7,7 @@ metadata:
   name: pygments
 spec:
   image:
-    name: lucarval-tenant/pygments
+    name: calunga-tenant/pygments
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: pygments
 spec:
   componentName: pygments
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/pygments
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pygments

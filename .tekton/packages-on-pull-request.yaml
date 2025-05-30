@@ -18,7 +18,7 @@ metadata:
     appstudio.openshift.io/component: arrow
     pipelines.appstudio.openshift.io/type: build
   name: arrow-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -26,7 +26,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/arrow:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/arrow:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -72,7 +72,7 @@ metadata:
     appstudio.openshift.io/component: attrs
     pipelines.appstudio.openshift.io/type: build
   name: attrs-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -80,7 +80,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/attrs:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/attrs:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -126,7 +126,7 @@ metadata:
     appstudio.openshift.io/component: beautifulsoup4
     pipelines.appstudio.openshift.io/type: build
   name: beautifulsoup4-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -134,7 +134,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/beautifulsoup4:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/beautifulsoup4:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -180,7 +180,7 @@ metadata:
     appstudio.openshift.io/component: black
     pipelines.appstudio.openshift.io/type: build
   name: black-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -188,7 +188,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/black:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/black:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -234,7 +234,7 @@ metadata:
     appstudio.openshift.io/component: blinker
     pipelines.appstudio.openshift.io/type: build
   name: blinker-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -242,7 +242,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/blinker:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/blinker:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -288,7 +288,7 @@ metadata:
     appstudio.openshift.io/component: charset-normalizer
     pipelines.appstudio.openshift.io/type: build
   name: charset-normalizer-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -296,7 +296,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/charset-normalizer:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/charset-normalizer:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -342,7 +342,7 @@ metadata:
     appstudio.openshift.io/component: click
     pipelines.appstudio.openshift.io/type: build
   name: click-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -350,7 +350,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/click:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/click:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -396,7 +396,7 @@ metadata:
     appstudio.openshift.io/component: colorama
     pipelines.appstudio.openshift.io/type: build
   name: colorama-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -404,7 +404,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/colorama:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/colorama:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -450,7 +450,7 @@ metadata:
     appstudio.openshift.io/component: django
     pipelines.appstudio.openshift.io/type: build
   name: django-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -458,7 +458,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/django:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/django:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -504,7 +504,7 @@ metadata:
     appstudio.openshift.io/component: docutils
     pipelines.appstudio.openshift.io/type: build
   name: docutils-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -512,7 +512,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/docutils:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/docutils:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -558,7 +558,7 @@ metadata:
     appstudio.openshift.io/component: freezegun
     pipelines.appstudio.openshift.io/type: build
   name: freezegun-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -566,7 +566,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/freezegun:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/freezegun:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -612,7 +612,7 @@ metadata:
     appstudio.openshift.io/component: hatch-fancy-pypi-readme
     pipelines.appstudio.openshift.io/type: build
   name: hatch-fancy-pypi-readme-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -620,7 +620,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/hatch-fancy-pypi-readme:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/hatch-fancy-pypi-readme:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -666,7 +666,7 @@ metadata:
     appstudio.openshift.io/component: hatchling
     pipelines.appstudio.openshift.io/type: build
   name: hatchling-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -674,7 +674,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/hatchling:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/hatchling:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -720,7 +720,7 @@ metadata:
     appstudio.openshift.io/component: httpx
     pipelines.appstudio.openshift.io/type: build
   name: httpx-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -728,7 +728,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/httpx:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/httpx:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -774,7 +774,7 @@ metadata:
     appstudio.openshift.io/component: humanize
     pipelines.appstudio.openshift.io/type: build
   name: humanize-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -782,7 +782,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/humanize:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/humanize:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -828,7 +828,7 @@ metadata:
     appstudio.openshift.io/component: idna
     pipelines.appstudio.openshift.io/type: build
   name: idna-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -836,7 +836,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/idna:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/idna:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -882,7 +882,7 @@ metadata:
     appstudio.openshift.io/component: isort
     pipelines.appstudio.openshift.io/type: build
   name: isort-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -890,7 +890,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/isort:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/isort:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -936,7 +936,7 @@ metadata:
     appstudio.openshift.io/component: jinja2
     pipelines.appstudio.openshift.io/type: build
   name: jinja2-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -944,7 +944,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/jinja2:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/jinja2:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -990,7 +990,7 @@ metadata:
     appstudio.openshift.io/component: loguru
     pipelines.appstudio.openshift.io/type: build
   name: loguru-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -998,7 +998,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/loguru:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/loguru:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1044,7 +1044,7 @@ metadata:
     appstudio.openshift.io/component: markdown
     pipelines.appstudio.openshift.io/type: build
   name: markdown-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1052,7 +1052,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/markdown:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/markdown:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1098,7 +1098,7 @@ metadata:
     appstudio.openshift.io/component: marshmallow
     pipelines.appstudio.openshift.io/type: build
   name: marshmallow-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1106,7 +1106,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/marshmallow:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/marshmallow:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1152,7 +1152,7 @@ metadata:
     appstudio.openshift.io/component: more-itertools
     pipelines.appstudio.openshift.io/type: build
   name: more-itertools-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1160,7 +1160,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/more-itertools:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/more-itertools:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1206,7 +1206,7 @@ metadata:
     appstudio.openshift.io/component: ninja
     pipelines.appstudio.openshift.io/type: build
   name: ninja-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1214,7 +1214,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/ninja:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/ninja:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1260,7 +1260,7 @@ metadata:
     appstudio.openshift.io/component: numpy
     pipelines.appstudio.openshift.io/type: build
   name: numpy-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1268,7 +1268,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/numpy:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/numpy:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1314,7 +1314,7 @@ metadata:
     appstudio.openshift.io/component: packaging
     pipelines.appstudio.openshift.io/type: build
   name: packaging-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1322,7 +1322,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/packaging:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/packaging:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1368,7 +1368,7 @@ metadata:
     appstudio.openshift.io/component: patchelf
     pipelines.appstudio.openshift.io/type: build
   name: patchelf-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1376,7 +1376,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/patchelf:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/patchelf:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1422,7 +1422,7 @@ metadata:
     appstudio.openshift.io/component: pathspec
     pipelines.appstudio.openshift.io/type: build
   name: pathspec-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1430,7 +1430,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/pathspec:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/pathspec:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1476,7 +1476,7 @@ metadata:
     appstudio.openshift.io/component: pluggy
     pipelines.appstudio.openshift.io/type: build
   name: pluggy-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1484,7 +1484,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/pluggy:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/pluggy:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1530,7 +1530,7 @@ metadata:
     appstudio.openshift.io/component: prompt-toolkit
     pipelines.appstudio.openshift.io/type: build
   name: prompt-toolkit-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1538,7 +1538,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/prompt-toolkit:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/prompt-toolkit:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1584,7 +1584,7 @@ metadata:
     appstudio.openshift.io/component: pygments
     pipelines.appstudio.openshift.io/type: build
   name: pygments-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1592,7 +1592,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/pygments:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/pygments:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1638,7 +1638,7 @@ metadata:
     appstudio.openshift.io/component: pytest
     pipelines.appstudio.openshift.io/type: build
   name: pytest-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1646,7 +1646,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/pytest:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/pytest:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1692,7 +1692,7 @@ metadata:
     appstudio.openshift.io/component: requests
     pipelines.appstudio.openshift.io/type: build
   name: requests-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1700,7 +1700,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/requests:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/requests:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1746,7 +1746,7 @@ metadata:
     appstudio.openshift.io/component: rich
     pipelines.appstudio.openshift.io/type: build
   name: rich-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1754,7 +1754,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/rich:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/rich:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1800,7 +1800,7 @@ metadata:
     appstudio.openshift.io/component: tomlkit
     pipelines.appstudio.openshift.io/type: build
   name: tomlkit-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1808,7 +1808,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/tomlkit:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/tomlkit:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1854,7 +1854,7 @@ metadata:
     appstudio.openshift.io/component: tox
     pipelines.appstudio.openshift.io/type: build
   name: tox-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1862,7 +1862,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/tox:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/tox:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1908,7 +1908,7 @@ metadata:
     appstudio.openshift.io/component: tqdm
     pipelines.appstudio.openshift.io/type: build
   name: tqdm-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1916,7 +1916,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/tqdm:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/tqdm:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -1962,7 +1962,7 @@ metadata:
     appstudio.openshift.io/component: trove-classifiers
     pipelines.appstudio.openshift.io/type: build
   name: trove-classifiers-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -1970,7 +1970,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/trove-classifiers:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/trove-classifiers:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -2016,7 +2016,7 @@ metadata:
     appstudio.openshift.io/component: typing-extensions
     pipelines.appstudio.openshift.io/type: build
   name: typing-extensions-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -2024,7 +2024,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/typing-extensions:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/typing-extensions:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -2070,7 +2070,7 @@ metadata:
     appstudio.openshift.io/component: urllib3
     pipelines.appstudio.openshift.io/type: build
   name: urllib3-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -2078,7 +2078,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/urllib3:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/urllib3:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context
@@ -2124,7 +2124,7 @@ metadata:
     appstudio.openshift.io/component: wheel
     pipelines.appstudio.openshift.io/type: build
   name: wheel-on-pull-request
-  namespace: lucarval-tenant
+  namespace: calunga-tenant
 spec:
   params:
   - name: git-url
@@ -2132,7 +2132,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/lucarval-tenant/wheel:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/wheel:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: path-context

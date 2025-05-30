@@ -7,7 +7,7 @@ metadata:
   name: marshmallow
 spec:
   image:
-    name: lucarval-tenant/marshmallow
+    name: calunga-tenant/marshmallow
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: marshmallow
 spec:
   componentName: marshmallow
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/marshmallow
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/marshmallow

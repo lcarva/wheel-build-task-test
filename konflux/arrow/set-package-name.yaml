@@ -7,7 +7,7 @@ metadata:
   name: arrow
 spec:
   image:
-    name: lucarval-tenant/arrow
+    name: calunga-tenant/arrow
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: arrow
 spec:
   componentName: arrow
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/arrow
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/arrow

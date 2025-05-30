@@ -7,7 +7,7 @@ metadata:
   name: markdown
 spec:
   image:
-    name: lucarval-tenant/markdown
+    name: calunga-tenant/markdown
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: markdown
 spec:
   componentName: markdown
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/markdown
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/markdown

@@ -5,7 +5,7 @@ metadata:
 spec:
   application: calunga
   componentName: package-name
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/package-name
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/package-name
   source:
     git:
       dockerfileUrl: Containerfile

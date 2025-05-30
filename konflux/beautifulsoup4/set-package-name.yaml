@@ -7,7 +7,7 @@ metadata:
   name: beautifulsoup4
 spec:
   image:
-    name: lucarval-tenant/beautifulsoup4
+    name: calunga-tenant/beautifulsoup4
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: beautifulsoup4
 spec:
   componentName: beautifulsoup4
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/beautifulsoup4
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/beautifulsoup4

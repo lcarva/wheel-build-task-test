@@ -7,7 +7,7 @@ metadata:
   name: prompt-toolkit
 spec:
   image:
-    name: lucarval-tenant/prompt-toolkit
+    name: calunga-tenant/prompt-toolkit
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: prompt-toolkit
 spec:
   componentName: prompt-toolkit
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/prompt-toolkit
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/prompt-toolkit

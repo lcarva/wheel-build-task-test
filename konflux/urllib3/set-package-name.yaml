@@ -7,7 +7,7 @@ metadata:
   name: urllib3
 spec:
   image:
-    name: lucarval-tenant/urllib3
+    name: calunga-tenant/urllib3
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: urllib3
 spec:
   componentName: urllib3
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/urllib3
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/urllib3

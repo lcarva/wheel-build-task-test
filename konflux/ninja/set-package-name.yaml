@@ -7,7 +7,7 @@ metadata:
   name: ninja
 spec:
   image:
-    name: lucarval-tenant/ninja
+    name: calunga-tenant/ninja
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: ninja
 spec:
   componentName: ninja
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/ninja
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/ninja

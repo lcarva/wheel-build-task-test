@@ -7,7 +7,7 @@ metadata:
   name: tqdm
 spec:
   image:
-    name: lucarval-tenant/tqdm
+    name: calunga-tenant/tqdm
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: tqdm
 spec:
   componentName: tqdm
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/tqdm
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/tqdm

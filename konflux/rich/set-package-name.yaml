@@ -7,7 +7,7 @@ metadata:
   name: rich
 spec:
   image:
-    name: lucarval-tenant/rich
+    name: calunga-tenant/rich
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: rich
 spec:
   componentName: rich
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/rich
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/rich

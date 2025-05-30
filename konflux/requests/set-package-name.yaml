@@ -7,7 +7,7 @@ metadata:
   name: requests
 spec:
   image:
-    name: lucarval-tenant/requests
+    name: calunga-tenant/requests
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: requests
 spec:
   componentName: requests
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/requests
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/requests

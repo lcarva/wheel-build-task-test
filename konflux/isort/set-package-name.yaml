@@ -7,7 +7,7 @@ metadata:
   name: isort
 spec:
   image:
-    name: lucarval-tenant/isort
+    name: calunga-tenant/isort
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: isort
 spec:
   componentName: isort
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/isort
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/isort

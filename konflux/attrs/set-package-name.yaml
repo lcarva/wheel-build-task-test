@@ -7,7 +7,7 @@ metadata:
   name: attrs
 spec:
   image:
-    name: lucarval-tenant/attrs
+    name: calunga-tenant/attrs
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -16,4 +16,4 @@ metadata:
   name: attrs
 spec:
   componentName: attrs
-  containerImage: quay.io/redhat-user-workloads/lucarval-tenant/attrs
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/attrs

@@ -124,12 +124,12 @@ function generate_pac_resources() {
     < '.tekton/on-pull-request.yaml.template' envsubst '$name $containerfile' >> "${packages_on_pull_request_yaml}"
 }
 
-  if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
-      echo 'WARN: Skipping Pipeline as Code generation.'
-  else
-      rm -f "${packages_on_push_yaml}"
-      rm -f "${packages_on_pull_request_yaml}"
-  fi
+if [[ "${SKIP_PAC:-0}" == "1" || "${SKIP_PAC:-0}" == "true" ]]; then
+    echo 'WARN: Skipping Pipeline as Code generation.'
+else
+    rm -f "${packages_on_push_yaml}"
+    rm -f "${packages_on_pull_request_yaml}"
+fi
 
 for path in "${packages[@]}"; do
     name="$(basename ${path})"

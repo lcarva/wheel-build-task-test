@@ -30,6 +30,7 @@ resources:
   - packaging
   - patchelf
   - pathspec
+  - platformdirs
   - pluggy
   - prompt-toolkit
   - pygments

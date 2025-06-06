@@ -15,6 +15,7 @@ resources:
   - distlib
   - django
   - docutils
+  - filelock
   - freezegun
   - hatch-fancy-pypi-readme
   - hatchling

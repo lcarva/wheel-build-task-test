@@ -61,6 +61,7 @@ resources:
   - tqdm
   - trove-classifiers
   - types-psutil
+  - types-python-dateutil
   - types-setuptools
   - typing-extensions
   - urllib3

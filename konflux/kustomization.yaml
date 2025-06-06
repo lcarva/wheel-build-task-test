@@ -8,6 +8,7 @@ resources:
   - beautifulsoup4
   - black
   - blinker
+  - cachetools
   - charset-normalizer
   - click
   - colorama

@@ -52,6 +52,7 @@ resources:
   - tox
   - tqdm
   - trove-classifiers
+  - types-psutil
   - types-setuptools
   - typing-extensions
   - urllib3

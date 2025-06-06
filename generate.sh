@@ -54,11 +54,16 @@ function generate_package_wrapper() {
 
     version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
 
-    # Always re-create this file as it is cheap to do so, and we want consistency in the build args.
-    cat > "${argfile_conf}" <<- EOF
-		PACKAGE_NAME=${name//-/_}
-		PACKAGE_VERSION=${version}
-		EOF
+    if [[ ! -f "${argfile_conf}" ]]; then
+        # Create new file if it doesn't exist
+        cat > "${argfile_conf}" <<- EOF
+					PACKAGE_NAME=${name//-/_}
+					PACKAGE_VERSION=${version}
+					EOF
+    else
+        # Update just the version if file exists
+        sed -i "s/^PACKAGE_VERSION=.*/PACKAGE_VERSION=${version}/" "${argfile_conf}"
+    fi
 }
 
 function generate_konflux_resources() {

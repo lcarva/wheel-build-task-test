@@ -47,6 +47,7 @@ resources:
   - python-dateutil
   - requests
   - rich
+  - scikit-build-core
   - sqlparse
   - tomlkit
   - tox

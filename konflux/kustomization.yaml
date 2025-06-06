@@ -21,6 +21,7 @@ resources:
   - hatch-fancy-pypi-readme
   - hatchling
   - hatch-vcs
+  - httpcore
   - httpx
   - humanize
   - idna

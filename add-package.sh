@@ -26,6 +26,12 @@ echo "==================================================="
 echo "Package dependencies ${PKG_NAME} has been resolved."
 echo "==================================================="
 
+BUILD="${BUILD:-1}"
+if [[ "${BUILD}" -eq 1 ]]; then
+    echo "Building package locally"
+    ./build-locally.sh "${PKG_NAME}"
+fi
+
 echo 'Creating Konflux resources for package'
 kustomize build "konflux/${PKG_NAME}" | oc -n calunga-tenant apply -f -
 

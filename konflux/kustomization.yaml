@@ -31,6 +31,7 @@ resources:
   - markupsafe
   - marshmallow
   - mdurl
+  - meson-python
   - more-itertools
   - mypy-extensions
   - ninja

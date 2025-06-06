@@ -23,6 +23,7 @@ resources:
   - httpx
   - humanize
   - idna
+  - iniconfig
   - isort
   - jinja2
   - loguru

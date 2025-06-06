@@ -32,6 +32,7 @@ resources:
   - marshmallow
   - mdurl
   - more-itertools
+  - mypy-extensions
   - ninja
   - numpy
   - packaging

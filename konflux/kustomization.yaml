@@ -16,6 +16,7 @@ resources:
   - freezegun
   - hatch-fancy-pypi-readme
   - hatchling
+  - hatch-vcs
   - httpx
   - humanize
   - idna

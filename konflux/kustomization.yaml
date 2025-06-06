@@ -24,6 +24,7 @@ resources:
   - loguru
   - markdown
   - marshmallow
+  - mdurl
   - more-itertools
   - ninja
   - numpy

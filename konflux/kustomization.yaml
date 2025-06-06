@@ -61,4 +61,5 @@ resources:
   - types-setuptools
   - typing-extensions
   - urllib3
+  - virtualenv
   - wheel

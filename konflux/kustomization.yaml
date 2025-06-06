@@ -42,6 +42,7 @@ resources:
   - pluggy
   - prompt-toolkit
   - pygments
+  - pyproject-api
   - pyproject-metadata
   - pytest
   - python-dateutil

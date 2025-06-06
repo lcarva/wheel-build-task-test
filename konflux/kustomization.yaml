@@ -55,6 +55,7 @@ resources:
   - rich
   - scikit-build-core
   - setuptools-scm
+  - soupsieve
   - sqlparse
   - tomlkit
   - tox

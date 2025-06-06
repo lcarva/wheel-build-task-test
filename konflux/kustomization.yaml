@@ -52,6 +52,7 @@ resources:
   - requests
   - rich
   - scikit-build-core
+  - setuptools-scm
   - sqlparse
   - tomlkit
   - tox

@@ -43,4 +43,5 @@ resources:
   - trove-classifiers
   - typing-extensions
   - urllib3
+  - virtualenv
   - wheel

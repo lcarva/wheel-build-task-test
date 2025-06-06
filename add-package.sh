@@ -34,6 +34,6 @@ echo 'Creating a pull request for onboarding the package'
 BRANCH_NAME="add-${PKG_NAME}"
 git checkout -b "${BRANCH_NAME}"
 git add .
-git commit -m "Onboard ${name} package" --signoff
+git commit -m "Onboard ${PKG_NAME} package" --signoff
 git push --set-upstream origin "${BRANCH_NAME}"
 gh pr create --base main --head "${BRANCH_NAME}" --fill

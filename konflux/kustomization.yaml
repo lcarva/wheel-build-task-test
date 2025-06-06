@@ -13,6 +13,7 @@ resources:
   - colorama
   - django
   - docutils
+  - filelock
   - freezegun
   - hatch-fancy-pypi-readme
   - hatchling

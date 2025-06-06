@@ -25,6 +25,7 @@ resources:
   - markdown
   - marshmallow
   - more-itertools
+  - mypy-extensions
   - ninja
   - numpy
   - packaging

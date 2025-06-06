@@ -41,6 +41,7 @@ resources:
   - tox
   - tqdm
   - trove-classifiers
+  - types-setuptools
   - typing-extensions
   - urllib3
   - wheel

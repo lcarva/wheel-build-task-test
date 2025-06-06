@@ -28,6 +28,7 @@ resources:
   - jinja2
   - loguru
   - markdown
+  - markupsafe
   - marshmallow
   - more-itertools
   - ninja

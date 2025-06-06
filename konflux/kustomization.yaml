@@ -11,6 +11,7 @@ resources:
   - charset-normalizer
   - click
   - colorama
+  - distlib
   - django
   - docutils
   - freezegun

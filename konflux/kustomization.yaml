@@ -9,6 +9,7 @@ resources:
   - black
   - blinker
   - cachetools
+  - calver
   - charset-normalizer
   - click
   - colorama

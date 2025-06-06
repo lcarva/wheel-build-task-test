@@ -28,6 +28,7 @@ resources:
   - jinja2
   - loguru
   - markdown
+  - markdown-it-py
   - markupsafe
   - marshmallow
   - mdurl

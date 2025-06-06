@@ -10,6 +10,7 @@ resources:
   - blinker
   - cachetools
   - calver
+  - chardet
   - charset-normalizer
   - click
   - colorama

@@ -33,6 +33,7 @@ resources:
   - pluggy
   - prompt-toolkit
   - pygments
+  - pyproject-metadata
   - pytest
   - python-dateutil
   - requests

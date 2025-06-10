@@ -2,8 +2,6 @@ FROM quay.io/lucarval/calunga-builder:latest AS builder
 
 ARG PACKAGE_NAME
 
-# TODO: Handle the case where '-' in the package name may get converted to '_' in the sdist file
-# name, e.g. python-dateutil
 RUN \
     mkdir -p /opt/app-root/dist && \
     ls -la "${PIP_FIND_LINKS}" && \

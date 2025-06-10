@@ -11,7 +11,7 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
-    pipelinesascode.tekton.dev/on-path-change: "[Containerfile, packages/${name}/**]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/${name}/**]"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga

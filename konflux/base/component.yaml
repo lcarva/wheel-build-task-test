@@ -3,7 +3,7 @@ kind: Component
 metadata:
   annotations:
     # Prevents the onboarding pipeline from being created when the component is created.
-    build.appstudio.openshift.io/status: '{"message":"done"}'
+    metadata.annotations.build.appstudio.openshift.io/request: configure-pac-no-mr
   name: package-name
 spec:
   application: calunga

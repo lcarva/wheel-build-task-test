@@ -1,0 +1,33 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: calunga
+spec:
+  description: 'Includes the full set of rules and policies required internally by Red Hat when building Red Hat products. Source: https://github.com/enterprise-contract/config/blob/main/redhat/policy.yaml'
+  name: Red Hat
+  publicKey: k8s://openshift-pipelines/public-key
+  sources:
+    - config:
+        exclude:
+          # TODO: Use a proper base image.
+          - base_image_registries.base_image_permitted:quay.io/lucarval/calunga-builder
+          # TODO: Are these labels required?
+          - labels.required_labels
+          # TODO: Consider removing this task.
+          - test.no_erred_tests:ecosystem-cert-preflight-checks
+          # TODO: Setup snyk.
+          - test.no_skipped_tests:sast-snyk-check-oci-ta
+          # Does a source container image make sense here? Where would we deploy it? The source
+          # for the package itself is released to the python index. However, the source of its
+          # dependencies are not. Should it go somewhere?
+          - source_image.exists
+          - tasks.required_tasks_found:source-build-oci-ta
+        include:
+          - '@redhat'
+      data:
+        - github.com/release-engineering/rhtap-ec-policy//data
+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+      name: Default
+      policy:
+        - oci::quay.io/enterprise-contract/ec-release-policy:konflux

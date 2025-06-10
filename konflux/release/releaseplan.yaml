@@ -1,0 +1,13 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ReleasePlan
+metadata:
+  name: test-calunga
+  labels:
+    release.appstudio.openshift.io/auto-release: 'true'
+    release.appstudio.openshift.io/releasePlanAdmission: test-calunga
+    release.appstudio.openshift.io/standing-attribution: 'true'
+spec:
+  application: calunga
+  releaseGracePeriodDays: 7
+  target: calunga-tenant

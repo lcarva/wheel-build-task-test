@@ -52,17 +52,11 @@ function generate_package_wrapper() {
       pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${requirements_build_txt}"
     fi
 
-    version="$(grep -ioP '^'${name}'==\K.+\w' "${requirements_txt}")"
-
     if [[ ! -f "${argfile_conf}" ]]; then
         # Create new file if it doesn't exist
         cat > "${argfile_conf}" <<- EOF
 					PACKAGE_NAME=${name//-/_}
-					PACKAGE_VERSION=${version}
 					EOF
-    else
-        # Update just the version if file exists
-        sed -i "s/^PACKAGE_VERSION=.*/PACKAGE_VERSION=${version}/" "${argfile_conf}"
     fi
 }
 

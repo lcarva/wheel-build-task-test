@@ -4,4 +4,6 @@ USER root
 RUN dnf install -y cmake
 
 USER 1001
-RUN pip install build wheel
+# TODO: Remove the pulp-cli wheel once an image exists:
+# https://github.com/pulp/pulp-oci-images/issues/744
+RUN pip install build wheel pulp-cli

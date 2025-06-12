@@ -1,0 +1,85 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: push-py-pulp
+spec:
+  description: |
+    A task to push Python packages to a Pulp repository.
+    Currently just a placeholder that prints hello world.
+  params:
+    - name: IMAGES
+      type: string
+      description: Path to the snapshot spec file containing image information
+    - name: SUBDIRECTORY
+      type: string
+      description: The subdirectory to use for the workspace
+    - name: PULP_SECRET_NAME
+      type: string
+      description: >-
+        The name of the secret containing the Pulp credentials. It must have the cert and key data
+        attributes.
+      default: pulp-credentials
+    - name: PULP_BASE_URL
+      type: string
+      description: The base URL of the Pulp server
+    - name: PULP_API_ROOT
+      type: string
+      description: The API root path of the Pulp server
+      default: "/api/pulp/"
+    - name: PULP_DOMAIN
+      type: string
+      description: The domain to use for Pulp operations
+    - name: PULP_REPOSITORY
+      type: string
+  workspaces:
+    - name: data
+      description: The workspace containing data from previous pipeline tasks
+  volumes:
+    - name: pulp-secret
+      secret:
+        secretName: $(params.PULP_SECRET_NAME)
+  stepTemplate:
+    workingDir: "$(workspaces.data.path)/$(params.SUBDIRECTORY)"
+    env:
+      - name: IMAGES
+        value: $(params.IMAGES)
+      - name: PULP_BASE_URL
+        value: $(params.PULP_BASE_URL)
+      - name: PULP_API_ROOT
+        value: $(params.PULP_API_ROOT)
+      - name: PULP_DOMAIN
+        value: $(params.PULP_DOMAIN)
+      - name: PULP_REPOSITORY
+        value: $(params.PULP_REPOSITORY)
+  steps:
+    - name: upload
+      image: quay.io/lucarval/calunga-builder:latest
+      # TODO: Remove this after a proper image is used. The image should be pinned.
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: pulp-secret
+          mountPath: "/etc/pulp-secret"
+          readOnly: true
+      script: |
+        #!/usr/bin/env bash
+        echo "Hello World from push-py-pulp task!"
+        echo "Workspace contents:"
+        ls -la .
+        pwd
+
+        ls -la /etc/pulp-secret
+
+        pulp --help
+
+        for pkg in *; do
+          if [ -f "$pkg" ]; then
+            echo "Uploading $pkg..."
+            pulp --base-url "${PULP_BASE_URL}" --api-root "${PULP_API_ROOT}" --domain "${PULP_DOMAIN}" \
+              --cert /etc/pulp-secret/cert --key /etc/pulp-secret/key \
+              python content upload \
+              --relative-path "$(basename ${pkg})" --file "${pkg}" --repository "${PULP_REPOSITORY}"
+          fi
+        done
+
+        # TODO: Echo the index URL, e.g https://console.redhat.com/api/pulp-content/public-calunga/mypypi/simple
+

@@ -5,7 +5,7 @@ cd "$(git root)"
 
 mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
 
-all_kustomization_yaml='konflux/kustomization.yaml'
+all_kustomization_yaml='konflux/components/kustomization.yaml'
 packages_on_push_yaml='.tekton/packages-on-push.yaml'
 packages_on_pull_request_yaml='.tekton/packages-on-pull-request.yaml'
 
@@ -65,11 +65,11 @@ function generate_konflux_resources() {
     name=$1
 
     mkdir -p "konflux/${name}"
-    kustomization_yaml="konflux/${name}/kustomization.yaml"
-    set_resource_name_yaml="konflux/${name}/set-resource-name.yaml"
-    set_package_name_yaml="konflux/${name}/set-package-name.yaml"
+    kustomization_yaml="konflux/components/${name}/kustomization.yaml"
+    set_resource_name_yaml="konflux/components/${name}/set-resource-name.yaml"
+    set_package_name_yaml="konflux/components/${name}/set-package-name.yaml"
 
-    cp 'konflux/base/pkg-kustomization.yaml' "${kustomization_yaml}"
+    cp 'konflux/components/base/pkg-kustomization.yaml' "${kustomization_yaml}"
 
     cat > "${set_resource_name_yaml}" <<- EOF
 		- op: replace

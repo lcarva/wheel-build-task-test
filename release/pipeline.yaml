@@ -223,7 +223,7 @@ spec:
           - name: url
             value: https://github.com/lcarva/calunga.git
           - name: revision
-            value: add-konflux-release
+            value: main
           - name: pathInRepo
             value: release/push-py-pulp-task.yaml
       params:

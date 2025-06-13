@@ -5,6 +5,6 @@
 #
 set -euo pipefail
 
-cd "$(git root)"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 comm -13 <(ls -1 packages/) <(cat packages/*/requirements*.txt | grep '==' | cut -d= -f1 | sort -u)

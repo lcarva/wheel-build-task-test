@@ -3,7 +3,7 @@ set -euo pipefail
 
 PACKAGE=$1
 
-cd "$(git root)"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 echo "Building ${PACKAGE}"
 

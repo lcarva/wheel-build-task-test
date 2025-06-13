@@ -10,7 +10,7 @@ set -euo pipefail
 
 PKG_NAME=$1
 
-cd "$(git root)"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 
 git checkout main
 git pull

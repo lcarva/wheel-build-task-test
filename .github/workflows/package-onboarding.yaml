@@ -57,12 +57,13 @@ jobs:
           mkdir "packages/${{ steps.extract.outputs.package_name }}"
           ./generate.sh
 
-      # TODO: Uncomment this when we have the ServiceAccount created in Konflux
-      # - name: Apply Konflux resources
-      #   run: |
-      #     kustomize build "konflux/${{ steps.extract.outputs.package_name }}" | kubectl apply -f -
-      #   env:
-      #     KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      - name: Apply Konflux resources
+        run: |
+          echo "${{ secrets.KUBECONFIG_CONTENTS }}" > kubeconfig.yaml
+          kustomize build "konflux/${{ steps.extract.outputs.package_name }}" | kubectl apply -f -
+          rm -f kubeconfig.yaml
+        env:
+          KUBECONFIG: kubeconfig.yaml
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7

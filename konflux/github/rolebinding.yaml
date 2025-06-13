@@ -1,0 +1,12 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: github-on-boarding
+subjects:
+  - kind: ServiceAccount
+    name: github-on-boarding
+roleRef:
+  kind: Role
+  name: github-on-boarding
+  apiGroup: rbac.authorization.k8s.io

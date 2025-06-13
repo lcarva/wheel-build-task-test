@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: keras
+  name: keras
+spec:
+  image:
+    name: calunga-tenant/keras
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: keras
+spec:
+  componentName: keras
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/keras

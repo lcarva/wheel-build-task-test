@@ -64,7 +64,7 @@ function generate_konflux_resources() {
     local name
     name=$1
 
-    mkdir -p "konflux/${name}"
+    mkdir -p "konflux/components/${name}"
     kustomization_yaml="konflux/components/${name}/kustomization.yaml"
     set_resource_name_yaml="konflux/components/${name}/set-resource-name.yaml"
     set_package_name_yaml="konflux/components/${name}/set-package-name.yaml"

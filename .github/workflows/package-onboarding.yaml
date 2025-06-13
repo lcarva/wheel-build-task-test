@@ -5,6 +5,9 @@ on:
   issues:
     types: [labeled]
 
+permissions:
+  contents: read
+
 jobs:
   onboard-package:
     if: github.event.label.name == 'on-board'
@@ -73,3 +76,5 @@ jobs:
           title: "Onboard ${{ steps.extract.outputs.package_name }} package"
           body: |
             Fixes: #${{ github.event.issue.number }}
+          sign-commits: true
+          signoff: true

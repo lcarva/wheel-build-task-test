@@ -37,6 +37,20 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pip-tools pybuild-deps
 
+          # Debug information
+          echo "Python version:"
+          python --version
+          echo "pip version:"
+          pip --version
+          echo "pip-tools version:"
+          pip-compile --version
+          echo "Python path:"
+          which python
+          echo "pip path:"
+          which pip
+          echo "pip-tools path:"
+          which pip-compile
+
           mkdir "packages/${{ steps.extract.outputs.package_name }}"
           ./generate.sh
 

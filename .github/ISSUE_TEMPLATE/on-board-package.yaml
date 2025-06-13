@@ -26,5 +26,5 @@ body:
     description: >
       By submitting this issue, you agree to have verified the package is legitimate.
     options:
-    - label: I agree
+    - label: I agree to have verified the package is legitimate.
       required: true

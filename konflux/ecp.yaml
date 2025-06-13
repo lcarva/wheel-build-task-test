@@ -18,6 +18,8 @@ spec:
           - test.no_erred_tests:ecosystem-cert-preflight-checks
           # TODO: Setup snyk.
           - test.no_skipped_tests:sast-snyk-check-oci-ta
+          # TODO: Does it make sense to restrict to weekdays?
+          - schedule.weekday_restriction
           # Does a source container image make sense here? Where would we deploy it? The source
           # for the package itself is released to the python index. However, the source of its
           # dependencies are not. Should it go somewhere?

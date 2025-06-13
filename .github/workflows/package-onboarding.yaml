@@ -1,0 +1,60 @@
+---
+name: Package Onboarding
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  onboard-package:
+    if: github.event.label.name == 'on-board'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+      issues: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Extract package name from issue
+        id: extract
+        run: |
+          # Extract package name from issue title
+          PKG_NAME=$(echo "${{ github.event.issue.title }}" | sed -n 's/Onboard package: \([^]]*\)/\1/p')
+          echo "package_name=$PKG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create package directory and generate files
+        run: |
+          # Install python dependencies
+          python -m pip install pip-tools pybuild-deps
+
+          mkdir "packages/${{ steps.extract.outputs.package_name }}"
+          ./generate.sh
+
+      # TODO: Uncomment this when we have the ServiceAccount created in Konflux
+      # - name: Apply Konflux resources
+      #   run: |
+      #     kustomize build "konflux/${{ steps.extract.outputs.package_name }}" | kubectl apply -f -
+      #   env:
+      #     KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: |
+            packages/${{ steps.extract.outputs.package_name }}
+            konflux
+            .tekton
+          branch: "on-board/${{ steps.extract.outputs.package_name }}"
+          commit-message: "Onboard ${{ steps.extract.outputs.package_name }} package"
+          title: "Onboard ${{ steps.extract.outputs.package_name }} package"
+          body: |
+            Fixes: #${{ github.event.issue.number }}

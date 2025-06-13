@@ -1,0 +1,6 @@
+---
+name: 🌱 Add Package
+description: >
+  Request that a new python package is added to this repository so Calunga will build it
+  from source and publish it on its python index.
+title: "Onboard package: [PACKAGE_NAME]"

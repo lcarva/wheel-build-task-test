@@ -60,7 +60,7 @@ jobs:
       - name: Apply Konflux resources
         run: |
           echo "${{ secrets.KUBECONFIG_CONTENTS }}" > kubeconfig.yaml
-          kustomize build "konflux/${{ steps.extract.outputs.package_name }}" | kubectl apply -f -
+          kustomize build "konflux/components/${{ steps.extract.outputs.package_name }}" | kubectl apply -f -
           rm -f kubeconfig.yaml
         env:
           KUBECONFIG: kubeconfig.yaml

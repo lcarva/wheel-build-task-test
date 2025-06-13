@@ -9,6 +9,7 @@ resources:
   - black
   - blinker
   - bokeh
+  - botocore
   - cachetools
   - calver
   - chardet

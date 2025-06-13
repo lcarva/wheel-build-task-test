@@ -20,8 +20,8 @@ body:
   validations:
     required: true
 - type: checkboxes
+  id: verified
   attributes:
-    id: verified
     label: Verification
     description: >
       By submitting this issue, you agree to have verified the package is legitimate.

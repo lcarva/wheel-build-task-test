@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: boto3
+  name: boto3
+spec:
+  image:
+    name: calunga-tenant/boto3
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: boto3
+spec:
+  componentName: boto3
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/boto3

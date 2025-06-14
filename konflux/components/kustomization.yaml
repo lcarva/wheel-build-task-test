@@ -57,6 +57,7 @@ resources:
   - python-dateutil
   - requests
   - rich
+  - s3fs
   - scikit-build-core
   - setuptools-scm
   - sniffio

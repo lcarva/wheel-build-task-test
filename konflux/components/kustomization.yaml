@@ -54,6 +54,7 @@ resources:
   - platformdirs
   - pluggy
   - prompt-toolkit
+  - pydantic
   - pygments
   - pyproject-api
   - pyproject-metadata

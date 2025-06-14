@@ -13,6 +13,7 @@ resources:
   - boto3
   - cachetools
   - calver
+  - cffi
   - chardet
   - charset-normalizer
   - click

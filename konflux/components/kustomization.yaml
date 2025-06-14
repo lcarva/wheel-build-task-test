@@ -60,6 +60,7 @@ resources:
   - pyproject-metadata
   - pytest
   - python-dateutil
+  - pyyaml
   - requests
   - rich
   - s3transfer

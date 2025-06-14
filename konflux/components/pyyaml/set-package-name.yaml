@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pyyaml
+  name: pyyaml
+spec:
+  image:
+    name: calunga-tenant/pyyaml
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pyyaml
+spec:
+  componentName: pyyaml
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pyyaml

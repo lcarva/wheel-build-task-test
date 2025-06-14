@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: s3transfer
+  name: s3transfer
+spec:
+  image:
+    name: calunga-tenant/s3transfer
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: s3transfer
+spec:
+  componentName: s3transfer
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/s3transfer

@@ -2,6 +2,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - aiobotocore
   - anyio
   - arrow
   - attrs
@@ -9,9 +10,10 @@ resources:
   - black
   - blinker
   - bokeh
-  - boto3
+  - botocore
   - cachetools
   - calver
+  - cffi
   - chardet
   - charset-normalizer
   - click
@@ -21,6 +23,8 @@ resources:
   - docutils
   - filelock
   - freezegun
+  - fsspec
+  - grpcio-status
   - hatch-fancy-pypi-readme
   - hatch-vcs
   - hatchling
@@ -28,6 +32,7 @@ resources:
   - httpx
   - humanize
   - idna
+  - importlib-metadata
   - iniconfig
   - isort
   - jinja2
@@ -50,11 +55,13 @@ resources:
   - platformdirs
   - pluggy
   - prompt-toolkit
+  - pydantic
   - pygments
   - pyproject-api
   - pyproject-metadata
   - pytest
   - python-dateutil
+  - pyyaml
   - requests
   - rich
   - s3fs

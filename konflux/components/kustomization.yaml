@@ -55,6 +55,7 @@ resources:
   - pyproject-metadata
   - pytest
   - python-dateutil
+  - pyyaml
   - requests
   - rich
   - scikit-build-core

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: s3fs
+  name: s3fs
+spec:
+  image:
+    name: calunga-tenant/s3fs
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: s3fs
+spec:
+  componentName: s3fs
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/s3fs

@@ -3172,13 +3172,13 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-path-change: "[packages/s3transfer/**]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/s3fs/**]"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga
-    appstudio.openshift.io/component: s3transfer
+    appstudio.openshift.io/component: s3fs
     pipelines.appstudio.openshift.io/type: build
-  name: s3transfer-on-push
+  name: s3fs-on-push
   namespace: calunga-tenant
 spec:
   params:
@@ -3187,13 +3187,14 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/calunga-tenant/s3transfer:{{revision}}
+
+    value: quay.io/redhat-user-workloads/calunga-tenant/s3fs:{{revision}}
   - name: path-context
-    value: packages/s3transfer
+    value: packages/s3fs
   - name: dockerfile
     value: Containerfile
   - name: build-args-file
-    value: packages/s3transfer/argfile.conf
+    value: packages/s3fs/argfile.conf
   - name: hermetic
     value: "true"
   - name: prefetch-input

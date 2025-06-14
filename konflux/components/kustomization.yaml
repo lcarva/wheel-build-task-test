@@ -64,7 +64,7 @@ resources:
   - pyyaml
   - requests
   - rich
-  - s3transfer
+  - s3fs
   - scikit-build-core
   - setuptools-scm
   - sniffio

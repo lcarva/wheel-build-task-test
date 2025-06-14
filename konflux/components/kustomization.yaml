@@ -30,6 +30,7 @@ resources:
   - httpx
   - humanize
   - idna
+  - importlib-metadata
   - iniconfig
   - isort
   - jinja2

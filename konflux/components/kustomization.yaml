@@ -47,6 +47,7 @@ resources:
   - marshmallow
   - mdurl
   - meson-python
+  - microsoft-kiota-http
   - more-itertools
   - mypy
   - mypy-extensions

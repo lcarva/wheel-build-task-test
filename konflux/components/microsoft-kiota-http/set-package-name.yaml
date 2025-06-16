@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: microsoft-kiota-http
+  name: microsoft-kiota-http
+spec:
+  image:
+    name: calunga-tenant/microsoft-kiota-http
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: microsoft-kiota-http
+spec:
+  componentName: microsoft-kiota-http
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/microsoft-kiota-http

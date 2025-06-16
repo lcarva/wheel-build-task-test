@@ -68,6 +68,7 @@ resources:
   - pyyaml
   - requests
   - rich
+  - rsa
   - s3fs
   - s3transfer
   - scikit-build-core

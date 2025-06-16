@@ -57,6 +57,7 @@ resources:
   - platformdirs
   - pluggy
   - prompt-toolkit
+  - pyasn1-modules
   - pydantic
   - pygments
   - pyproject-api

@@ -57,6 +57,7 @@ resources:
   - pluggy
   - prompt-toolkit
   - pydantic
+  - pydantic-core
   - pygments
   - pyproject-api
   - pyproject-metadata

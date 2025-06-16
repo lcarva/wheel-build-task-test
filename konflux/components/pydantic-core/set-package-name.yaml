@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pydantic-core
+  name: pydantic-core
+spec:
+  image:
+    name: calunga-tenant/pydantic-core
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pydantic-core
+spec:
+  componentName: pydantic-core
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pydantic-core

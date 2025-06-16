@@ -86,3 +86,4 @@ resources:
   - urllib3
   - virtualenv
   - wheel
+  - zipp

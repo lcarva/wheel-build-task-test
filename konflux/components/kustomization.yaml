@@ -69,6 +69,7 @@ resources:
   - pytz
   - pyyaml
   - requests
+  - rfc3986-validator
   - rich
   - rsa
   - s3fs

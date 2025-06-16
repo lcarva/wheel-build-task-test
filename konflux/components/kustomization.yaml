@@ -41,6 +41,7 @@ resources:
   - isort
   - jinja2
   - keras
+  - limits
   - loguru
   - markdown
   - markdown-it-py

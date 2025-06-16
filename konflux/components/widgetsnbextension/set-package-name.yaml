@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: widgetsnbextension
+  name: widgetsnbextension
+spec:
+  image:
+    name: calunga-tenant/widgetsnbextension
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: widgetsnbextension
+spec:
+  componentName: widgetsnbextension
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/widgetsnbextension

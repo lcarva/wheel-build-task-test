@@ -5,6 +5,7 @@ resources:
   - aiobotocore
   - aiohttp
   - anyio
+  - appdirs
   - arrow
   - attrs
   - beautifulsoup4

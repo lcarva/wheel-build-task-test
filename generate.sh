@@ -44,7 +44,7 @@ function generate_package_wrapper() {
 
     if [[ ! -f "${requirements_txt}" ]]; then
       echo 'Creating requirements.txt file'
-      pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
+      pip-compile --allow-unsafe --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
     fi
 
     if [[ ! -f "${requirements_build_txt}" ]]; then

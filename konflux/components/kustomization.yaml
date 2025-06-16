@@ -74,6 +74,7 @@ resources:
   - s3fs
   - s3transfer
   - scikit-build-core
+  - seaborn
   - setuptools-scm
   - sniffio
   - soupsieve

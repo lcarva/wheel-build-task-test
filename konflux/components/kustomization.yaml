@@ -53,6 +53,7 @@ resources:
   - mypy-extensions
   - ninja
   - numpy
+  - oscrypto
   - packaging
   - patchelf
   - pathspec

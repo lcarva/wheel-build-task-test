@@ -29,6 +29,7 @@ resources:
   - google-cloud-vision
   - googleapis-common-protos
   - grpcio-status
+  - h2
   - hatch-fancy-pypi-readme
   - hatch-vcs
   - hatchling

@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
+mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | LC_ALL=C sort -z)
 
 all_kustomization_yaml='konflux/components/kustomization.yaml'
 packages_on_push_yaml='.tekton/packages-on-push.yaml'

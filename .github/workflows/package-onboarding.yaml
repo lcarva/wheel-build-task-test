@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   check-scorecard:
-    if: github.event.label.name == 'on-board'
+    if: github.event.label.name == 'new-package'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

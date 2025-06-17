@@ -24,9 +24,13 @@ resources:
   - django
   - docutils
   - faker
+  - fastavro
   - filelock
+  - flatbuffers
   - freezegun
+  - google-api-core
   - fsspec
+  - google-cloud-vision
   - googleapis-common-protos
   - grpcio-status
   - hatch-fancy-pypi-readme
@@ -35,6 +39,7 @@ resources:
   - httpcore
   - httpx
   - humanize
+  - hyperframe
   - idna
   - importlib-metadata
   - iniconfig
@@ -68,6 +73,7 @@ resources:
   - python-dateutil
   - pytz
   - pyyaml
+  - readme-renderer
   - requests
   - rich
   - rsa

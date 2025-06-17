@@ -1,3 +1,0 @@
-- op: replace
-  path: /metadata/name
-  value: microsoft-kiota-http

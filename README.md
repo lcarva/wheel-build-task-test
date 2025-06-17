@@ -2,9 +2,9 @@
 
 **Experimental!**
 
-Collection of python package dependencies.
-
-TODO: Add more info.
+Calunga is a library of python packages. Each package is built from source in
+[Konflux](https://konflux-ci.dev/). This git repository is a "monorepo" with build recipes for each
+package.
 
 ## Adding a new package
 

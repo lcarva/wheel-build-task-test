@@ -25,7 +25,7 @@ jobs:
           echo "package_name=$PKG_NAME" >> $GITHUB_OUTPUT
 
       - name: Run OpenSSF Scorecard
-        uses: ossf/scorecard-action@v2
+        uses: ossf/scorecard-action@v1.2.1
         with:
           results_file: results.sarif
           results_format: sarif

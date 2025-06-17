@@ -70,7 +70,6 @@ resources:
   - patchelf
   - pathspec
   - platformdirs
-  - plotly
   - pluggy
   - prompt-toolkit
   - pyasn1

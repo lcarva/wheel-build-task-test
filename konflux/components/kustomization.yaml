@@ -25,6 +25,7 @@ resources:
   - docutils
   - fastavro
   - filelock
+  - flatbuffers
   - freezegun
   - fsspec
   - google-cloud-vision

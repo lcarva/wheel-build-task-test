@@ -19,6 +19,7 @@ resources:
   - chardet
   - charset-normalizer
   - click
+  - click-plugins
   - colorama
   - cryptography
   - distlib

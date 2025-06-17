@@ -86,6 +86,7 @@ resources:
   - pyyaml
   - readme-renderer
   - requests
+  - rfc3986-validator
   - rich
   - rsa
   - s3fs

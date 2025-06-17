@@ -22,7 +22,6 @@ resources:
   - click
   - click-plugins
   - colorama
-  - cryptography
   - distlib
   - django
   - docutils

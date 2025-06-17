@@ -28,8 +28,8 @@ resources:
   - filelock
   - flatbuffers
   - freezegun
-  - google-api-core
   - fsspec
+  - google-api-core
   - google-cloud-vision
   - googleapis-common-protos
   - grpcio-status
@@ -68,6 +68,7 @@ resources:
   - platformdirs
   - pluggy
   - prompt-toolkit
+  - pyasn1
   - pyasn1-modules
   - pydantic
   - pygments

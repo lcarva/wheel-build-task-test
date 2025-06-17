@@ -35,6 +35,7 @@ resources:
   - httpcore
   - httpx
   - humanize
+  - hyperframe
   - idna
   - importlib-metadata
   - iniconfig

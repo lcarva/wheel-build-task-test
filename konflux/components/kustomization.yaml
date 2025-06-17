@@ -20,7 +20,6 @@ resources:
   - chardet
   - charset-normalizer
   - click
-  - click-plugins
   - colorama
   - distlib
   - django

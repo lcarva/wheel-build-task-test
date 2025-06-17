@@ -29,7 +29,6 @@ resources:
   - faker
   - fastavro
   - filelock
-  - flatbuffers
   - freezegun
   - fsspec
   - google-api-core

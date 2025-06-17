@@ -91,6 +91,7 @@ resources:
   - scikit-build-core
   - setuptools-scm
   - sniffio
+  - snowballstemmer
   - soupsieve
   - sqlparse
   - tomlkit

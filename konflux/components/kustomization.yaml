@@ -68,6 +68,7 @@ resources:
   - python-dateutil
   - pytz
   - pyyaml
+  - readme-renderer
   - requests
   - rich
   - rsa

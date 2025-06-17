@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: appdirs
+  name: appdirs
+spec:
+  image:
+    name: calunga-tenant/appdirs
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: appdirs
+spec:
+  componentName: appdirs
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/appdirs

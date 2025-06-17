@@ -1081,12 +1081,15 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-path-change: "[packages/fastavro/**]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/faker/**]"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga
-    appstudio.openshift.io/component: fastavro
+    appstudio.openshift.io/component: faker
     pipelines.appstudio.openshift.io/type: build
+  name: faker-on-push
+    pipelinesascode.tekton.dev/on-path-change: "[packages/fastavro/**]"
+    appstudio.openshift.io/component: fastavro
   name: fastavro-on-push
   namespace: calunga-tenant
 spec:
@@ -1096,12 +1099,15 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/calunga-tenant/fastavro:{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/faker:{{revision}}
   - name: path-context
-    value: packages/fastavro
+    value: packages/faker
   - name: dockerfile
     value: Containerfile
   - name: build-args-file
+    value: packages/faker/argfile.conf
+    value: quay.io/redhat-user-workloads/calunga-tenant/fastavro:{{revision}}
+    value: packages/fastavro
     value: packages/fastavro/argfile.conf
   - name: hermetic
     value: "true"
@@ -1109,6 +1115,7 @@ spec:
     value: |
       {
         "type": "pip",
+        "path": "./packages/faker",
         "path": "./packages/fastavro",
         "allow_binary": "false"
       }

@@ -23,6 +23,7 @@ resources:
   - distlib
   - django
   - docutils
+  - faker
   - fastavro
   - filelock
   - flatbuffers

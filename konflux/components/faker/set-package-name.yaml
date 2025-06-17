@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: faker
+  name: faker
+spec:
+  image:
+    name: calunga-tenant/faker
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: faker
+spec:
+  componentName: faker
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/faker

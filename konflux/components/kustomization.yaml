@@ -98,4 +98,5 @@ resources:
   - urllib3
   - virtualenv
   - wheel
+  - widgetsnbextension
   - zipp

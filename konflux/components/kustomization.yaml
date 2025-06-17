@@ -73,6 +73,7 @@ resources:
   - pyasn1
   - pyasn1-modules
   - pydantic
+  - pydantic-core
   - pygments
   - pyproject-api
   - pyproject-metadata

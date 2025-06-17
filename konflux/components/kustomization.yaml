@@ -20,6 +20,7 @@ resources:
   - charset-normalizer
   - click
   - colorama
+  - cryptography
   - distlib
   - django
   - docutils

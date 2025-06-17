@@ -27,6 +27,7 @@ resources:
   - filelock
   - flatbuffers
   - freezegun
+  - google-api-core
   - fsspec
   - google-cloud-vision
   - googleapis-common-protos

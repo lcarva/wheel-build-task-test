@@ -1285,12 +1285,15 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-path-change: "[packages/fsspec/**]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/google-api-core/**]"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: calunga
-    appstudio.openshift.io/component: fsspec
+    appstudio.openshift.io/component: google-api-core
     pipelines.appstudio.openshift.io/type: build
+  name: google-api-core-on-push
+    pipelinesascode.tekton.dev/on-path-change: "[packages/fsspec/**]"
+    appstudio.openshift.io/component: fsspec
   name: fsspec-on-push
   namespace: calunga-tenant
 spec:
@@ -1300,12 +1303,15 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/calunga-tenant/fsspec:{{revision}}
+    value: quay.io/redhat-user-workloads/calunga-tenant/google-api-core:{{revision}}
   - name: path-context
-    value: packages/fsspec
+    value: packages/google-api-core
   - name: dockerfile
     value: Containerfile
   - name: build-args-file
+    value: packages/google-api-core/argfile.conf
+    value: quay.io/redhat-user-workloads/calunga-tenant/fsspec:{{revision}}
+    value: packages/fsspec
     value: packages/fsspec/argfile.conf
   - name: hermetic
     value: "true"
@@ -1313,6 +1319,7 @@ spec:
     value: |
       {
         "type": "pip",
+        "path": "./packages/google-api-core",
         "path": "./packages/fsspec",
         "allow_binary": "false"
       }
@@ -1365,56 +1372,12 @@ spec:
       {
         "type": "pip",
         "path": "./packages/google-cloud-vision",
-        "allow_binary": "false"
-      }
-  pipelineRef:
-    name: build
-  taskRunTemplate: {}
-  workspaces:
-  - name: git-auth
-    secret:
-      secretName: '{{ git_auth_secret }}'
-status: {}
----
-apiVersion: tekton.dev/v1
-kind: PipelineRun
-metadata:
-  annotations:
-    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
-    build.appstudio.redhat.com/commit_sha: '{{revision}}'
-    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
-    pipelinesascode.tekton.dev/cancel-in-progress: "false"
-    pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-target-branch: "[main]"
-    pipelinesascode.tekton.dev/on-event: "[push]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/googleapis-common-protos/**]"
-  creationTimestamp: null
-  labels:
-    appstudio.openshift.io/application: calunga
     appstudio.openshift.io/component: googleapis-common-protos
-    pipelines.appstudio.openshift.io/type: build
   name: googleapis-common-protos-on-push
-  namespace: calunga-tenant
-spec:
-  params:
-  - name: git-url
-    value: '{{source_url}}'
-  - name: revision
-    value: '{{revision}}'
-  - name: output-image
     value: quay.io/redhat-user-workloads/calunga-tenant/googleapis-common-protos:{{revision}}
-  - name: path-context
     value: packages/googleapis-common-protos
-  - name: dockerfile
-    value: Containerfile
-  - name: build-args-file
     value: packages/googleapis-common-protos/argfile.conf
-  - name: hermetic
-    value: "true"
-  - name: prefetch-input
-    value: |
-      {
-        "type": "pip",
         "path": "./packages/googleapis-common-protos",
         "allow_binary": "false"
       }

@@ -50,6 +50,7 @@ resources:
   - iniconfig
   - isort
   - jinja2
+  - jupyter-events
   - keras
   - limits
   - loguru

@@ -23,6 +23,7 @@ resources:
   - distlib
   - django
   - docutils
+  - fastavro
   - filelock
   - freezegun
   - fsspec

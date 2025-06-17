@@ -91,6 +91,7 @@ resources:
   - seaborn
   - setuptools-scm
   - sniffio
+  - snowballstemmer
   - soupsieve
   - sqlparse
   - tomlkit

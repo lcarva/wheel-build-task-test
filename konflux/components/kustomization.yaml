@@ -24,6 +24,7 @@ resources:
   - django
   - docutils
   - filelock
+  - flatbuffers
   - freezegun
   - fsspec
   - google-cloud-vision

@@ -3,14 +3,96 @@ name: Package Onboarding
 
 on:
   issues:
-    types: [labeled]
+    types: [labeled, opened]
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
+  check-scorecard:
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract package name from issue
+        id: extract
+        run: |
+          # Extract package name from issue title
+          PKG_NAME=$(echo "${{ github.event.issue.title }}" | sed -n 's/Onboard package: \([^]]*\)/\1/p')
+          echo "package_name=$PKG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Run OpenSSF Scorecard
+        uses: ossf/scorecard-action@v2
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_results: true
+
+      - name: Process Scorecard Results
+        id: process
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('results.sarif', 'utf8'));
+            
+            // Define minimum required scores for each check
+            const minimumScores = {
+              'Security-Policy': 5,
+              'Dependency-Update-Tool': 5,
+              'Code-Review': 5,
+              'Maintained': 5
+            };
+            
+            let meetsRequirements = true;
+            const failedChecks = [];
+            
+            // Process results
+            for (const run of results.runs) {
+              for (const result of run.results) {
+                const checkName = result.rule.id;
+                const score = result.properties.score || 0;
+                
+                if (minimumScores[checkName] && score < minimumScores[checkName]) {
+                  meetsRequirements = false;
+                  failedChecks.push(`${checkName}: ${score}/${minimumScores[checkName]}`);
+                }
+              }
+            }
+            
+            if (meetsRequirements) {
+              // Add on-board label
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['on-board']
+              });
+              
+              // Add comment about automatic onboarding
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: '✅ Package meets security requirements. Automatically starting onboarding process.'
+              });
+            } else {
+              // Add comment about failed checks
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `❌ Package does not meet security requirements. Failed checks:\n${failedChecks.join('\n')}\n\nPlease address these issues before proceeding with onboarding.`
+              });
+            }
+
   onboard-package:
     if: github.event.label.name == 'on-board'
+    needs: check-scorecard
     runs-on: ubuntu-latest
     permissions:
       contents: write

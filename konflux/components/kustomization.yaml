@@ -104,6 +104,7 @@ resources:
   - types-python-dateutil
   - types-setuptools
   - typing-extensions
+  - tzdata
   - urllib3
   - virtualenv
   - wheel

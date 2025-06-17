@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: seaborn
+  name: seaborn
+spec:
+  image:
+    name: calunga-tenant/seaborn
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: seaborn
+spec:
+  componentName: seaborn
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/seaborn

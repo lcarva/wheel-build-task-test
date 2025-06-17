@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
+mapfile -d '' packages < <(find ./packages -maxdepth 1 -mindepth 1 -type d -print0 | LC_ALL=C sort -z)
 
 all_kustomization_yaml='konflux/components/kustomization.yaml'
 packages_on_push_yaml='.tekton/packages-on-push.yaml'
@@ -44,7 +44,7 @@ function generate_package_wrapper() {
 
     if [[ ! -f "${requirements_txt}" ]]; then
       echo 'Creating requirements.txt file'
-      pip-compile --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
+      pip-compile --allow-unsafe --generate-hashes "${requirements_in}" --output-file "${requirements_txt}"
     fi
 
     if [[ ! -f "${requirements_build_txt}" ]]; then

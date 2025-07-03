@@ -9,6 +9,8 @@ all_kustomization_yaml='konflux/components/kustomization.yaml'
 packages_on_push_yaml='.tekton/packages-on-push.yaml'
 packages_on_pull_request_yaml='.tekton/packages-on-pull-request.yaml'
 
+additional_requirements_yaml='packages/additional-requirements.yaml'
+
 cat > "${all_kustomization_yaml}" << EOF
 ---
 apiVersion: kustomize.config.k8s.io/v1beta1
@@ -40,6 +42,7 @@ function generate_package_wrapper() {
     if [[ ! -f "${requirements_in}" ]]; then
       echo 'Creating requirement.in file'
       echo "${name}" > "${requirements_in}"
+      < "${additional_requirements_yaml}" yq ".packages.${name}[]" >> "${requirements_in}"
     fi
 
     if [[ ! -f "${requirements_txt}" ]]; then

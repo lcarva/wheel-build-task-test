@@ -1,0 +1,6 @@
+# This file captures additional requirements for different packages to overcome auto build
+# requirements detection.
+
+packages:
+  h11:
+    - setuptools

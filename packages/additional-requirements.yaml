@@ -2,10 +2,29 @@
 # requirements detection.
 
 packages:
+  click-plugins:
+    package_name: click-plugins
   delta-spark:
     package_name: delta-spark
+  flatbuffers:
+    requirements_in:
+      - setuptools
   h11:
+    requirements_in:
+      - setuptools
+  h5py:
+    requirements_in:
+      - hatch-fancy-pypi-readme
+      - ninja
+      - patchelf
+  mock:
+    requirements_in:
+      - setuptools
+  oscrypto:
     requirements_in:
       - setuptools
   python-dateutil:
     package_name: python-dateutil
+  wcwidth:
+    requirements_in:
+      - setuptools

@@ -111,6 +111,7 @@ resources:
   - tzdata
   - urllib3
   - virtualenv
+  - wcwidth
   - wheel
   - widgetsnbextension
   - xyzservices

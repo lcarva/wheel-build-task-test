@@ -33,7 +33,7 @@ if [[ "${BUILD}" -eq 1 ]]; then
 fi
 
 echo 'Creating Konflux resources for package'
-kustomize build "konflux/${PKG_NAME}" | oc -n calunga-tenant apply -f -
+kustomize build "konflux/components/${PKG_NAME}" | oc -n calunga-tenant apply -f -
 
 echo 'Creating a pull request for onboarding the package'
 

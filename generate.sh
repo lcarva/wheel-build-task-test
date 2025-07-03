@@ -42,7 +42,7 @@ function generate_package_wrapper() {
     if [[ ! -f "${requirements_in}" ]]; then
       echo 'Creating requirement.in file'
       echo "${name}" > "${requirements_in}"
-      < "${additional_requirements_yaml}" yq ".packages.${name}[]" >> "${requirements_in}"
+      < "${additional_requirements_yaml}" yq ".packages[\"${name}\"].requirements_in[]" >> "${requirements_in}"
     fi
 
     if [[ ! -f "${requirements_txt}" ]]; then
@@ -55,10 +55,18 @@ function generate_package_wrapper() {
       pybuild-deps compile --generate-hashes "${requirements_txt}" --output-file "${requirements_build_txt}"
     fi
 
+    # Create new file if it doesn't exist
     if [[ ! -f "${argfile_conf}" ]]; then
-        # Create new file if it doesn't exist
+        # Prefer package_name from additional-requirements.yaml, otherwise use the standard modified name.
+        package_name="$(
+            NAME="${name}" \
+            DEFAULT_PACKAGE_NAME="${name//-/_}" \
+            < "${additional_requirements_yaml}" \
+            yq '.packages[env(NAME)].package_name // env(DEFAULT_PACKAGE_NAME)'
+        )"
+
         cat > "${argfile_conf}" <<- EOF
-					PACKAGE_NAME=${name//-/_}
+					PACKAGE_NAME=${package_name}
 					EOF
     fi
 }

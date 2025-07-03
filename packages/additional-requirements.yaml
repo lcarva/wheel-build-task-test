@@ -2,5 +2,10 @@
 # requirements detection.
 
 packages:
+  delta-spark:
+    package_name: delta-spark
   h11:
-    - setuptools
+    requirements_in:
+      - setuptools
+  python-dateutil:
+    package_name: python-dateutil

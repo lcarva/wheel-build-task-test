@@ -210,6 +210,10 @@ spec:
           value: $(context.pipelineRun.uid)
         - name: snapshotPath
           value: "$(tasks.collect-data.results.snapshotSpec)"
+        - name: taskGitUrl
+          value: "https://github.com/konflux-ci/release-service-catalog.git"
+        - name: taskGitRevision
+          value: "production"
       workspaces:
         - name: data
           workspace: release-workspace

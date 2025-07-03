@@ -3,7 +3,8 @@
 
 packages:
   click-plugins:
-    package_name: click-plugins
+    requirements_in:
+      - setuptools
   delta-spark:
     package_name: delta-spark
   flatbuffers:

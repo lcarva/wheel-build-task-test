@@ -114,5 +114,6 @@ resources:
   - wcwidth
   - wheel
   - widgetsnbextension
+  - wrapt
   - xyzservices
   - zipp

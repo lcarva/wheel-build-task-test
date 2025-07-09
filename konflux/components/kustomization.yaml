@@ -84,6 +84,7 @@ resources:
   - pandas
   - patchelf
   - pathspec
+  - pbr
   - platformdirs
   - pluggy
   - ply

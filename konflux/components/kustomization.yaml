@@ -123,6 +123,7 @@ resources:
   - soupsieve
   - sqlparse
   - tableauserverclient
+  - tblib
   - thriftpy2
   - tomlkit
   - toolz

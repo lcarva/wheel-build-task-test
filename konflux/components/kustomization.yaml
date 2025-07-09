@@ -37,6 +37,7 @@ resources:
   - fsspec
   - google-api-core
   - google-auth
+  - google-cloud-logging
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz

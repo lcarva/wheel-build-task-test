@@ -37,10 +37,6 @@ spec:
       type: string
       description: Timeout setting for `ec validate`
       default: 40m0s
-    - name: postCleanUp
-      type: string
-      description: Cleans up workspace after finishing executing the pipeline
-      default: "true"
     - name: verify_ec_task_bundle
       type: string
       description: The location of the bundle containing the verify-enterprise-contract task
@@ -278,28 +274,3 @@ spec:
     #   # TODO: this probably needs to depend on something else.
     #   # runAfter:
     #   #   - run-file-updates
-
-  finally:
-    # TODO: Is this really needed?
-    - name: cleanup
-      taskRef:
-        resolver: "git"
-        params:
-          - name: url
-            value: https://github.com/konflux-ci/release-service-catalog.git
-          - name: revision
-            value: production
-          - name: pathInRepo
-            value: tasks/managed/cleanup-workspace/cleanup-workspace.yaml
-      when:
-        - input: $(params.postCleanUp)
-          operator: in
-          values: ["true"]
-      params:
-        - name: subdirectory
-          value: "$(context.pipelineRun.uid)"
-        - name: pipelineRunUid
-          value: $(context.pipelineRun.uid)
-      workspaces:
-        - name: input
-          workspace: release-workspace

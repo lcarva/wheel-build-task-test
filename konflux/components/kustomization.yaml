@@ -25,6 +25,7 @@ resources:
   - charset-normalizer
   - click
   - click-plugins
+  - cloudpickle
   - colorama
   - databricks-sql-connector
   - distlib

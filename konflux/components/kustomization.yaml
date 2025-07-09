@@ -91,6 +91,7 @@ resources:
   - pluggy
   - ply
   - prompt-toolkit
+  - propcache
   - pyasn1
   - pyasn1-modules
   - pydantic

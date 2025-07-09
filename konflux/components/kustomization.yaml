@@ -110,6 +110,7 @@ resources:
   - sqlparse
   - tableauserverclient
   - tomlkit
+  - toolz
   - tox
   - tqdm
   - trove-classifiers

@@ -73,6 +73,7 @@ resources:
   - mock
   - more-itertools
   - msal-extensions
+  - multidict
   - mypy
   - mypy-extensions
   - ninja

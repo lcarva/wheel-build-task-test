@@ -87,6 +87,7 @@ resources:
   - hyperframe
   - idna
   - importlib-metadata
+  - importlib-resources
   - inflection
   - iniconfig
   - installer

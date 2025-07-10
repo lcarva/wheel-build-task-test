@@ -166,6 +166,7 @@ resources:
   - readme-renderer
   - requests
   - responses
+  - retry
   - rfc3986-validator
   - rich
   - rich-toolkit

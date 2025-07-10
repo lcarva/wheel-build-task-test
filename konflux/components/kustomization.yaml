@@ -187,6 +187,7 @@ resources:
   - termcolor
   - threadpoolctl
   - thriftpy2
+  - toml
   - tomlkit
   - toolz
   - tornado

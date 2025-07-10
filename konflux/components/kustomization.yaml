@@ -244,6 +244,7 @@ resources:
   - tox
   - tqdm
   - trove-classifiers
+  - typeguard
   - types-protobuf
   - types-psutil
   - types-python-dateutil

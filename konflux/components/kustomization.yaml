@@ -127,6 +127,7 @@ resources:
   - pyproject-api
   - pyproject-metadata
   - pytest
+  - pytest-cov
   - python-dateutil
   - python-dotenv
   - python-telegram-bot

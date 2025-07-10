@@ -141,6 +141,7 @@ resources:
   - sniffio
   - snowflake-connector-python
   - soupsieve
+  - sqlalchemy-bigquery
   - sqlparse
   - tableauserverclient
   - tabulate

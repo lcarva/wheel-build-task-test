@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: gitpython
+  name: gitpython
+spec:
+  image:
+    name: calunga-tenant/gitpython
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: gitpython
+spec:
+  componentName: gitpython
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/gitpython

@@ -46,6 +46,7 @@ resources:
   - flatbuffers
   - freezegun
   - fsspec
+  - gitpython
   - google-api-core
   - google-api-python-client
   - google-auth

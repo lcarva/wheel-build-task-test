@@ -184,6 +184,7 @@ resources:
   - pyproject-api
   - pyproject-hooks
   - pyproject-metadata
+  - pyrsistent
   - pyspark
   - pytest
   - pytest-cov

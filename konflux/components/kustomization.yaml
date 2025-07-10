@@ -33,6 +33,7 @@ resources:
   - distlib
   - django
   - docutils
+  - editables
   - email-validator
   - faker
   - fastapi

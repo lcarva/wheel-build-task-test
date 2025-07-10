@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: frozenlist
+  name: frozenlist
+spec:
+  image:
+    name: calunga-tenant/frozenlist
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: frozenlist
+spec:
+  componentName: frozenlist
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/frozenlist

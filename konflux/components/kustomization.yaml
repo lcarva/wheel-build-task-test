@@ -50,6 +50,7 @@ resources:
   - flake8
   - flatbuffers
   - freezegun
+  - frozenlist
   - fsspec
   - gitpython
   - google-api-core

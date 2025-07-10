@@ -169,6 +169,7 @@ resources:
   - setuptools
   - setuptools-scm
   - six
+  - smart-open
   - sniffio
   - snowflake-connector-python
   - sortedcontainers

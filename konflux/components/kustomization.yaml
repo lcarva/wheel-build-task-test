@@ -214,6 +214,7 @@ resources:
   - tox
   - tqdm
   - trove-classifiers
+  - types-protobuf
   - types-psutil
   - types-python-dateutil
   - types-requests

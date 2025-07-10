@@ -83,6 +83,7 @@ resources:
   - microsoft-kiota-http
   - mock
   - more-itertools
+  - mpmath
   - msal-extensions
   - multidict
   - mypy

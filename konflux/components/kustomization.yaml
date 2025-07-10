@@ -91,6 +91,7 @@ resources:
   - patchelf
   - pathspec
   - pbr
+  - pip
   - pkgutil-resolve-name
   - platformdirs
   - pluggy

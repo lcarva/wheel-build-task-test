@@ -37,6 +37,7 @@ resources:
   - debugpy
   - distlib
   - django
+  - docker
   - docutils
   - editables
   - email-validator

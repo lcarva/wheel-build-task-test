@@ -94,6 +94,7 @@ resources:
   - more-itertools
   - mpmath
   - msal-extensions
+  - msgpack
   - multidict
   - mypy
   - mypy-extensions

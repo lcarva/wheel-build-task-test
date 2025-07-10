@@ -44,6 +44,7 @@ resources:
   - distlib
   - distro
   - django
+  - dnspython
   - docker
   - docstring-parser
   - docutils

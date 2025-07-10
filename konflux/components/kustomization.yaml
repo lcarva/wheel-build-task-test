@@ -35,6 +35,7 @@ resources:
   - colorama
   - databricks-sql-connector
   - debugpy
+  - deepdiff
   - distlib
   - django
   - docker

@@ -135,6 +135,7 @@ resources:
   - mypy-extensions
   - narwhals
   - ninja
+  - nodeenv
   - numpy
   - openpyxl
   - opentelemetry-exporter-otlp

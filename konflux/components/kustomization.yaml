@@ -131,6 +131,7 @@ resources:
   - sqlparse
   - tableauserverclient
   - tblib
+  - termcolor
   - thriftpy2
   - tomlkit
   - toolz

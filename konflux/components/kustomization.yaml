@@ -166,6 +166,7 @@ resources:
   - pyyaml
   - readme-renderer
   - requests
+  - requests-aws4auth
   - responses
   - retry
   - rfc3986-validator

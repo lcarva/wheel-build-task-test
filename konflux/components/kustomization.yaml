@@ -167,6 +167,7 @@ resources:
   - types-requests
   - types-setuptools
   - typing-extensions
+  - typing-inspect
   - tzdata
   - tzlocal
   - urllib3

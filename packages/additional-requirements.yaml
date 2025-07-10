@@ -59,6 +59,9 @@ packages:
   toolz:
     requirements_in:
       - setuptools
+  typing-inspect:
+    requirements_in:
+      - setuptools
   wcwidth:
     requirements_in:
       - setuptools

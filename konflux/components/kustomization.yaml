@@ -139,6 +139,7 @@ resources:
   - ply
   - poetry-core
   - pre-commit
+  - prometheus-client
   - prompt-toolkit
   - propcache
   - psutil

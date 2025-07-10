@@ -48,6 +48,7 @@ resources:
   - editables
   - elasticsearch
   - email-validator
+  - exceptiongroup
   - executing
   - faker
   - fastapi

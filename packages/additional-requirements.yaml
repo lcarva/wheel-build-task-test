@@ -25,6 +25,9 @@ packages:
   frozenlist:
     requirements_in:
       - Cython
+  gitdb:
+    requirements_in:
+      - setuptools
   grpcio-health-checking:
     requirements_in:
       - setuptools

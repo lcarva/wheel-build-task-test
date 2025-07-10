@@ -219,6 +219,7 @@ resources:
   - types-setuptools
   - typing-extensions
   - typing-inspect
+  - typing-inspection
   - tzdata
   - tzlocal
   - urllib3

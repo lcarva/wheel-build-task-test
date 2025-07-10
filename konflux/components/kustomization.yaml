@@ -188,6 +188,7 @@ resources:
   - pytz
   - pyyaml
   - readme-renderer
+  - redis
   - requests
   - requests-aws4auth
   - responses

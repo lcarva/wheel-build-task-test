@@ -146,6 +146,7 @@ resources:
   - pytest-cov
   - python-dateutil
   - python-dotenv
+  - python-json-logger
   - python-telegram-bot
   - pytz
   - pyyaml

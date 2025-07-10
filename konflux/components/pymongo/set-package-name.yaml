@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pymongo
+  name: pymongo
+spec:
+  image:
+    name: calunga-tenant/pymongo
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pymongo
+spec:
+  componentName: pymongo
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pymongo

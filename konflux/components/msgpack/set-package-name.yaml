@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: msgpack
+  name: msgpack
+spec:
+  image:
+    name: calunga-tenant/msgpack
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: msgpack
+spec:
+  componentName: msgpack
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/msgpack

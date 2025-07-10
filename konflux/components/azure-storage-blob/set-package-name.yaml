@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: azure-storage-blob
+  name: azure-storage-blob
+spec:
+  image:
+    name: calunga-tenant/azure-storage-blob
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: azure-storage-blob
+spec:
+  componentName: azure-storage-blob
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/azure-storage-blob

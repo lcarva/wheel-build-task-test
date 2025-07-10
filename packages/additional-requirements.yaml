@@ -5,14 +5,23 @@ packages:
   appdirs:
     requirements_in:
       - setuptools
+  asgiref:
+    requirements_in:
+      - setuptools
   click-plugins:
     requirements_in:
       - setuptools
   delta-spark:
     package_name: delta-spark
+  flake8:
+    requirements_in:
+      - setuptools
   flatbuffers:
     requirements_in:
       - setuptools
+  frozenlist:
+    requirements_in:
+      - Cython
   grpcio-health-checking:
     requirements_in:
       - setuptools
@@ -24,6 +33,9 @@ packages:
       - hatch-fancy-pypi-readme
       - ninja
       - patchelf
+  jsonpointer:
+    requirements_in:
+      - setuptools
   mock:
     requirements_in:
       - setuptools
@@ -39,12 +51,24 @@ packages:
   propcache:
     requirements_in:
       - Cython
+  pycodestyle:
+    requirements_in:
+      - setuptools
   python-dateutil:
     package_name: python-dateutil
+  python-dotenv:
+    requirements_in:
+      - setuptools
+  setproctitle:
+    requirements_in:
+      - setuptools
   six:
     requirements_in:
       - setuptools
   toolz:
+    requirements_in:
+      - setuptools
+  typing-inspect:
     requirements_in:
       - setuptools
   wcwidth:

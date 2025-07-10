@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pure-eval
+  name: pure-eval
+spec:
+  image:
+    name: calunga-tenant/pure-eval
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pure-eval
+spec:
+  componentName: pure-eval
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pure-eval

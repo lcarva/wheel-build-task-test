@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: editables
+  name: editables
+spec:
+  image:
+    name: calunga-tenant/editables
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: editables
+spec:
+  componentName: editables
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/editables

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: typing-inspect
+  name: typing-inspect
+spec:
+  image:
+    name: calunga-tenant/typing-inspect
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: typing-inspect
+spec:
+  componentName: typing-inspect
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/typing-inspect

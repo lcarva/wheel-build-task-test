@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: greenlet
+  name: greenlet
+spec:
+  image:
+    name: calunga-tenant/greenlet
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: greenlet
+spec:
+  componentName: greenlet
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/greenlet

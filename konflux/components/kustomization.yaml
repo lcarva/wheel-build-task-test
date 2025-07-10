@@ -9,9 +9,13 @@ resources:
   - anyio
   - appdirs
   - arrow
+  - asgiref
+  - asttokens
   - async-timeout
   - attrs
   - awscli
+  - azure-keyvault-secrets
+  - azure-storage-blob
   - azure-storage-file-datalake
   - beautifulsoup4
   - black
@@ -30,18 +34,25 @@ resources:
   - cloudpickle
   - colorama
   - databricks-sql-connector
+  - debugpy
   - distlib
   - django
+  - docker
   - docutils
+  - editables
   - email-validator
+  - executing
   - faker
   - fastapi
   - fastavro
   - filelock
   - findpython
+  - flake8
   - flatbuffers
   - freezegun
+  - frozenlist
   - fsspec
+  - gitpython
   - google-api-core
   - google-api-python-client
   - google-auth
@@ -51,6 +62,7 @@ resources:
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz
+  - greenlet
   - grpcio-health-checking
   - grpcio-status
   - h11
@@ -58,7 +70,9 @@ resources:
   - hatch-fancy-pypi-readme
   - hatch-vcs
   - hatchling
+  - hpack
   - httpcore
+  - httplib2
   - httpx
   - humanize
   - hyperframe
@@ -66,8 +80,11 @@ resources:
   - importlib-metadata
   - iniconfig
   - isort
+  - jaraco-functools
   - jinja2
   - json5
+  - jsonpointer
+  - jupyter-core
   - keras
   - limits
   - loguru
@@ -81,13 +98,17 @@ resources:
   - microsoft-kiota-http
   - mock
   - more-itertools
+  - mpmath
   - msal-extensions
+  - msgpack
   - multidict
   - mypy
   - mypy-extensions
   - ninja
   - numpy
   - opentelemetry-exporter-otlp
+  - opentelemetry-instrumentation
+  - opentelemetry-instrumentation-requests
   - oscrypto
   - packaging
   - pandas
@@ -99,19 +120,25 @@ resources:
   - platformdirs
   - pluggy
   - ply
+  - poetry-core
   - prompt-toolkit
   - propcache
+  - pure-eval
   - pyasn1
   - pyasn1-modules
+  - pycodestyle
   - pycryptodomex
   - pydantic
   - pydantic-settings
   - pygments
   - pyjwt
+  - pymongo
   - pyproject-api
   - pyproject-metadata
   - pytest
+  - pytest-cov
   - python-dateutil
+  - python-dotenv
   - python-telegram-bot
   - pytz
   - pyyaml
@@ -126,15 +153,19 @@ resources:
   - s3transfer
   - scikit-build-core
   - seaborn
+  - semver
   - sentry-sdk
+  - setproctitle
   - setuptools
   - setuptools-scm
   - six
   - sniffio
   - snowflake-connector-python
   - soupsieve
+  - sqlalchemy-bigquery
   - sqlparse
   - tableauserverclient
+  - tabulate
   - tblib
   - termcolor
   - thriftpy2
@@ -149,7 +180,9 @@ resources:
   - types-requests
   - types-setuptools
   - typing-extensions
+  - typing-inspect
   - tzdata
+  - tzlocal
   - urllib3
   - virtualenv
   - wcwidth

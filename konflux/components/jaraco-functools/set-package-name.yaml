@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: jaraco-functools
+  name: jaraco-functools
+spec:
+  image:
+    name: calunga-tenant/jaraco-functools
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: jaraco-functools
+spec:
+  componentName: jaraco-functools
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/jaraco-functools

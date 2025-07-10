@@ -42,6 +42,7 @@ resources:
   - distro
   - django
   - docker
+  - docstring-parser
   - docutils
   - editables
   - elasticsearch

@@ -34,6 +34,7 @@ resources:
   - cloudpickle
   - colorama
   - databricks-sql-connector
+  - debugpy
   - distlib
   - django
   - docutils

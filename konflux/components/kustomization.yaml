@@ -63,6 +63,7 @@ resources:
   - google-auth
   - google-cloud-bigquery-storage
   - google-cloud-bigtable
+  - google-cloud-dataproc
   - google-cloud-logging
   - google-cloud-vision
   - googleapis-common-protos

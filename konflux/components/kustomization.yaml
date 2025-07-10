@@ -168,6 +168,7 @@ resources:
   - tabulate
   - tblib
   - termcolor
+  - threadpoolctl
   - thriftpy2
   - tomlkit
   - toolz

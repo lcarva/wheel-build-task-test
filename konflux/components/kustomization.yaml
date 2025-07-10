@@ -10,6 +10,7 @@ resources:
   - appdirs
   - arrow
   - asgiref
+  - asttokens
   - async-timeout
   - attrs
   - awscli

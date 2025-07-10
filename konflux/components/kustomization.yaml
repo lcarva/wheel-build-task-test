@@ -71,6 +71,7 @@ resources:
   - fsspec
   - gitdb
   - gitpython
+  - google-ads
   - google-api-core
   - google-api-python-client
   - google-auth

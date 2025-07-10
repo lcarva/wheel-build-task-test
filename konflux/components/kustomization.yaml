@@ -39,6 +39,7 @@ resources:
   - cloudpickle
   - colorama
   - coverage
+  - crashtest
   - databricks-sdk
   - databricks-sql-connector
   - dataclasses-json

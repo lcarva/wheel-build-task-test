@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: authlib
+  name: authlib
+spec:
+  image:
+    name: calunga-tenant/authlib
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: authlib
+spec:
+  componentName: authlib
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/authlib

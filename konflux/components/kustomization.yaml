@@ -15,6 +15,7 @@ resources:
   - asttokens
   - async-timeout
   - attrs
+  - authlib
   - awscli
   - azure-keyvault-secrets
   - azure-storage-blob

@@ -5,6 +5,9 @@ packages:
   appdirs:
     requirements_in:
       - setuptools
+  asgiref:
+    requirements_in:
+      - setuptools
   click-plugins:
     requirements_in:
       - setuptools

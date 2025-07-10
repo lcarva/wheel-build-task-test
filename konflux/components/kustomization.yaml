@@ -9,6 +9,7 @@ resources:
   - anyio
   - appdirs
   - arrow
+  - asgiref
   - async-timeout
   - attrs
   - awscli

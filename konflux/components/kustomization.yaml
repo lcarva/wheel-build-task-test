@@ -195,6 +195,7 @@ resources:
   - pyyaml
   - readme-renderer
   - redis
+  - regex
   - requests
   - requests-aws4auth
   - responses

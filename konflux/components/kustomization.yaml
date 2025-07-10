@@ -72,6 +72,7 @@ resources:
   - google-api-core
   - google-api-python-client
   - google-auth
+  - google-cloud-bigquery
   - google-cloud-bigquery-storage
   - google-cloud-bigtable
   - google-cloud-dataproc

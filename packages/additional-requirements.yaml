@@ -48,6 +48,9 @@ packages:
   oscrypto:
     requirements_in:
       - setuptools
+  pandocfilters:
+    requirements_in:
+      - setuptools
   pkgutil-resolve-name:
     requirements_in:
       - setuptools

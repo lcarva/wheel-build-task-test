@@ -130,6 +130,7 @@ resources:
   - oscrypto
   - packaging
   - pandas
+  - pandocfilters
   - patchelf
   - pathspec
   - pbr

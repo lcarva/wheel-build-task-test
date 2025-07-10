@@ -201,6 +201,7 @@ resources:
   - requests-aws4auth
   - responses
   - retry
+  - rfc3986
   - rfc3986-validator
   - rich
   - rich-toolkit

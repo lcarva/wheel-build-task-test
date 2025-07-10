@@ -89,6 +89,9 @@ packages:
   python-dotenv:
     requirements_in:
       - setuptools
+  rfc3986:
+    requirements_in:
+      - setuptools
   setproctitle:
     requirements_in:
       - setuptools

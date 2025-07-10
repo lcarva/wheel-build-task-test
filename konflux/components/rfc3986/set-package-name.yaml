@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: rfc3986
+  name: rfc3986
+spec:
+  image:
+    name: calunga-tenant/rfc3986
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: rfc3986
+spec:
+  componentName: rfc3986
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/rfc3986

@@ -121,6 +121,7 @@ resources:
   - patchelf
   - pathspec
   - pbr
+  - pinotdb
   - pip
   - pkgutil-resolve-name
   - platformdirs

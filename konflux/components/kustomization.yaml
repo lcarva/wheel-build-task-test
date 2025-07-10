@@ -189,6 +189,7 @@ resources:
   - snowflake-connector-python
   - sortedcontainers
   - soupsieve
+  - sqlalchemy
   - sqlalchemy-bigquery
   - sqlparse
   - starlette

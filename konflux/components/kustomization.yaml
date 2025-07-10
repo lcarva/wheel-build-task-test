@@ -170,6 +170,7 @@ resources:
   - setproctitle
   - setuptools
   - setuptools-scm
+  - simplejson
   - six
   - smart-open
   - sniffio

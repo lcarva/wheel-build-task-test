@@ -65,6 +65,9 @@ packages:
   setproctitle:
     requirements_in:
       - setuptools
+  simplejson:
+    requirements_in:
+      - setuptools
   six:
     requirements_in:
       - setuptools

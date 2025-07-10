@@ -5,6 +5,7 @@ resources:
   - aiobotocore
   - aiofiles
   - aiohttp
+  - aioitertools
   - annotated-types
   - anyio
   - appdirs

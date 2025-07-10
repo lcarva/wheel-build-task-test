@@ -156,6 +156,7 @@ resources:
   - pymongo
   - pyproject-api
   - pyproject-metadata
+  - pyspark
   - pytest
   - pytest-cov
   - python-dateutil

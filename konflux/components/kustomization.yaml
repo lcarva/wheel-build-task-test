@@ -78,6 +78,7 @@ resources:
   - jaraco-functools
   - jinja2
   - json5
+  - jsonpointer
   - jupyter-core
   - keras
   - limits

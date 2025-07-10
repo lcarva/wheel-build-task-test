@@ -30,6 +30,9 @@ packages:
       - hatch-fancy-pypi-readme
       - ninja
       - patchelf
+  jsonpointer:
+    requirements_in:
+      - setuptools
   mock:
     requirements_in:
       - setuptools

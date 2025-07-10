@@ -59,6 +59,7 @@ resources:
   - hatch-fancy-pypi-readme
   - hatch-vcs
   - hatchling
+  - hpack
   - httpcore
   - httpx
   - humanize

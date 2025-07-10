@@ -108,6 +108,7 @@ resources:
   - markupsafe
   - marshmallow
   - matplotlib-inline
+  - mccabe
   - mdurl
   - meson-python
   - microsoft-kiota-http

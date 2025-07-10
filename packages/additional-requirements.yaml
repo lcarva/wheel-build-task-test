@@ -39,6 +39,9 @@ packages:
   jsonpointer:
     requirements_in:
       - setuptools
+  mccabe:
+    requirements_in:
+      - setuptools
   mock:
     requirements_in:
       - setuptools

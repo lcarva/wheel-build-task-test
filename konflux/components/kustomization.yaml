@@ -18,6 +18,7 @@ resources:
   - azure-keyvault-secrets
   - azure-storage-blob
   - azure-storage-file-datalake
+  - backoff
   - beautifulsoup4
   - black
   - blinker

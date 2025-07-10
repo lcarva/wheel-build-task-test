@@ -206,6 +206,7 @@ resources:
   - soupsieve
   - sqlalchemy
   - sqlalchemy-bigquery
+  - sqlalchemy-spanner
   - sqlparse
   - starlette
   - tableauserverclient

@@ -183,6 +183,7 @@ resources:
   - setuptools-scm
   - simplejson
   - six
+  - slack-sdk
   - smart-open
   - sniffio
   - snowflake-connector-python

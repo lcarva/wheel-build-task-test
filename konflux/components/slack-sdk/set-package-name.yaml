@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: slack-sdk
+  name: slack-sdk
+spec:
+  image:
+    name: calunga-tenant/slack-sdk
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: slack-sdk
+spec:
+  componentName: slack-sdk
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/slack-sdk

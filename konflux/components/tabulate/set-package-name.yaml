@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: tabulate
+  name: tabulate
+spec:
+  image:
+    name: calunga-tenant/tabulate
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: tabulate
+spec:
+  componentName: tabulate
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/tabulate

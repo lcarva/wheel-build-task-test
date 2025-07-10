@@ -143,6 +143,7 @@ resources:
   - soupsieve
   - sqlparse
   - tableauserverclient
+  - tabulate
   - tblib
   - termcolor
   - thriftpy2

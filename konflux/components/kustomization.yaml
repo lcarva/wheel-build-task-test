@@ -87,6 +87,7 @@ resources:
   - importlib-metadata
   - inflection
   - iniconfig
+  - installer
   - isort
   - itsdangerous
   - jaraco-functools

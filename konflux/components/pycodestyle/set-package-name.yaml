@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pycodestyle
+  name: pycodestyle
+spec:
+  image:
+    name: calunga-tenant/pycodestyle
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pycodestyle
+spec:
+  componentName: pycodestyle
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pycodestyle

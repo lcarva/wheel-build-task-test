@@ -103,6 +103,7 @@ resources:
   - propcache
   - pyasn1
   - pyasn1-modules
+  - pycodestyle
   - pycryptodomex
   - pydantic
   - pydantic-settings

@@ -78,6 +78,7 @@ resources:
   - hyperframe
   - idna
   - importlib-metadata
+  - inflection
   - iniconfig
   - isort
   - itsdangerous

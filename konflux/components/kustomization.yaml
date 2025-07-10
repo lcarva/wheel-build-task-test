@@ -69,6 +69,7 @@ resources:
   - importlib-metadata
   - iniconfig
   - isort
+  - jaraco-functools
   - jinja2
   - json5
   - keras

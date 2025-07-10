@@ -190,6 +190,7 @@ resources:
   - soupsieve
   - sqlalchemy-bigquery
   - sqlparse
+  - starlette
   - tableauserverclient
   - tabulate
   - tblib

@@ -216,6 +216,7 @@ resources:
   - tzdata
   - tzlocal
   - urllib3
+  - uvicorn
   - virtualenv
   - wcwidth
   - webcolors

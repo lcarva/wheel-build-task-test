@@ -123,6 +123,7 @@ resources:
   - pydantic-settings
   - pygments
   - pyjwt
+  - pymongo
   - pyproject-api
   - pyproject-metadata
   - pytest

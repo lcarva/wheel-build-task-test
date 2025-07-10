@@ -41,6 +41,7 @@ resources:
   - fastavro
   - filelock
   - findpython
+  - flake8
   - flatbuffers
   - freezegun
   - fsspec

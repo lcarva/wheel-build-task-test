@@ -13,6 +13,9 @@ packages:
       - setuptools
   delta-spark:
     package_name: delta-spark
+  flake8:
+    requirements_in:
+      - setuptools
   flatbuffers:
     requirements_in:
       - setuptools

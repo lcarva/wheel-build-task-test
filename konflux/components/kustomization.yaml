@@ -97,6 +97,7 @@ resources:
   - ninja
   - numpy
   - opentelemetry-exporter-otlp
+  - opentelemetry-instrumentation
   - oscrypto
   - packaging
   - pandas

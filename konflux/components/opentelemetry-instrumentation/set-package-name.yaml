@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: opentelemetry-instrumentation
+  name: opentelemetry-instrumentation
+spec:
+  image:
+    name: calunga-tenant/opentelemetry-instrumentation
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: opentelemetry-instrumentation
+spec:
+  componentName: opentelemetry-instrumentation
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/opentelemetry-instrumentation

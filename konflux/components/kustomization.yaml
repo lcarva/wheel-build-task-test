@@ -33,6 +33,7 @@ resources:
   - click-plugins
   - cloudpickle
   - colorama
+  - databricks-sdk
   - databricks-sql-connector
   - dataclasses-json
   - debugpy

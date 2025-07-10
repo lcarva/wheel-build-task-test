@@ -104,6 +104,7 @@ resources:
   - jaraco-context
   - jaraco-functools
   - jinja2
+  - joblib
   - json5
   - jsonpointer
   - jupyter-core

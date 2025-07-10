@@ -40,14 +40,17 @@ function latest_built_commit_id() {
 
 function latest_commit_id() {
     local pkg_dir="$1"
-    git rev-list -1 HEAD -- "${pkg_dir}"
+    # Find the most recent commit (including merges) that changed this directory.
+    git log -1 --format=%H --first-parent -- "${pkg_dir}"
 }
 
 function find_snapshot_for_commit_id() {
-    local commit_id="$1"
+    local pkg_name="$1"
+    local commit_id="$2"
     local snapshot_name="${pkg_name}-${commit_id}"
     oc get snapshot \
         -l pac.test.appstudio.openshift.io/sha="${commit_id}" \
+        -l appstudio.openshift.io/component="${pkg_name}" \
         -o jsonpath='{.items[0].metadata.name}'
 }
 
@@ -100,7 +103,7 @@ for pkg_dir in $(find packages -mindepth 1 -maxdepth 1 -type d | sort); do
     fi
 
     # A build exists, but it has not been released.
-    snapshot_name="$(find_snapshot_for_commit_id "${commit_id}")"
+    snapshot_name="$(find_snapshot_for_commit_id "${pkg_name}" "${commit_id}")"
     echo "Snapshot for $pkg_name: $snapshot_name - needs release"
     release_snapshot "${snapshot_name}"
 done

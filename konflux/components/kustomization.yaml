@@ -36,6 +36,7 @@ resources:
   - click-plugins
   - cloudpickle
   - colorama
+  - coverage
   - databricks-sdk
   - databricks-sql-connector
   - dataclasses-json

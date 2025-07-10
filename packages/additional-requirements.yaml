@@ -51,6 +51,9 @@ packages:
   mock:
     requirements_in:
       - setuptools
+  openpyxl:
+    requirements_in:
+      - setuptools
   oscrypto:
     requirements_in:
       - setuptools

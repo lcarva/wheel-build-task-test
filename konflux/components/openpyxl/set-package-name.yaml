@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: openpyxl
+  name: openpyxl
+spec:
+  image:
+    name: calunga-tenant/openpyxl
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: openpyxl
+spec:
+  componentName: openpyxl
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/openpyxl

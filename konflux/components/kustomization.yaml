@@ -133,6 +133,7 @@ resources:
   - narwhals
   - ninja
   - numpy
+  - openpyxl
   - opentelemetry-exporter-otlp
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests

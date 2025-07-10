@@ -28,6 +28,7 @@ resources:
   - cachetools
   - calver
   - cffi
+  - cfgv
   - chardet
   - charset-normalizer
   - click

@@ -187,6 +187,7 @@ resources:
   - python-dateutil
   - python-dotenv
   - python-json-logger
+  - python-multipart
   - python-telegram-bot
   - pytz
   - pyyaml

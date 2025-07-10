@@ -37,6 +37,7 @@ resources:
   - databricks-sql-connector
   - dataclasses-json
   - debugpy
+  - decorator
   - deepdiff
   - distlib
   - distro

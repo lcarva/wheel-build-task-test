@@ -89,6 +89,9 @@ packages:
   six:
     requirements_in:
       - setuptools
+  smmap:
+    requirements_in:
+      - setuptools
   sortedcontainers:
     requirements_in:
       - setuptools

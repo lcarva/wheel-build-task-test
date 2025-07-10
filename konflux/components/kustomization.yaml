@@ -201,6 +201,7 @@ resources:
   - six
   - slack-sdk
   - smart-open
+  - smmap
   - sniffio
   - snowflake-connector-python
   - sortedcontainers

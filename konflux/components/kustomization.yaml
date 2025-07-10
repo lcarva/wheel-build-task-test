@@ -99,6 +99,7 @@ resources:
   - installer
   - isort
   - itsdangerous
+  - jaraco-context
   - jaraco-functools
   - jinja2
   - json5

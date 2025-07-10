@@ -159,6 +159,7 @@ resources:
   - pygments
   - pyjwt
   - pymongo
+  - pyopenssl
   - pyproject-api
   - pyproject-metadata
   - pyspark

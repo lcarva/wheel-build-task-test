@@ -120,6 +120,7 @@ resources:
   - keras
   - limits
   - loguru
+  - lz4
   - mako
   - markdown
   - markdown-it-py

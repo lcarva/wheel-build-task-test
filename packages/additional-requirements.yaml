@@ -65,6 +65,9 @@ packages:
   six:
     requirements_in:
       - setuptools
+  sortedcontainers:
+    requirements_in:
+      - setuptools
   toolz:
     requirements_in:
       - setuptools

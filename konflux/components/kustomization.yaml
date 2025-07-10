@@ -164,6 +164,7 @@ resources:
   - six
   - sniffio
   - snowflake-connector-python
+  - sortedcontainers
   - soupsieve
   - sqlalchemy-bigquery
   - sqlparse

@@ -41,6 +41,7 @@ resources:
   - docker
   - docutils
   - editables
+  - elasticsearch
   - email-validator
   - executing
   - faker

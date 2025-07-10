@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: elasticsearch
+  name: elasticsearch
+spec:
+  image:
+    name: calunga-tenant/elasticsearch
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: elasticsearch
+spec:
+  componentName: elasticsearch
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/elasticsearch

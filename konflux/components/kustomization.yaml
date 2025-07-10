@@ -17,6 +17,7 @@ resources:
   - attrs
   - authlib
   - awscli
+  - azure-core
   - azure-keyvault-secrets
   - azure-storage-blob
   - azure-storage-file-datalake

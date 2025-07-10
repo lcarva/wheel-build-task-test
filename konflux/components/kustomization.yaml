@@ -99,6 +99,7 @@ resources:
   - platformdirs
   - pluggy
   - ply
+  - poetry-core
   - prompt-toolkit
   - propcache
   - pyasn1

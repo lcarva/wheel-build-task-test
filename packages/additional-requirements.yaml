@@ -50,6 +50,9 @@ packages:
       - setuptools
   python-dateutil:
     package_name: python-dateutil
+  python-dotenv:
+    requirements_in:
+      - setuptools
   six:
     requirements_in:
       - setuptools

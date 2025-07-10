@@ -122,6 +122,7 @@ resources:
   - pyproject-metadata
   - pytest
   - python-dateutil
+  - python-dotenv
   - python-telegram-bot
   - pytz
   - pyyaml

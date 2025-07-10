@@ -241,4 +241,5 @@ resources:
   - wrapt
   - xyzservices
   - yamllint
+  - yandexcloud
   - zipp

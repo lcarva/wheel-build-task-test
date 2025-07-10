@@ -223,6 +223,7 @@ resources:
   - sqlalchemy-bigquery
   - sqlalchemy-spanner
   - sqlparse
+  - sshtunnel
   - starlette
   - tableauserverclient
   - tabulate

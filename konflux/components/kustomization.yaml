@@ -177,6 +177,7 @@ resources:
   - pymongo
   - pyopenssl
   - pyproject-api
+  - pyproject-hooks
   - pyproject-metadata
   - pyspark
   - pytest

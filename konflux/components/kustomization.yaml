@@ -128,6 +128,7 @@ resources:
   - pluggy
   - ply
   - poetry-core
+  - pre-commit
   - prompt-toolkit
   - propcache
   - psutil

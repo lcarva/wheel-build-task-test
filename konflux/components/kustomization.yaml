@@ -130,6 +130,7 @@ resources:
   - multidict
   - mypy
   - mypy-extensions
+  - narwhals
   - ninja
   - numpy
   - opentelemetry-exporter-otlp

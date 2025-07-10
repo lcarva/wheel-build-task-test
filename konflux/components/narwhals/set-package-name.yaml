@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: narwhals
+  name: narwhals
+spec:
+  image:
+    name: calunga-tenant/narwhals
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: narwhals
+spec:
+  componentName: narwhals
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/narwhals

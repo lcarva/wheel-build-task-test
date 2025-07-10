@@ -148,6 +148,7 @@ resources:
   - propcache
   - psutil
   - pure-eval
+  - py4j
   - pyasn1
   - pyasn1-modules
   - pycodestyle

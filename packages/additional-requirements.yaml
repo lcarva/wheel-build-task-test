@@ -63,6 +63,9 @@ packages:
   propcache:
     requirements_in:
       - Cython
+  py4j:
+    requirements_in:
+      - setuptools
   pycodestyle:
     requirements_in:
       - setuptools

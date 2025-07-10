@@ -155,6 +155,7 @@ resources:
   - types-setuptools
   - typing-extensions
   - tzdata
+  - tzlocal
   - urllib3
   - virtualenv
   - wcwidth

@@ -230,6 +230,7 @@ resources:
   - tabulate
   - tblib
   - termcolor
+  - terminado
   - threadpoolctl
   - thriftpy2
   - toml

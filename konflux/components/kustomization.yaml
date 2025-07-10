@@ -11,6 +11,7 @@ resources:
   - appdirs
   - arrow
   - asgiref
+  - astroid
   - asttokens
   - async-timeout
   - attrs

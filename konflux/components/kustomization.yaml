@@ -80,6 +80,7 @@ resources:
   - importlib-metadata
   - iniconfig
   - isort
+  - itsdangerous
   - jaraco-functools
   - jinja2
   - json5

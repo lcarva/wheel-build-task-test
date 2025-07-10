@@ -135,6 +135,7 @@ resources:
   - opentelemetry-exporter-otlp
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests
+  - opentelemetry-sdk
   - oscrypto
   - packaging
   - pandas

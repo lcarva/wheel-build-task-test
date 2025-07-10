@@ -149,6 +149,7 @@ resources:
   - seaborn
   - semver
   - sentry-sdk
+  - setproctitle
   - setuptools
   - setuptools-scm
   - six

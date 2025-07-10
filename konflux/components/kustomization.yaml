@@ -13,6 +13,7 @@ resources:
   - async-timeout
   - attrs
   - awscli
+  - azure-keyvault-secrets
   - azure-storage-file-datalake
   - beautifulsoup4
   - black

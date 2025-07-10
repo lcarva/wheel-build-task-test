@@ -69,6 +69,7 @@ resources:
   - google-cloud-bigtable
   - google-cloud-dataproc
   - google-cloud-logging
+  - google-cloud-resource-manager
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz

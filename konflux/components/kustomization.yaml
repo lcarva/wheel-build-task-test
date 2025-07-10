@@ -69,6 +69,7 @@ resources:
   - greenlet
   - grpcio-health-checking
   - grpcio-status
+  - gunicorn
   - h11
   - h2
   - hatch-fancy-pypi-readme

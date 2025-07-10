@@ -38,6 +38,7 @@ resources:
   - debugpy
   - deepdiff
   - distlib
+  - distro
   - django
   - docker
   - docutils

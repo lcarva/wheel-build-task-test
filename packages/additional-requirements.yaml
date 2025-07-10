@@ -14,6 +14,9 @@ packages:
   click-plugins:
     requirements_in:
       - setuptools
+  defusedxml:
+    requirements_in:
+      - setuptools
   delta-spark:
     package_name: delta-spark
   flake8:

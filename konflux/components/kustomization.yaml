@@ -45,6 +45,7 @@ resources:
   - debugpy
   - decorator
   - deepdiff
+  - defusedxml
   - distlib
   - distro
   - django

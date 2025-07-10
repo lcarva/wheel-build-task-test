@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: python-multipart
+  name: python-multipart
+spec:
+  image:
+    name: calunga-tenant/python-multipart
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: python-multipart
+spec:
+  componentName: python-multipart
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/python-multipart

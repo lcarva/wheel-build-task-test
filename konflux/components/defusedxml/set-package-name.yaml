@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: defusedxml
+  name: defusedxml
+spec:
+  image:
+    name: calunga-tenant/defusedxml
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: defusedxml
+spec:
+  componentName: defusedxml
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/defusedxml

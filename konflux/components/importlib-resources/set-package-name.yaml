@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: importlib-resources
+  name: importlib-resources
+spec:
+  image:
+    name: calunga-tenant/importlib-resources
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: importlib-resources
+spec:
+  componentName: importlib-resources
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/importlib-resources

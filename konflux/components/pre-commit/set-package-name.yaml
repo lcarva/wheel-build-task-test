@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pre-commit
+  name: pre-commit
+spec:
+  image:
+    name: calunga-tenant/pre-commit
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pre-commit
+spec:
+  componentName: pre-commit
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pre-commit

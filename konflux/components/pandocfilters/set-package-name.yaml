@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pandocfilters
+  name: pandocfilters
+spec:
+  image:
+    name: calunga-tenant/pandocfilters
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pandocfilters
+spec:
+  componentName: pandocfilters
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pandocfilters

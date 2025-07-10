@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: redis
+  name: redis
+spec:
+  image:
+    name: calunga-tenant/redis
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: redis
+spec:
+  componentName: redis
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/redis

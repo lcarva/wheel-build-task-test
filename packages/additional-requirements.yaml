@@ -8,7 +8,13 @@ packages:
   asgiref:
     requirements_in:
       - setuptools
+  cfgv:
+    requirements_in:
+      - setuptools
   click-plugins:
+    requirements_in:
+      - setuptools
+  defusedxml:
     requirements_in:
       - setuptools
   delta-spark:
@@ -22,6 +28,9 @@ packages:
   frozenlist:
     requirements_in:
       - Cython
+  gitdb:
+    requirements_in:
+      - setuptools
   grpcio-health-checking:
     requirements_in:
       - setuptools
@@ -33,13 +42,28 @@ packages:
       - hatch-fancy-pypi-readme
       - ninja
       - patchelf
+  inflection:
+    requirements_in:
+      - setuptools
   jsonpointer:
+    requirements_in:
+      - setuptools
+  mccabe:
     requirements_in:
       - setuptools
   mock:
     requirements_in:
       - setuptools
+  openpyxl:
+    requirements_in:
+      - setuptools
   oscrypto:
+    requirements_in:
+      - setuptools
+  pandocfilters:
+    requirements_in:
+      - setuptools
+  parso:
     requirements_in:
       - setuptools
   pkgutil-resolve-name:
@@ -51,7 +75,13 @@ packages:
   propcache:
     requirements_in:
       - Cython
+  py4j:
+    requirements_in:
+      - setuptools
   pycodestyle:
+    requirements_in:
+      - setuptools
+  pyspark:
     requirements_in:
       - setuptools
   python-dateutil:
@@ -59,10 +89,25 @@ packages:
   python-dotenv:
     requirements_in:
       - setuptools
+  rfc3986:
+    requirements_in:
+      - setuptools
   setproctitle:
     requirements_in:
       - setuptools
+  simplejson:
+    requirements_in:
+      - setuptools
   six:
+    requirements_in:
+      - setuptools
+  smmap:
+    requirements_in:
+      - setuptools
+  sortedcontainers:
+    requirements_in:
+      - setuptools
+  toml:
     requirements_in:
       - setuptools
   toolz:

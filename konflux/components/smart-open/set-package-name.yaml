@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: smart-open
+  name: smart-open
+spec:
+  image:
+    name: calunga-tenant/smart-open
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: smart-open
+spec:
+  componentName: smart-open
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/smart-open

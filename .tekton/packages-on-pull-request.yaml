@@ -173,6 +173,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/aioitertools/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: aioitertools
+    pipelines.appstudio.openshift.io/type: build
+  name: aioitertools-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/aioitertools:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/aioitertools
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/aioitertools/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/aioitertools",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/annotated-types/**]"
   creationTimestamp: null
   labels:
@@ -443,6 +497,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/astroid/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: astroid
+    pipelines.appstudio.openshift.io/type: build
+  name: astroid-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/astroid:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/astroid
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/astroid/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/astroid",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/asttokens/**]"
   creationTimestamp: null
   labels:
@@ -605,6 +713,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/authlib/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: authlib
+    pipelines.appstudio.openshift.io/type: build
+  name: authlib-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/authlib:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/authlib
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/authlib/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/authlib",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/awscli/**]"
   creationTimestamp: null
   labels:
@@ -636,6 +798,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/awscli",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/azure-core/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: azure-core
+    pipelines.appstudio.openshift.io/type: build
+  name: azure-core-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/azure-core:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/azure-core
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/azure-core/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/azure-core",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -798,6 +1014,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/azure-storage-file-datalake",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/backoff/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: backoff
+    pipelines.appstudio.openshift.io/type: build
+  name: backoff-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/backoff:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/backoff
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/backoff/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/backoff",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/backports-tarfile/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: backports-tarfile
+    pipelines.appstudio.openshift.io/type: build
+  name: backports-tarfile-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/backports-tarfile:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/backports-tarfile
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/backports-tarfile/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/backports-tarfile",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -1361,6 +1685,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/cfgv/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: cfgv
+    pipelines.appstudio.openshift.io/type: build
+  name: cfgv-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/cfgv:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/cfgv
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/cfgv/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/cfgv",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/chardet/**]"
   creationTimestamp: null
   labels:
@@ -1685,6 +2063,168 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/coverage/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: coverage
+    pipelines.appstudio.openshift.io/type: build
+  name: coverage-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/coverage:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/coverage
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/coverage/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/coverage",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/crashtest/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: crashtest
+    pipelines.appstudio.openshift.io/type: build
+  name: crashtest-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/crashtest:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/crashtest
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/crashtest/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/crashtest",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/databricks-sdk/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: databricks-sdk
+    pipelines.appstudio.openshift.io/type: build
+  name: databricks-sdk-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/databricks-sdk:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/databricks-sdk
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/databricks-sdk/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/databricks-sdk",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/databricks-sql-connector/**]"
   creationTimestamp: null
   labels:
@@ -1716,6 +2256,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/databricks-sql-connector",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/dataclasses-json/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: dataclasses-json
+    pipelines.appstudio.openshift.io/type: build
+  name: dataclasses-json-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/dataclasses-json:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/dataclasses-json
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/dataclasses-json/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/dataclasses-json",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -1793,6 +2387,168 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/decorator/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: decorator
+    pipelines.appstudio.openshift.io/type: build
+  name: decorator-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/decorator:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/decorator
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/decorator/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/decorator",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/deepdiff/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: deepdiff
+    pipelines.appstudio.openshift.io/type: build
+  name: deepdiff-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/deepdiff:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/deepdiff
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/deepdiff/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/deepdiff",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/defusedxml/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: defusedxml
+    pipelines.appstudio.openshift.io/type: build
+  name: defusedxml-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/defusedxml:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/defusedxml
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/defusedxml/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/defusedxml",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/distlib/**]"
   creationTimestamp: null
   labels:
@@ -1824,6 +2580,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/distlib",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/distro/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: distro
+    pipelines.appstudio.openshift.io/type: build
+  name: distro-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/distro:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/distro
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/distro/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/distro",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -1901,6 +2711,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/dnspython/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: dnspython
+    pipelines.appstudio.openshift.io/type: build
+  name: dnspython-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/dnspython:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/dnspython
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/dnspython/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/dnspython",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/docker/**]"
   creationTimestamp: null
   labels:
@@ -1932,6 +2796,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/docker",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/docstring-parser/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: docstring-parser
+    pipelines.appstudio.openshift.io/type: build
+  name: docstring-parser-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/docstring-parser:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/docstring-parser
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/docstring-parser/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/docstring-parser",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -2063,6 +2981,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/elasticsearch/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: elasticsearch
+    pipelines.appstudio.openshift.io/type: build
+  name: elasticsearch-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/elasticsearch:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/elasticsearch
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/elasticsearch/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/elasticsearch",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/email-validator/**]"
   creationTimestamp: null
   labels:
@@ -2094,6 +3066,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/email-validator",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/exceptiongroup/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: exceptiongroup
+    pipelines.appstudio.openshift.io/type: build
+  name: exceptiongroup-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/exceptiongroup:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/exceptiongroup
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/exceptiongroup/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/exceptiongroup",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -2711,6 +3737,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/gitdb/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: gitdb
+    pipelines.appstudio.openshift.io/type: build
+  name: gitdb-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/gitdb:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/gitdb
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/gitdb/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/gitdb",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/gitpython/**]"
   creationTimestamp: null
   labels:
@@ -2742,6 +3822,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/gitpython",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/google-ads/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: google-ads
+    pipelines.appstudio.openshift.io/type: build
+  name: google-ads-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/google-ads:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/google-ads
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/google-ads/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/google-ads",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -2927,6 +4061,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/google-cloud-bigquery/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: google-cloud-bigquery
+    pipelines.appstudio.openshift.io/type: build
+  name: google-cloud-bigquery-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/google-cloud-bigquery:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/google-cloud-bigquery
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/google-cloud-bigquery/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/google-cloud-bigquery",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/google-cloud-bigquery-storage/**]"
   creationTimestamp: null
   labels:
@@ -3035,6 +4223,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/google-cloud-dataproc/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: google-cloud-dataproc
+    pipelines.appstudio.openshift.io/type: build
+  name: google-cloud-dataproc-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/google-cloud-dataproc:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/google-cloud-dataproc
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/google-cloud-dataproc/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/google-cloud-dataproc",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/google-cloud-logging/**]"
   creationTimestamp: null
   labels:
@@ -3066,6 +4308,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/google-cloud-logging",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/google-cloud-resource-manager/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: google-cloud-resource-manager
+    pipelines.appstudio.openshift.io/type: build
+  name: google-cloud-resource-manager-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/google-cloud-resource-manager:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/google-cloud-resource-manager
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/google-cloud-resource-manager/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/google-cloud-resource-manager",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -3390,6 +4686,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/grpcio-status",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/gunicorn/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: gunicorn
+    pipelines.appstudio.openshift.io/type: build
+  name: gunicorn-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/gunicorn:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/gunicorn
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/gunicorn/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/gunicorn",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -4115,6 +5465,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/importlib-resources/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: importlib-resources
+    pipelines.appstudio.openshift.io/type: build
+  name: importlib-resources-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/importlib-resources:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/importlib-resources
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/importlib-resources/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/importlib-resources",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/inflection/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: inflection
+    pipelines.appstudio.openshift.io/type: build
+  name: inflection-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/inflection:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/inflection
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/inflection/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/inflection",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/iniconfig/**]"
   creationTimestamp: null
   labels:
@@ -4169,6 +5627,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/installer/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: installer
+    pipelines.appstudio.openshift.io/type: build
+  name: installer-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/installer:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/installer
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/installer/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/installer",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/isoduration/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: isoduration
+    pipelines.appstudio.openshift.io/type: build
+  name: isoduration-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/isoduration:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/isoduration
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/isoduration/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/isoduration",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/isort/**]"
   creationTimestamp: null
   labels:
@@ -4200,6 +5766,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/isort",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/itsdangerous/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: itsdangerous
+    pipelines.appstudio.openshift.io/type: build
+  name: itsdangerous-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/itsdangerous:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/itsdangerous
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/itsdangerous/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/itsdangerous",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/jaraco-context/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: jaraco-context
+    pipelines.appstudio.openshift.io/type: build
+  name: jaraco-context-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/jaraco-context:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/jaraco-context
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/jaraco-context/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/jaraco-context",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -4308,6 +5982,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/jinja2",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/joblib/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: joblib
+    pipelines.appstudio.openshift.io/type: build
+  name: joblib-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/joblib:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/joblib
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/joblib/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/joblib",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -4655,6 +6383,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/lz4/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: lz4
+    pipelines.appstudio.openshift.io/type: build
+  name: lz4-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/lz4:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/lz4
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/lz4/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/lz4",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/mako/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: mako
+    pipelines.appstudio.openshift.io/type: build
+  name: mako-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/mako:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/mako
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/mako/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/mako",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/markdown/**]"
   creationTimestamp: null
   labels:
@@ -4925,6 +6761,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/mccabe/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: mccabe
+    pipelines.appstudio.openshift.io/type: build
+  name: mccabe-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/mccabe:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/mccabe
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/mccabe/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/mccabe",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/mdurl/**]"
   creationTimestamp: null
   labels:
@@ -5064,6 +6954,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/microsoft-kiota-http",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/mistune/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: mistune
+    pipelines.appstudio.openshift.io/type: build
+  name: mistune-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/mistune:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/mistune
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/mistune/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/mistune",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -5519,6 +7463,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/narwhals/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: narwhals
+    pipelines.appstudio.openshift.io/type: build
+  name: narwhals-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/narwhals:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/narwhals
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/narwhals/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/narwhals",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/ninja/**]"
   creationTimestamp: null
   labels:
@@ -5573,6 +7571,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/nodeenv/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: nodeenv
+    pipelines.appstudio.openshift.io/type: build
+  name: nodeenv-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/nodeenv:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/nodeenv
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/nodeenv/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/nodeenv",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/numpy/**]"
   creationTimestamp: null
   labels:
@@ -5604,6 +7656,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/numpy",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/openpyxl/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: openpyxl
+    pipelines.appstudio.openshift.io/type: build
+  name: openpyxl-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/openpyxl:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/openpyxl
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/openpyxl/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/openpyxl",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -5789,6 +7895,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/opentelemetry-sdk/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: opentelemetry-sdk
+    pipelines.appstudio.openshift.io/type: build
+  name: opentelemetry-sdk-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/opentelemetry-sdk:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/opentelemetry-sdk
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/opentelemetry-sdk/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/opentelemetry-sdk",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/oscrypto/**]"
   creationTimestamp: null
   labels:
@@ -5951,6 +8111,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pandocfilters/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pandocfilters
+    pipelines.appstudio.openshift.io/type: build
+  name: pandocfilters-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pandocfilters:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pandocfilters
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pandocfilters/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pandocfilters",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/parso/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: parso
+    pipelines.appstudio.openshift.io/type: build
+  name: parso-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/parso:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/parso
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/parso/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/parso",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/patchelf/**]"
   creationTimestamp: null
   labels:
@@ -6090,6 +8358,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/pbr",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pinotdb/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pinotdb
+    pipelines.appstudio.openshift.io/type: build
+  name: pinotdb-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pinotdb:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pinotdb
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pinotdb/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pinotdb",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -6437,6 +8759,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pre-commit/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pre-commit
+    pipelines.appstudio.openshift.io/type: build
+  name: pre-commit-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pre-commit:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pre-commit
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pre-commit/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pre-commit",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/prometheus-client/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: prometheus-client
+    pipelines.appstudio.openshift.io/type: build
+  name: prometheus-client-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/prometheus-client:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/prometheus-client
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/prometheus-client/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/prometheus-client",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/prompt-toolkit/**]"
   creationTimestamp: null
   labels:
@@ -6545,6 +8975,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/psutil/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: psutil
+    pipelines.appstudio.openshift.io/type: build
+  name: psutil-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/psutil:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/psutil
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/psutil/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/psutil",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/pure-eval/**]"
   creationTimestamp: null
   labels:
@@ -6576,6 +9060,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/pure-eval",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/py4j/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: py4j
+    pipelines.appstudio.openshift.io/type: build
+  name: py4j-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/py4j:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/py4j
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/py4j/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/py4j",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -7085,6 +9623,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pyopenssl/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pyopenssl
+    pipelines.appstudio.openshift.io/type: build
+  name: pyopenssl-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pyopenssl:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pyopenssl
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pyopenssl/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pyopenssl",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/pyproject-api/**]"
   creationTimestamp: null
   labels:
@@ -7139,6 +9731,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pyproject-hooks/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pyproject-hooks
+    pipelines.appstudio.openshift.io/type: build
+  name: pyproject-hooks-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pyproject-hooks:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pyproject-hooks
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pyproject-hooks/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pyproject-hooks",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/pyproject-metadata/**]"
   creationTimestamp: null
   labels:
@@ -7170,6 +9816,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/pyproject-metadata",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pyrsistent/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pyrsistent
+    pipelines.appstudio.openshift.io/type: build
+  name: pyrsistent-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pyrsistent:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pyrsistent
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pyrsistent/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pyrsistent",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/pyspark/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: pyspark
+    pipelines.appstudio.openshift.io/type: build
+  name: pyspark-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/pyspark:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/pyspark
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/pyspark/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/pyspark",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -7409,6 +10163,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/python-json-logger/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: python-json-logger
+    pipelines.appstudio.openshift.io/type: build
+  name: python-json-logger-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/python-json-logger:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/python-json-logger
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/python-json-logger/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/python-json-logger",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/python-multipart/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: python-multipart
+    pipelines.appstudio.openshift.io/type: build
+  name: python-multipart-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/python-multipart:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/python-multipart
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/python-multipart/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/python-multipart",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/python-telegram-bot/**]"
   creationTimestamp: null
   labels:
@@ -7625,6 +10487,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/redis/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: redis
+    pipelines.appstudio.openshift.io/type: build
+  name: redis-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/redis:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/redis
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/redis/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/redis",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/regex/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: regex
+    pipelines.appstudio.openshift.io/type: build
+  name: regex-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/regex:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/regex
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/regex/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/regex",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/requests/**]"
   creationTimestamp: null
   labels:
@@ -7679,6 +10649,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/requests-aws4auth/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: requests-aws4auth
+    pipelines.appstudio.openshift.io/type: build
+  name: requests-aws4auth-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/requests-aws4auth:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/requests-aws4auth
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/requests-aws4auth/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/requests-aws4auth",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/responses/**]"
   creationTimestamp: null
   labels:
@@ -7710,6 +10734,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/responses",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/retry/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: retry
+    pipelines.appstudio.openshift.io/type: build
+  name: retry-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/retry:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/retry
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/retry/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/retry",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/rfc3986/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: rfc3986
+    pipelines.appstudio.openshift.io/type: build
+  name: rfc3986-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/rfc3986:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/rfc3986
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/rfc3986/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/rfc3986",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -8435,6 +11567,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/simplejson/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: simplejson
+    pipelines.appstudio.openshift.io/type: build
+  name: simplejson-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/simplejson:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/simplejson
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/simplejson/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/simplejson",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/six/**]"
   creationTimestamp: null
   labels:
@@ -8466,6 +11652,168 @@ spec:
       {
         "type": "pip",
         "path": "./packages/six",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/slack-sdk/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: slack-sdk
+    pipelines.appstudio.openshift.io/type: build
+  name: slack-sdk-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/slack-sdk:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/slack-sdk
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/slack-sdk/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/slack-sdk",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/smart-open/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: smart-open
+    pipelines.appstudio.openshift.io/type: build
+  name: smart-open-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/smart-open:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/smart-open
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/smart-open/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/smart-open",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/smmap/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: smmap
+    pipelines.appstudio.openshift.io/type: build
+  name: smmap-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/smmap:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/smmap
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/smmap/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/smmap",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -8597,6 +11945,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/sortedcontainers/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: sortedcontainers
+    pipelines.appstudio.openshift.io/type: build
+  name: sortedcontainers-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/sortedcontainers:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/sortedcontainers
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/sortedcontainers/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/sortedcontainers",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/soupsieve/**]"
   creationTimestamp: null
   labels:
@@ -8628,6 +12030,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/soupsieve",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/sqlalchemy/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: sqlalchemy
+    pipelines.appstudio.openshift.io/type: build
+  name: sqlalchemy-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/sqlalchemy:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/sqlalchemy
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/sqlalchemy/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/sqlalchemy",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -8705,6 +12161,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/sqlalchemy-spanner/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: sqlalchemy-spanner
+    pipelines.appstudio.openshift.io/type: build
+  name: sqlalchemy-spanner-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/sqlalchemy-spanner:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/sqlalchemy-spanner
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/sqlalchemy-spanner/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/sqlalchemy-spanner",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/sqlparse/**]"
   creationTimestamp: null
   labels:
@@ -8736,6 +12246,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/sqlparse",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/sshtunnel/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: sshtunnel
+    pipelines.appstudio.openshift.io/type: build
+  name: sshtunnel-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/sshtunnel:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/sshtunnel
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/sshtunnel/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/sshtunnel",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/starlette/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: starlette
+    pipelines.appstudio.openshift.io/type: build
+  name: starlette-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/starlette:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/starlette
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/starlette/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/starlette",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -8975,6 +12593,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/terminado/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: terminado
+    pipelines.appstudio.openshift.io/type: build
+  name: terminado-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/terminado:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/terminado
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/terminado/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/terminado",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/threadpoolctl/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: threadpoolctl
+    pipelines.appstudio.openshift.io/type: build
+  name: threadpoolctl-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/threadpoolctl:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/threadpoolctl
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/threadpoolctl/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/threadpoolctl",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/thriftpy2/**]"
   creationTimestamp: null
   labels:
@@ -9006,6 +12732,60 @@ spec:
       {
         "type": "pip",
         "path": "./packages/thriftpy2",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/toml/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: toml
+    pipelines.appstudio.openshift.io/type: build
+  name: toml-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/toml:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/toml
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/toml/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/toml",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -9353,6 +13133,114 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/typeguard/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: typeguard
+    pipelines.appstudio.openshift.io/type: build
+  name: typeguard-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/typeguard:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/typeguard
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/typeguard/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/typeguard",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/types-protobuf/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: types-protobuf
+    pipelines.appstudio.openshift.io/type: build
+  name: types-protobuf-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/types-protobuf:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/types-protobuf
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/types-protobuf/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/types-protobuf",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/types-psutil/**]"
   creationTimestamp: null
   labels:
@@ -9677,6 +13565,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/typing-inspection/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: typing-inspection
+    pipelines.appstudio.openshift.io/type: build
+  name: typing-inspection-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/typing-inspection:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/typing-inspection
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/typing-inspection/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/typing-inspection",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/tzdata/**]"
   creationTimestamp: null
   labels:
@@ -9839,6 +13781,60 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/uvicorn/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: uvicorn
+    pipelines.appstudio.openshift.io/type: build
+  name: uvicorn-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/uvicorn:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/uvicorn
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/uvicorn/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/uvicorn",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
     pipelinesascode.tekton.dev/on-path-change: "[packages/virtualenv/**]"
   creationTimestamp: null
   labels:
@@ -9924,6 +13920,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/wcwidth",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/webcolors/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: webcolors
+    pipelines.appstudio.openshift.io/type: build
+  name: webcolors-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/webcolors:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/webcolors
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/webcolors/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/webcolors",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/websockets/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: websockets
+    pipelines.appstudio.openshift.io/type: build
+  name: websockets-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/websockets:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/websockets
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/websockets/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/websockets",
         "allow_binary": "false"
       }
   pipelineRef:
@@ -10140,6 +14244,114 @@ spec:
       {
         "type": "pip",
         "path": "./packages/xyzservices",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/yamllint/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: yamllint
+    pipelines.appstudio.openshift.io/type: build
+  name: yamllint-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/yamllint:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/yamllint
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/yamllint/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/yamllint",
+        "allow_binary": "false"
+      }
+  pipelineRef:
+    name: build
+  taskRunTemplate: {}
+  workspaces:
+  - name: git-auth
+    secret:
+      secretName: '{{ git_auth_secret }}'
+status: {}
+---
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/lcarva/calunga?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "true"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-path-change: "[packages/yandexcloud/**]"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: calunga
+    appstudio.openshift.io/component: yandexcloud
+    pipelines.appstudio.openshift.io/type: build
+  name: yandexcloud-on-pull-request
+  namespace: calunga-tenant
+spec:
+  params:
+  - name: git-url
+    value: '{{source_url}}'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/calunga-tenant/yandexcloud:on-pr-{{revision}}
+  - name: image-expires-after
+    value: 5d
+  - name: path-context
+    value: packages/yandexcloud
+  - name: dockerfile
+    value: Containerfile
+  - name: build-args-file
+    value: packages/yandexcloud/argfile.conf
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {
+        "type": "pip",
+        "path": "./packages/yandexcloud",
         "allow_binary": "false"
       }
   pipelineRef:

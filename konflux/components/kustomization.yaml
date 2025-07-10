@@ -5,18 +5,24 @@ resources:
   - aiobotocore
   - aiofiles
   - aiohttp
+  - aioitertools
   - annotated-types
   - anyio
   - appdirs
   - arrow
   - asgiref
+  - astroid
   - asttokens
   - async-timeout
   - attrs
+  - authlib
   - awscli
+  - azure-core
   - azure-keyvault-secrets
   - azure-storage-blob
   - azure-storage-file-datalake
+  - backoff
+  - backports-tarfile
   - beautifulsoup4
   - black
   - blinker
@@ -27,20 +33,33 @@ resources:
   - cachetools
   - calver
   - cffi
+  - cfgv
   - chardet
   - charset-normalizer
   - click
   - click-plugins
   - cloudpickle
   - colorama
+  - coverage
+  - crashtest
+  - databricks-sdk
   - databricks-sql-connector
+  - dataclasses-json
   - debugpy
+  - decorator
+  - deepdiff
+  - defusedxml
   - distlib
+  - distro
   - django
+  - dnspython
   - docker
+  - docstring-parser
   - docutils
   - editables
+  - elasticsearch
   - email-validator
+  - exceptiongroup
   - executing
   - faker
   - fastapi
@@ -52,19 +71,25 @@ resources:
   - freezegun
   - frozenlist
   - fsspec
+  - gitdb
   - gitpython
+  - google-ads
   - google-api-core
   - google-api-python-client
   - google-auth
+  - google-cloud-bigquery
   - google-cloud-bigquery-storage
   - google-cloud-bigtable
+  - google-cloud-dataproc
   - google-cloud-logging
+  - google-cloud-resource-manager
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz
   - greenlet
   - grpcio-health-checking
   - grpcio-status
+  - gunicorn
   - h11
   - h2
   - hatch-fancy-pypi-readme
@@ -78,24 +103,35 @@ resources:
   - hyperframe
   - idna
   - importlib-metadata
+  - importlib-resources
+  - inflection
   - iniconfig
+  - installer
+  - isoduration
   - isort
+  - itsdangerous
+  - jaraco-context
   - jaraco-functools
   - jinja2
+  - joblib
   - json5
   - jsonpointer
   - jupyter-core
   - keras
   - limits
   - loguru
+  - lz4
+  - mako
   - markdown
   - markdown-it-py
   - markupsafe
   - marshmallow
   - matplotlib-inline
+  - mccabe
   - mdurl
   - meson-python
   - microsoft-kiota-http
+  - mistune
   - mock
   - more-itertools
   - mpmath
@@ -104,26 +140,37 @@ resources:
   - multidict
   - mypy
   - mypy-extensions
+  - narwhals
   - ninja
+  - nodeenv
   - numpy
+  - openpyxl
   - opentelemetry-exporter-otlp
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests
+  - opentelemetry-sdk
   - oscrypto
   - packaging
   - pandas
+  - pandocfilters
+  - parso
   - patchelf
   - pathspec
   - pbr
+  - pinotdb
   - pip
   - pkgutil-resolve-name
   - platformdirs
   - pluggy
   - ply
   - poetry-core
+  - pre-commit
+  - prometheus-client
   - prompt-toolkit
   - propcache
+  - psutil
   - pure-eval
+  - py4j
   - pyasn1
   - pyasn1-modules
   - pycodestyle
@@ -133,18 +180,29 @@ resources:
   - pygments
   - pyjwt
   - pymongo
+  - pyopenssl
   - pyproject-api
+  - pyproject-hooks
   - pyproject-metadata
+  - pyrsistent
+  - pyspark
   - pytest
   - pytest-cov
   - python-dateutil
   - python-dotenv
+  - python-json-logger
+  - python-multipart
   - python-telegram-bot
   - pytz
   - pyyaml
   - readme-renderer
+  - redis
+  - regex
   - requests
+  - requests-aws4auth
   - responses
+  - retry
+  - rfc3986
   - rfc3986-validator
   - rich
   - rich-toolkit
@@ -158,36 +216,56 @@ resources:
   - setproctitle
   - setuptools
   - setuptools-scm
+  - simplejson
   - six
+  - slack-sdk
+  - smart-open
+  - smmap
   - sniffio
   - snowflake-connector-python
+  - sortedcontainers
   - soupsieve
+  - sqlalchemy
   - sqlalchemy-bigquery
+  - sqlalchemy-spanner
   - sqlparse
+  - sshtunnel
+  - starlette
   - tableauserverclient
   - tabulate
   - tblib
   - termcolor
+  - terminado
+  - threadpoolctl
   - thriftpy2
+  - toml
   - tomlkit
   - toolz
   - tornado
   - tox
   - tqdm
   - trove-classifiers
+  - typeguard
+  - types-protobuf
   - types-psutil
   - types-python-dateutil
   - types-requests
   - types-setuptools
   - typing-extensions
   - typing-inspect
+  - typing-inspection
   - tzdata
   - tzlocal
   - urllib3
+  - uvicorn
   - virtualenv
   - wcwidth
+  - webcolors
+  - websockets
   - wheel
   - widgetsnbextension
   - wrapt
   - xyzservices
+  - yamllint
+  - yandexcloud
   - zipp

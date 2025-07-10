@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: lz4
+  name: lz4
+spec:
+  image:
+    name: calunga-tenant/lz4
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: lz4
+spec:
+  componentName: lz4
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/lz4

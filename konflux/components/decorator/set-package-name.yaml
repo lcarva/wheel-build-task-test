@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: decorator
+  name: decorator
+spec:
+  image:
+    name: calunga-tenant/decorator
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: decorator
+spec:
+  componentName: decorator
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/decorator

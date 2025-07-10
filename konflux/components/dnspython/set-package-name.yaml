@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: dnspython
+  name: dnspython
+spec:
+  image:
+    name: calunga-tenant/dnspython
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: dnspython
+spec:
+  componentName: dnspython
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/dnspython

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: py4j
+  name: py4j
+spec:
+  image:
+    name: calunga-tenant/py4j
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: py4j
+spec:
+  componentName: py4j
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/py4j

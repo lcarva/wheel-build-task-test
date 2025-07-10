@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: aioitertools
+  name: aioitertools
+spec:
+  image:
+    name: calunga-tenant/aioitertools
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: aioitertools
+spec:
+  componentName: aioitertools
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/aioitertools

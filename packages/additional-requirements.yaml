@@ -63,6 +63,9 @@ packages:
   pandocfilters:
     requirements_in:
       - setuptools
+  parso:
+    requirements_in:
+      - setuptools
   pkgutil-resolve-name:
     requirements_in:
       - setuptools

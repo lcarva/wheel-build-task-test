@@ -153,6 +153,7 @@ resources:
   - packaging
   - pandas
   - pandocfilters
+  - parso
   - patchelf
   - pathspec
   - pbr

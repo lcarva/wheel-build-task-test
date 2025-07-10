@@ -38,6 +38,7 @@ resources:
   - docutils
   - editables
   - email-validator
+  - executing
   - faker
   - fastapi
   - fastavro

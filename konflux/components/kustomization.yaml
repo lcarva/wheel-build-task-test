@@ -15,6 +15,7 @@ resources:
   - attrs
   - awscli
   - azure-keyvault-secrets
+  - azure-storage-blob
   - azure-storage-file-datalake
   - beautifulsoup4
   - black

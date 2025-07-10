@@ -53,6 +53,7 @@ resources:
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz
+  - greenlet
   - grpcio-health-checking
   - grpcio-status
   - h11

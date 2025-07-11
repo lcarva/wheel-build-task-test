@@ -49,8 +49,7 @@ function find_snapshot_for_commit_id() {
     local commit_id="$2"
     local snapshot_name="${pkg_name}-${commit_id}"
     oc get snapshot \
-        -l pac.test.appstudio.openshift.io/sha="${commit_id}" \
-        -l appstudio.openshift.io/component="${pkg_name}" \
+        -l "pac.test.appstudio.openshift.io/sha=${commit_id},appstudio.openshift.io/component=${pkg_name},pac.test.appstudio.openshift.io/event-type=push" \
         -o jsonpath='{.items[0].metadata.name}'
 }
 

@@ -224,6 +224,7 @@ resources:
   - opentelemetry-instrumentation-requests
   - opentelemetry-proto
   - opentelemetry-sdk
+  - opentelemetry-semantic-conventions
   - opentelemetry-util-http
   - oscrypto
   - overrides

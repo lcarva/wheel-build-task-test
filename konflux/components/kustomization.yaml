@@ -136,6 +136,7 @@ resources:
   - kiwisolver
   - limits
   - loguru
+  - lxml
   - lz4
   - mako
   - markdown

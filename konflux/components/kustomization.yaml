@@ -263,6 +263,7 @@ resources:
   - terminado
   - threadpoolctl
   - thriftpy2
+  - tinycss2
   - toml
   - tomlkit
   - toolz

@@ -49,6 +49,7 @@ resources:
   - click-plugins
   - cloudpickle
   - colorama
+  - comm
   - coverage
   - crashtest
   - cycler

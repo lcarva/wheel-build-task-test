@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: comm
+  name: comm
+spec:
+  image:
+    name: calunga-tenant/comm
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: comm
+spec:
+  componentName: comm
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/comm

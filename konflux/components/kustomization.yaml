@@ -291,6 +291,7 @@ resources:
   - uvicorn
   - virtualenv
   - wcwidth
+  - weaviate-client
   - webcolors
   - websockets
   - wheel

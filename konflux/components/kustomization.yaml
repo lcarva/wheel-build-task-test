@@ -253,6 +253,7 @@ resources:
   - rsa
   - s3fs
   - s3transfer
+  - schema
   - scikit-build-core
   - scramp
   - seaborn

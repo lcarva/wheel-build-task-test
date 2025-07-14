@@ -125,6 +125,9 @@ packages:
   rfc3986:
     requirements_in:
       - setuptools
+  schema:
+    requirements_in:
+      - setuptools
   setproctitle:
     requirements_in:
       - setuptools

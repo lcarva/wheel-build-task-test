@@ -86,6 +86,7 @@ resources:
   - faker
   - fastapi
   - fastavro
+  - fastjsonschema
   - filelock
   - findpython
   - flake8

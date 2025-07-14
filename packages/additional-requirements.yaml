@@ -34,6 +34,9 @@ packages:
   et-xmlfile:
     requirements_in:
       - setuptools
+  fastjsonschema:
+    requirements_in:
+      - setuptools
   flake8:
     requirements_in:
       - setuptools

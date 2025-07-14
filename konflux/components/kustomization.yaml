@@ -245,6 +245,7 @@ resources:
   - pytest
   - pytest-asyncio
   - pytest-cov
+  - pytest-xdist
   - python-dateutil
   - python-dotenv
   - python-json-logger

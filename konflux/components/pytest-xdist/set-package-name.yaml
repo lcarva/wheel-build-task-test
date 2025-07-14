@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pytest-xdist
+  name: pytest-xdist
+spec:
+  image:
+    name: calunga-tenant/pytest-xdist
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pytest-xdist
+spec:
+  componentName: pytest-xdist
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pytest-xdist

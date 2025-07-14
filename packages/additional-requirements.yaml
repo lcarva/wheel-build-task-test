@@ -131,3 +131,6 @@ packages:
   xmltodict:
     requirements_in:
       - setuptools
+  yarl:
+    requirements_in:
+      - Cython

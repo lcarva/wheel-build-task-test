@@ -11,6 +11,9 @@ packages:
   asn1crypto:
     requirements_in:
       - setuptools
+  bleach:
+    requirements_in:
+      - setuptools
   cfgv:
     requirements_in:
       - setuptools

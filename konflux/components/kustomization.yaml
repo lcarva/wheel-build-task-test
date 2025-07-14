@@ -135,6 +135,7 @@ resources:
   - jupyter-core
   - keras
   - kiwisolver
+  - lazy-object-proxy
   - limits
   - loguru
   - lxml

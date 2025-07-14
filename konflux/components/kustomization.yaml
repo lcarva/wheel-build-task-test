@@ -83,6 +83,7 @@ resources:
   - google-cloud-dataproc
   - google-cloud-logging
   - google-cloud-resource-manager
+  - google-cloud-storage
   - google-cloud-vision
   - googleapis-common-protos
   - graphviz

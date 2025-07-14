@@ -115,6 +115,7 @@ resources:
   - google-cloud-storage
   - google-cloud-vision
   - google-crc32c
+  - google-resumable-media
   - googleapis-common-protos
   - graphql-core
   - graphviz

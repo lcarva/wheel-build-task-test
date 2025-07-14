@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: google-resumable-media
+  name: google-resumable-media
+spec:
+  image:
+    name: calunga-tenant/google-resumable-media
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: google-resumable-media
+spec:
+  componentName: google-resumable-media
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/google-resumable-media

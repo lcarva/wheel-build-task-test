@@ -42,6 +42,7 @@ resources:
   - colorama
   - coverage
   - crashtest
+  - cycler
   - databricks-sdk
   - databricks-sql-connector
   - dataclasses-json

@@ -199,6 +199,7 @@ resources:
   - pathspec
   - pbr
   - pexpect
+  - pg8000
   - pillow
   - pinotdb
   - pip

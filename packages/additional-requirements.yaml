@@ -179,6 +179,9 @@ packages:
   websocket-client:
     requirements_in:
       - setuptools
+  wsproto:
+    requirements_in:
+      - setuptools
   xmltodict:
     requirements_in:
       - setuptools

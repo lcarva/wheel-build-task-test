@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: wsproto
+  name: wsproto
+spec:
+  image:
+    name: calunga-tenant/wsproto
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: wsproto
+spec:
+  componentName: wsproto
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/wsproto

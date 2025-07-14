@@ -134,6 +134,9 @@ packages:
   python-dotenv:
     requirements_in:
       - setuptools
+  rfc3339-validator:
+    requirements_in:
+      - setuptools
   rfc3986:
     requirements_in:
       - setuptools

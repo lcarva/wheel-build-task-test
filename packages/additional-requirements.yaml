@@ -102,6 +102,9 @@ packages:
   propcache:
     requirements_in:
       - Cython
+  protobuf:
+    requirements_in:
+      - setuptools
   py4j:
     requirements_in:
       - setuptools

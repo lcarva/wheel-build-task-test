@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: protobuf
+  name: protobuf
+spec:
+  image:
+    name: calunga-tenant/protobuf
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: protobuf
+spec:
+  componentName: protobuf
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/protobuf

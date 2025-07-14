@@ -208,6 +208,7 @@ resources:
   - prometheus-client
   - prompt-toolkit
   - propcache
+  - protobuf
   - psutil
   - ptyprocess
   - pure-eval

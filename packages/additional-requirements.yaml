@@ -60,6 +60,9 @@ packages:
   oscrypto:
     requirements_in:
       - setuptools
+  overrides:
+    requirements_in:
+      - setuptools
   pandocfilters:
     requirements_in:
       - setuptools

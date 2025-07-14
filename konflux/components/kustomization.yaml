@@ -163,6 +163,7 @@ resources:
   - opentelemetry-sdk
   - opentelemetry-util-http
   - oscrypto
+  - overrides
   - packaging
   - pandas
   - pandocfilters

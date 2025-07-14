@@ -123,6 +123,7 @@ resources:
   - itsdangerous
   - jaraco-context
   - jaraco-functools
+  - jeepney
   - jinja2
   - joblib
   - json5

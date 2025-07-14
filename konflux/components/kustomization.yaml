@@ -160,6 +160,7 @@ resources:
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests
   - opentelemetry-sdk
+  - opentelemetry-util-http
   - oscrypto
   - packaging
   - pandas

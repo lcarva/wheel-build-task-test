@@ -131,6 +131,7 @@ resources:
   - jsonpointer
   - jupyter-core
   - keras
+  - kiwisolver
   - limits
   - loguru
   - lz4

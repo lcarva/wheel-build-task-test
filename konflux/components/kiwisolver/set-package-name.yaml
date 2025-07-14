@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: kiwisolver
+  name: kiwisolver
+spec:
+  image:
+    name: calunga-tenant/kiwisolver
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: kiwisolver
+spec:
+  componentName: kiwisolver
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/kiwisolver

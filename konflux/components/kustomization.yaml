@@ -101,6 +101,7 @@ resources:
   - graphql-core
   - graphviz
   - greenlet
+  - grpcio
   - grpcio-health-checking
   - grpcio-status
   - grpcio-tools

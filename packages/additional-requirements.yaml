@@ -34,6 +34,9 @@ packages:
   gitdb:
     requirements_in:
       - setuptools
+  grpcio:
+    requirements_in:
+      - setuptools
   grpcio-health-checking:
     requirements_in:
       - setuptools

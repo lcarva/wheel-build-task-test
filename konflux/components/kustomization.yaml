@@ -9,6 +9,7 @@ resources:
   - aiohappyeyeballs
   - aiohttp
   - aioitertools
+  - alembic
   - annotated-types
   - anyio
   - appdirs

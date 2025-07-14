@@ -57,6 +57,9 @@ packages:
       - hatch-fancy-pypi-readme
       - ninja
       - patchelf
+  httptools:
+    requirements_in:
+      - setuptools
   inflection:
     requirements_in:
       - setuptools

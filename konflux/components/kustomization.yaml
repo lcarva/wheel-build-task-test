@@ -121,6 +121,7 @@ resources:
   - hpack
   - httpcore
   - httplib2
+  - httptools
   - httpx
   - humanize
   - hvac

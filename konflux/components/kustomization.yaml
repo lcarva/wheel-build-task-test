@@ -68,6 +68,7 @@ resources:
   - editables
   - elasticsearch
   - email-validator
+  - et-xmlfile
   - exceptiongroup
   - execnet
   - executing

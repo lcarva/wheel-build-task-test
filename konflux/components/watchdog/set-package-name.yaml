@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: watchdog
+  name: watchdog
+spec:
+  image:
+    name: calunga-tenant/watchdog
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: watchdog
+spec:
+  componentName: watchdog
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/watchdog

@@ -344,6 +344,7 @@ resources:
   - urllib3
   - uvicorn
   - virtualenv
+  - watchdog
   - wcwidth
   - weaviate-client
   - webcolors

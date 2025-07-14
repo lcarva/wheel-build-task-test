@@ -182,6 +182,9 @@ packages:
   typing-inspect:
     requirements_in:
       - setuptools
+  watchdog:
+    requirements_in:
+      - setuptools
   wcwidth:
     requirements_in:
       - setuptools

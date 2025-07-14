@@ -189,6 +189,7 @@ resources:
   - nest-asyncio
   - networkx
   - ninja
+  - nltk
   - nodeenv
   - numpy
   - oauth2client

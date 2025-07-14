@@ -55,6 +55,7 @@ resources:
   - decorator
   - deepdiff
   - defusedxml
+  - deprecated
   - distlib
   - distro
   - django

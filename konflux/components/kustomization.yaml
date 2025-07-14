@@ -214,6 +214,7 @@ resources:
   - oauthlib
   - openpyxl
   - opentelemetry-exporter-otlp
+  - opentelemetry-exporter-prometheus
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests
   - opentelemetry-proto

@@ -163,6 +163,7 @@ resources:
   - json5
   - jsonpatch
   - jsonpointer
+  - jupyter-client
   - jupyter-core
   - keras
   - keyring

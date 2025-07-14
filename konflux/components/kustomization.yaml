@@ -194,6 +194,7 @@ resources:
   - prompt-toolkit
   - propcache
   - psutil
+  - ptyprocess
   - pure-eval
   - py4j
   - pyasn1

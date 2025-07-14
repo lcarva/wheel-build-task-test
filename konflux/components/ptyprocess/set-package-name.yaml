@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: ptyprocess
+  name: ptyprocess
+spec:
+  image:
+    name: calunga-tenant/ptyprocess
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: ptyprocess
+spec:
+  componentName: ptyprocess
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/ptyprocess

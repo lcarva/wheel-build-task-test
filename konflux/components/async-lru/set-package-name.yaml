@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: async-lru
+  name: async-lru
+spec:
+  image:
+    name: calunga-tenant/async-lru
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: async-lru
+spec:
+  componentName: async-lru
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/async-lru

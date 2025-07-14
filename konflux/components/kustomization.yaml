@@ -19,6 +19,7 @@ resources:
   - asn1crypto
   - astroid
   - asttokens
+  - async-lru
   - async-timeout
   - attrs
   - authlib

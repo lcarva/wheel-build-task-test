@@ -11,6 +11,9 @@ packages:
   asn1crypto:
     requirements_in:
       - setuptools
+  async-lru:
+    requirements_in:
+      - setuptools
   bleach:
     requirements_in:
       - setuptools

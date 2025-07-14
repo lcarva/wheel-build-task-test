@@ -110,6 +110,7 @@ resources:
   - httplib2
   - httpx
   - humanize
+  - hvac
   - hyperframe
   - idna
   - imageio

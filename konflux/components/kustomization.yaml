@@ -89,6 +89,7 @@ resources:
   - google-cloud-resource-manager
   - google-cloud-storage
   - google-cloud-vision
+  - google-crc32c
   - googleapis-common-protos
   - graphviz
   - greenlet

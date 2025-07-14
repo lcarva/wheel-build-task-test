@@ -25,6 +25,9 @@ packages:
   dulwich:
     requirements_in:
       - setuptools_rust
+  durationpy:
+    requirements_in:
+      - setuptools
   et-xmlfile:
     requirements_in:
       - setuptools

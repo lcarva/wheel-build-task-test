@@ -67,6 +67,7 @@ resources:
   - docstring-parser
   - docutils
   - dulwich
+  - durationpy
   - editables
   - elasticsearch
   - email-validator

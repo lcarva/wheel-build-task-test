@@ -63,6 +63,7 @@ resources:
   - docker
   - docstring-parser
   - docutils
+  - dulwich
   - editables
   - elasticsearch
   - email-validator

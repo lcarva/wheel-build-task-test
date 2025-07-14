@@ -19,6 +19,9 @@ packages:
       - setuptools
   delta-spark:
     package_name: delta-spark
+  dulwich:
+    requirements_in:
+      - setuptools_rust
   flake8:
     requirements_in:
       - setuptools

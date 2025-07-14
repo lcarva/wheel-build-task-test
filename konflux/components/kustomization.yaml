@@ -240,6 +240,7 @@ resources:
   - pyjwt
   - pymongo
   - pyopenssl
+  - pyparsing
   - pyproject-api
   - pyproject-hooks
   - pyproject-metadata

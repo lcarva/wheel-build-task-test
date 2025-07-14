@@ -8,6 +8,9 @@ packages:
   asgiref:
     requirements_in:
       - setuptools
+  asn1crypto:
+    requirements_in:
+      - setuptools
   cfgv:
     requirements_in:
       - setuptools

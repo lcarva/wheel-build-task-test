@@ -15,6 +15,7 @@ resources:
   - argon2-cffi
   - arrow
   - asgiref
+  - asn1crypto
   - astroid
   - asttokens
   - async-timeout

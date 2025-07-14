@@ -219,6 +219,7 @@ resources:
   - packaging
   - pandas
   - pandocfilters
+  - paramiko
   - parso
   - patchelf
   - pathspec

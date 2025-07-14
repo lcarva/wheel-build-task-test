@@ -223,6 +223,7 @@ resources:
   - s3fs
   - s3transfer
   - scikit-build-core
+  - scramp
   - seaborn
   - semver
   - sentry-sdk

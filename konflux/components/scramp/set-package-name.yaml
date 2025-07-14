@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: scramp
+  name: scramp
+spec:
+  image:
+    name: calunga-tenant/scramp
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: scramp
+spec:
+  componentName: scramp
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/scramp

@@ -96,7 +96,7 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pipx install --pip-args=--constraint="$(pwd)/.github/workflows/constraints.txt" poetry
+          pipx install poetry
           poetry --version
 
       - name: Extract package name from issue
@@ -168,7 +168,7 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pipx install --pip-args=--constraint="$(pwd)/.github/workflows/constraints.txt" poetry
+          pipx install poetry
           poetry --version
 
       - name: Extract package name from issue

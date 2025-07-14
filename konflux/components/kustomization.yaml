@@ -265,6 +265,7 @@ resources:
   - traitlets
   - trove-classifiers
   - typeguard
+  - typer
   - types-protobuf
   - types-psutil
   - types-python-dateutil

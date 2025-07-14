@@ -176,3 +176,6 @@ packages:
   yarl:
     requirements_in:
       - Cython
+  zstandard:
+    requirements_in:
+      - wheel

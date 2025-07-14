@@ -338,3 +338,4 @@ resources:
   - yandexcloud
   - yarl
   - zipp
+  - zstandard

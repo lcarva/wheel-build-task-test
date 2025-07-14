@@ -186,6 +186,7 @@ resources:
   - opentelemetry-exporter-otlp
   - opentelemetry-instrumentation
   - opentelemetry-instrumentation-requests
+  - opentelemetry-proto
   - opentelemetry-sdk
   - opentelemetry-util-http
   - oscrypto

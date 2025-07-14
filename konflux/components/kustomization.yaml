@@ -187,6 +187,7 @@ resources:
   - pycryptodomex
   - pydantic
   - pydantic-settings
+  - pyflakes
   - pygments
   - pyjwt
   - pymongo

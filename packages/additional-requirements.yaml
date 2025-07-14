@@ -81,6 +81,9 @@ packages:
   pycodestyle:
     requirements_in:
       - setuptools
+  pyflakes:
+    requirements_in:
+      - setuptools
   pyspark:
     requirements_in:
       - setuptools

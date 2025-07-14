@@ -158,6 +158,7 @@ resources:
   - jsonpointer
   - jupyter-core
   - keras
+  - keyring
   - kiwisolver
   - langchain
   - langchain-core

@@ -148,6 +148,7 @@ resources:
   - jmespath
   - joblib
   - json5
+  - jsonpatch
   - jsonpointer
   - jupyter-core
   - keras

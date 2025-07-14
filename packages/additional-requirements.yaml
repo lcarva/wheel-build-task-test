@@ -69,6 +69,9 @@ packages:
   jmespath:
     requirements_in:
       - setuptools
+  jsonpatch:
+    requirements_in:
+      - setuptools
   jsonpointer:
     requirements_in:
       - setuptools

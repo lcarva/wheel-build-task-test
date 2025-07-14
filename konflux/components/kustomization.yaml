@@ -301,6 +301,7 @@ resources:
   - types-protobuf
   - types-psutil
   - types-python-dateutil
+  - types-pytz
   - types-pyyaml
   - types-requests
   - types-setuptools

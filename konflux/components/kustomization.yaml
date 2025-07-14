@@ -91,6 +91,7 @@ resources:
   - google-cloud-vision
   - google-crc32c
   - googleapis-common-protos
+  - graphql-core
   - graphviz
   - greenlet
   - grpcio-health-checking

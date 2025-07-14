@@ -25,6 +25,9 @@ packages:
   flatbuffers:
     requirements_in:
       - setuptools
+  fqdn:
+    requirements_in:
+      - setuptools
   frozenlist:
     requirements_in:
       - Cython

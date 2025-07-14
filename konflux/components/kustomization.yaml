@@ -238,6 +238,7 @@ resources:
   - ply
   - poetry-core
   - poetry-plugin-export
+  - portalocker
   - pre-commit
   - prometheus-client
   - prompt-toolkit

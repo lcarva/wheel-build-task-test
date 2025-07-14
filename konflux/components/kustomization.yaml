@@ -41,6 +41,7 @@ resources:
   - cfgv
   - chardet
   - charset-normalizer
+  - cleo
   - click
   - click-plugins
   - cloudpickle

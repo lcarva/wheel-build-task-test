@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: cleo
+  name: cleo
+spec:
+  image:
+    name: calunga-tenant/cleo
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: cleo
+spec:
+  componentName: cleo
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/cleo

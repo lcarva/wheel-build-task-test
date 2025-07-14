@@ -12,6 +12,7 @@ resources:
   - annotated-types
   - anyio
   - appdirs
+  - argon2-cffi
   - arrow
   - asgiref
   - astroid

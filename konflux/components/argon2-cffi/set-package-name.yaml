@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: argon2-cffi
+  name: argon2-cffi
+spec:
+  image:
+    name: calunga-tenant/argon2-cffi
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: argon2-cffi
+spec:
+  componentName: argon2-cffi
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/argon2-cffi

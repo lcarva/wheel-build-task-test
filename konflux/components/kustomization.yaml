@@ -118,6 +118,7 @@ resources:
   - google-cloud-logging
   - google-cloud-pubsub
   - google-cloud-resource-manager
+  - google-cloud-secret-manager
   - google-cloud-storage
   - google-cloud-vision
   - google-crc32c

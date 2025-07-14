@@ -273,6 +273,7 @@ resources:
   - sqlalchemy-spanner
   - sqlparse
   - sshtunnel
+  - stack-data
   - starlette
   - tableauserverclient
   - tabulate

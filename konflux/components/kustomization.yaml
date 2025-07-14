@@ -112,6 +112,7 @@ resources:
   - google-api-core
   - google-api-python-client
   - google-auth
+  - google-auth-oauthlib
   - google-cloud-aiplatform
   - google-cloud-audit-log
   - google-cloud-bigquery

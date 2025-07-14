@@ -212,6 +212,9 @@ packages:
   wsproto:
     requirements_in:
       - setuptools
+  xlsxwriter:
+    requirements_in:
+      - setuptools
   xmltodict:
     requirements_in:
       - setuptools

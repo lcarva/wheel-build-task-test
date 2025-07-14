@@ -382,6 +382,7 @@ resources:
   - widgetsnbextension
   - wrapt
   - wsproto
+  - xlsxwriter
   - xmltodict
   - xyzservices
   - yamllint

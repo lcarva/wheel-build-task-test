@@ -31,6 +31,7 @@ resources:
   - azure-keyvault-secrets
   - azure-storage-blob
   - azure-storage-file-datalake
+  - babel
   - backoff
   - backports-tarfile
   - beautifulsoup4

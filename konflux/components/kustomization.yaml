@@ -52,6 +52,7 @@ resources:
   - comm
   - coverage
   - crashtest
+  - croniter
   - cycler
   - databricks-sdk
   - databricks-sql-connector

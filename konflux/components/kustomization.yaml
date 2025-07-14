@@ -91,6 +91,7 @@ resources:
   - freezegun
   - frozenlist
   - fsspec
+  - gcloud-aio-bigquery
   - gevent
   - gitdb
   - gitpython

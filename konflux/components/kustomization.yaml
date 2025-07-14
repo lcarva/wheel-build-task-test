@@ -339,6 +339,7 @@ resources:
   - tableauserverclient
   - tabulate
   - tblib
+  - tenacity
   - termcolor
   - terminado
   - threadpoolctl

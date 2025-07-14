@@ -79,6 +79,7 @@ resources:
   - freezegun
   - frozenlist
   - fsspec
+  - gevent
   - gitdb
   - gitpython
   - google-ads

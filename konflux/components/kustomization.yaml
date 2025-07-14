@@ -21,6 +21,7 @@ resources:
   - async-timeout
   - attrs
   - authlib
+  - aws-lambda-powertools
   - awscli
   - azure-core
   - azure-identity

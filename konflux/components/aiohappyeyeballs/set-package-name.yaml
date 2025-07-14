@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: aiohappyeyeballs
+  name: aiohappyeyeballs
+spec:
+  image:
+    name: calunga-tenant/aiohappyeyeballs
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: aiohappyeyeballs
+spec:
+  componentName: aiohappyeyeballs
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/aiohappyeyeballs

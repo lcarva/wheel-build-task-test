@@ -5,6 +5,7 @@ resources:
   - absl-py
   - aiobotocore
   - aiofiles
+  - aiohappyeyeballs
   - aiohttp
   - aioitertools
   - annotated-types

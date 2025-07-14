@@ -242,6 +242,7 @@ resources:
   - psutil
   - ptyprocess
   - pure-eval
+  - py
   - py4j
   - pyasn1
   - pyasn1-modules

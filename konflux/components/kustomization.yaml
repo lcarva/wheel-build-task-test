@@ -114,6 +114,7 @@ resources:
   - graphql-core
   - graphviz
   - greenlet
+  - grpc-google-iam-v1
   - grpcio
   - grpcio-health-checking
   - grpcio-status

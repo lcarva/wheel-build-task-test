@@ -233,6 +233,7 @@ resources:
   - pyrsistent
   - pyspark
   - pytest
+  - pytest-asyncio
   - pytest-cov
   - python-dateutil
   - python-dotenv

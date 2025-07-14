@@ -131,6 +131,7 @@ resources:
   - humanize
   - hvac
   - hyperframe
+  - identify
   - idna
   - imageio
   - importlib-metadata

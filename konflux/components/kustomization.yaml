@@ -198,6 +198,7 @@ resources:
   - mock
   - more-itertools
   - mpmath
+  - msal
   - msal-extensions
   - msgpack
   - multidict

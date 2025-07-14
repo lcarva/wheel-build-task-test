@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: keyring
+  name: keyring
+spec:
+  image:
+    name: calunga-tenant/keyring
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: keyring
+spec:
+  componentName: keyring
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/keyring

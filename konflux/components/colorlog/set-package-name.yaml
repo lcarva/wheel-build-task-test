@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: colorlog
+  name: colorlog
+spec:
+  image:
+    name: calunga-tenant/colorlog
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: colorlog
+spec:
+  componentName: colorlog
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/colorlog

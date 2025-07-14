@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: imageio
+  name: imageio
+spec:
+  image:
+    name: calunga-tenant/imageio
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: imageio
+spec:
+  componentName: imageio
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/imageio

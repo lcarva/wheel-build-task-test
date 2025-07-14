@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: cycler
+  name: cycler
+spec:
+  image:
+    name: calunga-tenant/cycler
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: cycler
+spec:
+  componentName: cycler
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/cycler

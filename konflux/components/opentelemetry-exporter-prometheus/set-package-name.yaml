@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: opentelemetry-exporter-prometheus
+  name: opentelemetry-exporter-prometheus
+spec:
+  image:
+    name: calunga-tenant/opentelemetry-exporter-prometheus
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: opentelemetry-exporter-prometheus
+spec:
+  componentName: opentelemetry-exporter-prometheus
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/opentelemetry-exporter-prometheus

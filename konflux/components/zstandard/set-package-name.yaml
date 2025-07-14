@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: zstandard
+  name: zstandard
+spec:
+  image:
+    name: calunga-tenant/zstandard
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: zstandard
+spec:
+  componentName: zstandard
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/zstandard

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: gevent
+  name: gevent
+spec:
+  image:
+    name: calunga-tenant/gevent
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: gevent
+spec:
+  componentName: gevent
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/gevent

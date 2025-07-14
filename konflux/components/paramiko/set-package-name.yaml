@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: paramiko
+  name: paramiko
+spec:
+  image:
+    name: calunga-tenant/paramiko
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: paramiko
+spec:
+  componentName: paramiko
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/paramiko

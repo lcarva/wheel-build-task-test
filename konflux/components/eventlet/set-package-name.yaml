@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: eventlet
+  name: eventlet
+spec:
+  image:
+    name: calunga-tenant/eventlet
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: eventlet
+spec:
+  componentName: eventlet
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/eventlet

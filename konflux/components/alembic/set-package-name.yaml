@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: alembic
+  name: alembic
+spec:
+  image:
+    name: calunga-tenant/alembic
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: alembic
+spec:
+  componentName: alembic
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/alembic

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: pg8000
+  name: pg8000
+spec:
+  image:
+    name: calunga-tenant/pg8000
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: pg8000
+spec:
+  componentName: pg8000
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/pg8000

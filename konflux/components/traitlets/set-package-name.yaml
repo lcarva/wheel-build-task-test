@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: traitlets
+  name: traitlets
+spec:
+  image:
+    name: calunga-tenant/traitlets
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: traitlets
+spec:
+  componentName: traitlets
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/traitlets

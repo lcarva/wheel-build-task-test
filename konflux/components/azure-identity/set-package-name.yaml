@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: azure-identity
+  name: azure-identity
+spec:
+  image:
+    name: calunga-tenant/azure-identity
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: azure-identity
+spec:
+  componentName: azure-identity
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/azure-identity

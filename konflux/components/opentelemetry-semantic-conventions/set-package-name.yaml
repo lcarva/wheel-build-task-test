@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: opentelemetry-semantic-conventions
+  name: opentelemetry-semantic-conventions
+spec:
+  image:
+    name: calunga-tenant/opentelemetry-semantic-conventions
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: opentelemetry-semantic-conventions
+spec:
+  componentName: opentelemetry-semantic-conventions
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/opentelemetry-semantic-conventions

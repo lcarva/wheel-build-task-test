@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: oauth2client
+  name: oauth2client
+spec:
+  image:
+    name: calunga-tenant/oauth2client
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: oauth2client
+spec:
+  componentName: oauth2client
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/oauth2client

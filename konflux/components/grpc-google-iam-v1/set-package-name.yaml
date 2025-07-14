@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: grpc-google-iam-v1
+  name: grpc-google-iam-v1
+spec:
+  image:
+    name: calunga-tenant/grpc-google-iam-v1
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: grpc-google-iam-v1
+spec:
+  componentName: grpc-google-iam-v1
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/grpc-google-iam-v1

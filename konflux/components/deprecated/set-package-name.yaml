@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: deprecated
+  name: deprecated
+spec:
+  image:
+    name: calunga-tenant/deprecated
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: deprecated
+spec:
+  componentName: deprecated
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/deprecated

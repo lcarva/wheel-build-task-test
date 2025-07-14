@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: gcloud-aio-auth
+  name: gcloud-aio-auth
+spec:
+  image:
+    name: calunga-tenant/gcloud-aio-auth
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: gcloud-aio-auth
+spec:
+  componentName: gcloud-aio-auth
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/gcloud-aio-auth

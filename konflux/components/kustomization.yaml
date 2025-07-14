@@ -101,6 +101,7 @@ resources:
   - frozenlist
   - fsspec
   - future
+  - gcloud-aio-auth
   - gcloud-aio-bigquery
   - gcsfs
   - gevent

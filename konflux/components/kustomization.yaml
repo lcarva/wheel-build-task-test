@@ -224,6 +224,7 @@ resources:
   - overrides
   - packaging
   - pandas
+  - pandas-gbq
   - pandocfilters
   - paramiko
   - parso

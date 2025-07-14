@@ -172,6 +172,7 @@ resources:
   - nodeenv
   - numpy
   - oauth2client
+  - oauthlib
   - openpyxl
   - opentelemetry-exporter-otlp
   - opentelemetry-instrumentation

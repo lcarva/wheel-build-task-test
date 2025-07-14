@@ -63,6 +63,9 @@ packages:
   mock:
     requirements_in:
       - setuptools
+  oauthlib:
+    requirements_in:
+      - setuptools
   openpyxl:
     requirements_in:
       - setuptools

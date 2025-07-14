@@ -63,6 +63,7 @@ resources:
   - elasticsearch
   - email-validator
   - exceptiongroup
+  - execnet
   - executing
   - faker
   - fastapi

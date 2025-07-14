@@ -186,6 +186,7 @@ resources:
   - pathspec
   - pbr
   - pexpect
+  - pillow
   - pinotdb
   - pip
   - pkginfo

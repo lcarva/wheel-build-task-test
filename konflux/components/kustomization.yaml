@@ -24,6 +24,7 @@ resources:
   - authlib
   - aws-lambda-powertools
   - awscli
+  - awswrangler
   - azure-core
   - azure-identity
   - azure-keyvault-secrets

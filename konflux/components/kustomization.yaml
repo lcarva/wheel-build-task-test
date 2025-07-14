@@ -312,6 +312,7 @@ resources:
   - wcwidth
   - weaviate-client
   - webcolors
+  - webencodings
   - websockets
   - wheel
   - widgetsnbextension

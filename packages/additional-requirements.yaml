@@ -149,6 +149,9 @@ packages:
   wcwidth:
     requirements_in:
       - setuptools
+  webencodings:
+    requirements_in:
+      - setuptools
   xmltodict:
     requirements_in:
       - setuptools

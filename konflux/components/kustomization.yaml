@@ -41,6 +41,7 @@ resources:
   - cachecontrol
   - cachetools
   - calver
+  - cattrs
   - cffi
   - cfgv
   - chardet

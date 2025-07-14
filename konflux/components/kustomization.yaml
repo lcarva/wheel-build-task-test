@@ -58,6 +58,7 @@ resources:
   - databricks-sdk
   - databricks-sql-connector
   - dataclasses-json
+  - datadog
   - debugpy
   - decorator
   - deepdiff

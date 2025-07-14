@@ -55,6 +55,7 @@ resources:
   - click-plugins
   - cloudpickle
   - colorama
+  - colorlog
   - comm
   - coverage
   - crashtest

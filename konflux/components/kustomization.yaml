@@ -246,6 +246,7 @@ resources:
   - tornado
   - tox
   - tqdm
+  - traitlets
   - trove-classifiers
   - typeguard
   - types-protobuf

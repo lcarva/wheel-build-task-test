@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: sphinx
+  name: sphinx
+spec:
+  image:
+    name: calunga-tenant/sphinx
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: sphinx
+spec:
+  componentName: sphinx
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/sphinx

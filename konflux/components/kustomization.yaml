@@ -270,6 +270,7 @@ resources:
   - snowflake-connector-python
   - sortedcontainers
   - soupsieve
+  - sphinx
   - sqlalchemy
   - sqlalchemy-bigquery
   - sqlalchemy-spanner

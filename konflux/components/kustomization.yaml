@@ -139,6 +139,7 @@ resources:
   - jaraco-functools
   - jeepney
   - jinja2
+  - jmespath
   - joblib
   - json5
   - jsonpointer

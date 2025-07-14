@@ -60,6 +60,9 @@ packages:
   inflection:
     requirements_in:
       - setuptools
+  jmespath:
+    requirements_in:
+      - setuptools
   jsonpointer:
     requirements_in:
       - setuptools

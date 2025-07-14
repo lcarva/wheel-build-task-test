@@ -84,6 +84,7 @@ resources:
   - google-api-python-client
   - google-auth
   - google-cloud-aiplatform
+  - google-cloud-audit-log
   - google-cloud-bigquery
   - google-cloud-bigquery-storage
   - google-cloud-bigtable

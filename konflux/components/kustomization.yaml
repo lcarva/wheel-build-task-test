@@ -238,6 +238,7 @@ resources:
   - setproctitle
   - setuptools
   - setuptools-scm
+  - shellingham
   - simplejson
   - six
   - slack-sdk

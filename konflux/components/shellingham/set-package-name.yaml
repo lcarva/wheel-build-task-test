@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: shellingham
+  name: shellingham
+spec:
+  image:
+    name: calunga-tenant/shellingham
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: shellingham
+spec:
+  componentName: shellingham
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/shellingham

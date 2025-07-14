@@ -92,6 +92,7 @@ resources:
   - findpython
   - flake8
   - flatbuffers
+  - fonttools
   - fqdn
   - freezegun
   - frozenlist

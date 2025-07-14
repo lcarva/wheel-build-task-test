@@ -46,6 +46,9 @@ packages:
   flatbuffers:
     requirements_in:
       - setuptools
+  fonttools:
+    requirements_in:
+      - setuptools
   fqdn:
     requirements_in:
       - setuptools

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: langsmith
+  name: langsmith
+spec:
+  image:
+    name: calunga-tenant/langsmith
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: langsmith
+spec:
+  componentName: langsmith
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/langsmith

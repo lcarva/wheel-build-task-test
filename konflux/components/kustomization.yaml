@@ -167,6 +167,7 @@ resources:
   - kiwisolver
   - langchain
   - langchain-core
+  - langsmith
   - lazy-object-proxy
   - limits
   - loguru

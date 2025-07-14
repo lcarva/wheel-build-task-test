@@ -123,6 +123,7 @@ resources:
   - inflection
   - iniconfig
   - installer
+  - isodate
   - isoduration
   - isort
   - itsdangerous

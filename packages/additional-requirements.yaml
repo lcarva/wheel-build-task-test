@@ -49,6 +49,9 @@ packages:
   frozenlist:
     requirements_in:
       - Cython
+  future:
+    requirements_in:
+      - setuptools
   gitdb:
     requirements_in:
       - setuptools

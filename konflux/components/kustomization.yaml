@@ -95,6 +95,7 @@ resources:
   - freezegun
   - frozenlist
   - fsspec
+  - future
   - gcloud-aio-bigquery
   - gevent
   - gitdb

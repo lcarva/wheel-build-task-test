@@ -145,6 +145,7 @@ resources:
   - jupyter-core
   - keras
   - kiwisolver
+  - langchain-core
   - lazy-object-proxy
   - limits
   - loguru

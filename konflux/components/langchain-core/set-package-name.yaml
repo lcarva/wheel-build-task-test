@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: langchain-core
+  name: langchain-core
+spec:
+  image:
+    name: calunga-tenant/langchain-core
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: langchain-core
+spec:
+  componentName: langchain-core
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/langchain-core

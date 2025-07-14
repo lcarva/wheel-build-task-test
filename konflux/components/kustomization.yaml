@@ -313,6 +313,7 @@ resources:
   - termcolor
   - terminado
   - threadpoolctl
+  - thrift
   - thriftpy2
   - tinycss2
   - toml

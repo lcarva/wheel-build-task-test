@@ -164,6 +164,9 @@ packages:
   sortedcontainers:
     requirements_in:
       - setuptools
+  thrift:
+    requirements_in:
+      - setuptools
   toml:
     requirements_in:
       - setuptools

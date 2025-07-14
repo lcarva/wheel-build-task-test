@@ -288,6 +288,7 @@ resources:
   - regex
   - requests
   - requests-aws4auth
+  - requests-file
   - responses
   - retry
   - rfc3339-validator

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: google-cloud-pubsub
+  name: google-cloud-pubsub
+spec:
+  image:
+    name: calunga-tenant/google-cloud-pubsub
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: google-cloud-pubsub
+spec:
+  componentName: google-cloud-pubsub
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/google-cloud-pubsub

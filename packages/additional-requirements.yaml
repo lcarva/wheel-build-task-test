@@ -26,6 +26,9 @@ packages:
   click-plugins:
     requirements_in:
       - setuptools
+  cython:
+    requirements_in:
+      - setuptools
   defusedxml:
     requirements_in:
       - setuptools

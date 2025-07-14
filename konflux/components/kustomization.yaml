@@ -361,6 +361,7 @@ resources:
   - webencodings
   - websocket-client
   - websockets
+  - werkzeug
   - wheel
   - widgetsnbextension
   - wrapt

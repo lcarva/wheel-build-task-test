@@ -154,6 +154,7 @@ resources:
   - itsdangerous
   - jaraco-context
   - jaraco-functools
+  - jedi
   - jeepney
   - jinja2
   - jmespath

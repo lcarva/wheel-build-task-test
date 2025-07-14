@@ -94,6 +94,7 @@ resources:
   - greenlet
   - grpcio-health-checking
   - grpcio-status
+  - grpcio-tools
   - gunicorn
   - h11
   - h2

@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: grpcio-tools
+  name: grpcio-tools
+spec:
+  image:
+    name: calunga-tenant/grpcio-tools
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: grpcio-tools
+spec:
+  componentName: grpcio-tools
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/grpcio-tools

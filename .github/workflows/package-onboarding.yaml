@@ -99,6 +99,10 @@ jobs:
           pipx install poetry
           poetry --version
 
+      - name: Install calunga
+        run: |
+          poetry install
+
       - name: Extract package name from issue
         id: extract
         run: |
@@ -170,6 +174,10 @@ jobs:
         run: |
           pipx install poetry
           poetry --version
+
+      - name: Install calunga
+        run: |
+          poetry install
 
       - name: Extract package name from issue
         id: extract

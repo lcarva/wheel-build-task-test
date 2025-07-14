@@ -269,6 +269,7 @@ resources:
   - pytest
   - pytest-asyncio
   - pytest-cov
+  - pytest-mock
   - pytest-xdist
   - python-dateutil
   - python-dotenv

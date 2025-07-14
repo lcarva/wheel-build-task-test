@@ -146,6 +146,7 @@ resources:
   - httplib2
   - httptools
   - httpx
+  - humanfriendly
   - humanize
   - hvac
   - hyperframe

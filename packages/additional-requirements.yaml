@@ -164,6 +164,9 @@ packages:
   webencodings:
     requirements_in:
       - setuptools
+  websocket-client:
+    requirements_in:
+      - setuptools
   xmltodict:
     requirements_in:
       - setuptools

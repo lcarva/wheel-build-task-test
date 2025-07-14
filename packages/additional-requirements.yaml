@@ -72,6 +72,9 @@ packages:
   pexpect:
     requirements_in:
       - setuptools
+  pkginfo:
+    requirements_in:
+      - setuptools
   pkgutil-resolve-name:
     requirements_in:
       - setuptools

@@ -177,6 +177,7 @@ resources:
   - pexpect
   - pinotdb
   - pip
+  - pkginfo
   - pkgutil-resolve-name
   - platformdirs
   - pluggy

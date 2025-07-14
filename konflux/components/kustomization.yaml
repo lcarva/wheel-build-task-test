@@ -178,6 +178,7 @@ resources:
   - pluggy
   - ply
   - poetry-core
+  - poetry-plugin-export
   - pre-commit
   - prometheus-client
   - prompt-toolkit

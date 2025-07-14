@@ -252,6 +252,7 @@ resources:
   - pyjwt
   - pylint
   - pymongo
+  - pymysql
   - pyopenssl
   - pyparsing
   - pyproject-api

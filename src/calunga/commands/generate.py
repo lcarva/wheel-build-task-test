@@ -60,12 +60,16 @@ def compile_requirements(
         "--generate-hashes" if generate_hashes else "--no-generate-hashes"
     ]
 
-    subprocess.run(
-        command,
-        check=True,
-        capture_output=True,
-        text=True
-    )
+    try:
+        result = subprocess.run(
+            command,
+            check=True,
+            capture_output=True,
+            text=True
+        )
+    except subprocess.CalledProcessError as exc:
+        console.print(f"[red]Error running pip-tools compile:[/red]\n{exc.stdout}\n{exc.stderr}")
+        raise
 
 
 def compile_build_requirements(
@@ -74,7 +78,7 @@ def compile_build_requirements(
     base_path: Path
 ) -> None:
     """Compile build requirements using pybuild-deps."""
-    subprocess.run([
+    command = [
         sys.executable,
         "-m",
         "pybuild_deps",
@@ -83,7 +87,19 @@ def compile_build_requirements(
         str(requirements_txt_path.relative_to(base_path)),
         "--output-file",
         str(requirements_build_path.relative_to(base_path))
-    ], check=True, capture_output=True, cwd=base_path)
+    ]
+
+    try:
+        result = subprocess.run(
+            command,
+            check=True,
+            capture_output=True,
+            text=True,
+            cwd=base_path
+        )
+    except subprocess.CalledProcessError as exc:
+        console.print(f"[red]Error running pybuild-deps compile:[/red]\n{exc.stdout}\n{exc.stderr}")
+        raise
 
 
 def generate_package_wrapper(

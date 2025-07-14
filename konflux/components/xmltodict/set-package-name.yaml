@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: ImageRepository
+metadata:
+  labels:
+    appstudio.redhat.com/component: xmltodict
+  name: xmltodict
+spec:
+  image:
+    name: calunga-tenant/xmltodict
+
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: xmltodict
+spec:
+  componentName: xmltodict
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/xmltodict

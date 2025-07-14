@@ -265,6 +265,7 @@ resources:
   - wheel
   - widgetsnbextension
   - wrapt
+  - xmltodict
   - xyzservices
   - yamllint
   - yandexcloud

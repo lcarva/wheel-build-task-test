@@ -168,6 +168,7 @@ resources:
   - mypy
   - mypy-extensions
   - narwhals
+  - nest-asyncio
   - ninja
   - nodeenv
   - numpy

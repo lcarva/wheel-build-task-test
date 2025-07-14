@@ -176,6 +176,7 @@ resources:
   - mypy-extensions
   - narwhals
   - nest-asyncio
+  - networkx
   - ninja
   - nodeenv
   - numpy

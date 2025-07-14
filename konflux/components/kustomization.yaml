@@ -241,6 +241,7 @@ resources:
   - pygithub
   - pygments
   - pyjwt
+  - pylint
   - pymongo
   - pyopenssl
   - pyparsing

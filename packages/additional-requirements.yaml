@@ -126,6 +126,9 @@ packages:
   pycodestyle:
     requirements_in:
       - setuptools
+  pycparser:
+    requirements_in:
+      - setuptools
   pyflakes:
     requirements_in:
       - setuptools

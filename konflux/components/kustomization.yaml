@@ -167,6 +167,7 @@ resources:
   - patchelf
   - pathspec
   - pbr
+  - pexpect
   - pinotdb
   - pip
   - pkgutil-resolve-name

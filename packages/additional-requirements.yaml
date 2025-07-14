@@ -66,6 +66,9 @@ packages:
   parso:
     requirements_in:
       - setuptools
+  pexpect:
+    requirements_in:
+      - setuptools
   pkgutil-resolve-name:
     requirements_in:
       - setuptools

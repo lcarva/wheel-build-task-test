@@ -82,6 +82,7 @@ resources:
   - elasticsearch
   - email-validator
   - et-xmlfile
+  - eventlet
   - exceptiongroup
   - execnet
   - executing

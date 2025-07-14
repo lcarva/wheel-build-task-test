@@ -313,6 +313,7 @@ resources:
   - sshtunnel
   - stack-data
   - starlette
+  - sympy
   - tableauserverclient
   - tabulate
   - tblib

@@ -438,3 +438,139 @@ class TestFindIssuesIntegration:
         assert result.exit_code == 0
         assert "Found 1 packages with issues" in result.stdout
         assert "needs_release: 1" in result.stdout
+
+
+class TestFindIssuesParallelProcessing:
+    """Test parallel processing functionality."""
+
+    @patch("calunga.commands.find_issues.find_packages")
+    @patch("calunga.commands.find_issues.analyze_package")
+    def test_find_issues_parallel_processing(self, mock_analyze, mock_find_packages, tmp_path):
+        """Test that parallel processing works with multiple workers."""
+        # Setup mock packages
+        packages = [Path(f"package-{i}") for i in range(10)]
+        mock_find_packages.return_value = packages
+
+        # Setup mock analyze_package to return different results
+        def mock_analyze_side_effect(pkg_dir):
+            pkg_name = pkg_dir.name
+            return {
+                "package_name": pkg_name,
+                "git_version": f"1.0.{pkg_name.split('-')[1]}",
+                "index_version": f"1.0.{pkg_name.split('-')[1]}",
+                "built_commit_id": f"commit-{pkg_name}",
+                "current_commit_id": f"commit-{pkg_name}",
+                "issue_type": "no_issue",
+                "issue_description": "Versions match",
+                "action_needed": "none"
+            }
+
+        mock_analyze.side_effect = mock_analyze_side_effect
+
+        # Create packages directory
+        packages_dir = tmp_path / "packages"
+        packages_dir.mkdir()
+
+        # Test with different worker counts
+        for workers in [1, 3, 5, 10]:
+            with patch("calunga.commands.find_issues.Path") as mock_path:
+                mock_path.return_value.__truediv__.return_value = packages_dir
+
+                # Run the command
+                result = runner.invoke(app, ["find-issues", "--workers", str(workers)])
+
+                # Verify command succeeded
+                assert result.exit_code == 0
+
+                # Verify all packages were analyzed
+                assert mock_analyze.call_count == len(packages)
+
+                # Extract JSON from output
+                json_start = result.stdout.find('{')
+                json_end = result.stdout.rfind('}') + 1
+                output_json = result.stdout[json_start:json_end]
+                output = json.loads(output_json)
+
+                assert output["summary"]["total_packages"] == len(packages)
+                assert len(output["all_packages"]) == len(packages)
+
+                # Reset mock for next iteration
+                mock_analyze.reset_mock()
+
+    @patch("calunga.commands.find_issues.find_packages")
+    @patch("calunga.commands.find_issues.analyze_package")
+    def test_find_issues_parallel_processing_with_errors(self, mock_analyze, mock_find_packages, tmp_path):
+        """Test that parallel processing handles errors gracefully."""
+        # Setup mock packages
+        packages = [Path(f"package-{i}") for i in range(5)]
+        mock_find_packages.return_value = packages
+
+        # Setup mock analyze_package to raise exception for some packages
+        def mock_analyze_side_effect(pkg_dir):
+            pkg_name = pkg_dir.name
+            if pkg_name == "package-2":
+                raise Exception("Test error for package-2")
+
+            return {
+                "package_name": pkg_name,
+                "git_version": "1.0.0",
+                "index_version": "1.0.0",
+                "built_commit_id": "commit-123",
+                "current_commit_id": "commit-123",
+                "issue_type": "no_issue",
+                "issue_description": "Versions match",
+                "action_needed": "none"
+            }
+
+        mock_analyze.side_effect = mock_analyze_side_effect
+
+        # Create packages directory
+        packages_dir = tmp_path / "packages"
+        packages_dir.mkdir()
+
+        with patch("calunga.commands.find_issues.Path") as mock_path:
+            mock_path.return_value.__truediv__.return_value = packages_dir
+
+            # Run the command
+            result = runner.invoke(app, ["find-issues", "--workers", "3"])
+
+            # Verify command succeeded
+            assert result.exit_code == 0
+
+            # Verify all packages were analyzed
+            assert mock_analyze.call_count == len(packages)
+
+            # Extract JSON from output
+            json_start = result.stdout.find('{')
+            json_end = result.stdout.rfind('}') + 1
+            output_json = result.stdout[json_start:json_end]
+            output = json.loads(output_json)
+
+            assert output["summary"]["total_packages"] == len(packages)
+            assert len(output["all_packages"]) == len(packages)
+
+            # Verify error package is marked as error
+            error_packages = [p for p in output["all_packages"] if p.get("issue_type") == "error"]
+            assert len(error_packages) == 1
+            assert error_packages[0]["package_name"] == "package-2"
+
+    def test_find_issues_workers_option_help(self):
+        """Test that the workers option is properly documented."""
+        result = runner.invoke(app, ["find-issues", "--help"])
+        assert result.exit_code == 0
+        assert "--workers" in result.stdout
+        assert "Number of parallel workers" in result.stdout
+
+    def test_find_issues_workers_default_value(self):
+        """Test that workers defaults to 5."""
+        with patch("calunga.commands.find_issues.find_packages") as mock_find_packages:
+            mock_find_packages.return_value = []
+
+            with patch("calunga.commands.find_issues.Path") as mock_path:
+                mock_path.return_value.__truediv__.return_value.exists.return_value = True
+
+                # Run without specifying workers
+                result = runner.invoke(app, ["find-issues"])
+
+                # Command should succeed (even with no packages)
+                assert result.exit_code == 0

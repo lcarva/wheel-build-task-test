@@ -3,6 +3,7 @@
 import json
 import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
@@ -212,6 +213,12 @@ def find_issues(
         "-o",
         help="Output file for JSON results (default: stdout)"
     ),
+    workers: int = typer.Option(
+        5,
+        "--workers",
+        "-w",
+        help="Number of parallel workers for package analysis (default: 5)"
+    ),
 ) -> None:
     """Find issues with the Calunga Python index.
 
@@ -229,25 +236,37 @@ def find_issues(
         console.print(f"[red]Error: packages directory not found at {packages_dir}[/red]")
         raise typer.Exit(1)
 
-    console.print(f"[blue]Analyzing packages in {packages_dir}[/blue]")
+    console.print(f"[blue]Analyzing packages in {packages_dir} with {workers} workers[/blue]")
 
     packages = find_packages(packages_dir)
     results = []
 
     with console.status("[bold green]Analyzing packages..."):
-        for pkg_dir in packages:
-            try:
-                result = analyze_package(pkg_dir)
-                results.append(result)
-            except Exception as e:
-                console.print(f"[yellow]Warning: Error analyzing {pkg_dir.name}: {e}[/yellow]")
-                results.append({
-                    "package_name": pkg_dir.name,
-                    "error": str(e),
-                    "issue_type": "error",
-                    "issue_description": f"Error during analysis: {e}",
-                    "action_needed": "investigate"
-                })
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            # Submit all tasks
+            future_to_package = {
+                executor.submit(analyze_package, pkg_dir): pkg_dir
+                for pkg_dir in packages
+            }
+
+            # Collect results as they complete
+            for future in as_completed(future_to_package):
+                pkg_dir = future_to_package[future]
+                try:
+                    result = future.result()
+                    results.append(result)
+                except Exception as e:
+                    console.print(f"[yellow]Warning: Error analyzing {pkg_dir.name}: {e}[/yellow]")
+                    results.append({
+                        "package_name": pkg_dir.name,
+                        "error": str(e),
+                        "issue_type": "error",
+                        "issue_description": f"Error during analysis: {e}",
+                        "action_needed": "investigate"
+                    })
+
+    # Sort results to maintain consistent order
+    results.sort(key=lambda x: x.get("package_name", ""))
 
     # Filter results to only show issues
     issues = [r for r in results if r.get("issue_type") != "no_issue"]

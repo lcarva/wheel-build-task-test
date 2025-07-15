@@ -70,6 +70,17 @@ class TestPackageVersion:
         result = package_version(pkg_dir)
         assert result == "1.2.3"
 
+    def test_package_version_with_line_continuation(self, tmp_path):
+        """Test extracting package version with line continuation."""
+        pkg_dir = tmp_path / "test-package"
+        pkg_dir.mkdir()
+
+        req_file = pkg_dir / "requirements.txt"
+        req_file.write_text("test-package==1.2.3 \\\nother-package==4.5.6\n")
+
+        result = package_version(pkg_dir)
+        assert result == "1.2.3"
+
 
 class TestIndexVersion:
     """Test index_version function."""

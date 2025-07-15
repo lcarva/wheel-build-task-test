@@ -31,11 +31,15 @@ def package_version(pkg_dir: Path) -> Optional[str]:
             content = f.read()
 
         # Use regex to find the package version
-        pattern = rf"^{re.escape(pkg_name)}==(.+)$"
+        # Handle line continuations and clean up the version
+        pattern = rf"^{re.escape(pkg_name)}==([^\\\s]+)"
         match = re.search(pattern, content, re.MULTILINE | re.IGNORECASE)
 
         if match:
-            return match.group(1).strip()
+            version = match.group(1).strip()
+            # Remove any trailing backslashes and whitespace
+            version = re.sub(r'\\+$', '', version).strip()
+            return version
         return None
     except Exception:
         return None

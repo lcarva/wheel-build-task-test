@@ -87,42 +87,69 @@ def index_version(pkg_name: str) -> Optional[str]:
 
 def latest_built_commit_id(pkg_name: str) -> Optional[str]:
     """Get the latest built commit ID for a package from OpenShift."""
-    result = subprocess.run(
-        ["oc", "get", "component", pkg_name, "-o", "yaml"],
-        capture_output=True,
-        text=True,
-        check=True
-    )
+    try:
+        result = subprocess.run(
+            ["oc", "get", "component", pkg_name, "-o", "yaml"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
 
-    # Parse YAML output to extract lastBuiltCommit
-    data = yaml.safe_load(result.stdout)
-    return data.get("status", {}).get("lastBuiltCommit")
+        # Parse YAML output to extract lastBuiltCommit
+        data = yaml.safe_load(result.stdout)
+        return data.get("status", {}).get("lastBuiltCommit")
+    except subprocess.CalledProcessError as e:
+        console.print(f"[red]Error running 'oc get component {pkg_name}':[/red]")
+        console.print(f"[red]Return code: {e.returncode}[/red]")
+        if e.stdout:
+            console.print(f"[yellow]stdout: {e.stdout}[/yellow]")
+        if e.stderr:
+            console.print(f"[yellow]stderr: {e.stderr}[/yellow]")
+        raise
 
 
 def latest_commit_id(pkg_dir: Path) -> Optional[str]:
     """Get the latest commit ID that changed a package directory."""
-    result = subprocess.run(
-        ["git", "log", "-1", "--format=%H", "--first-parent", "--", str(pkg_dir)],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-    return result.stdout.strip()
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%H", "--first-parent", "--", str(pkg_dir)],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        console.print(f"[red]Error running 'git log' for {pkg_dir}:[/red]")
+        console.print(f"[red]Return code: {e.returncode}[/red]")
+        if e.stdout:
+            console.print(f"[yellow]stdout: {e.stdout}[/yellow]")
+        if e.stderr:
+            console.print(f"[yellow]stderr: {e.stderr}[/yellow]")
+        raise
 
 
 def find_snapshot_for_commit_id(pkg_name: str, commit_id: str) -> Optional[str]:
     """Find snapshot for a specific commit ID."""
-    result = subprocess.run(
-        [
-            "oc", "get", "snapshot",
-            "-l", f"pac.test.appstudio.openshift.io/sha={commit_id},appstudio.openshift.io/component={pkg_name},pac.test.appstudio.openshift.io/event-type=push",
-            "-o", "jsonpath={.items[0].metadata.name}"
-        ],
-        capture_output=True,
-        text=True,
-        check=True
-    )
-    return result.stdout.strip() if result.stdout.strip() else None
+    try:
+        result = subprocess.run(
+            [
+                "oc", "get", "snapshot",
+                "-l", f"pac.test.appstudio.openshift.io/sha={commit_id},appstudio.openshift.io/component={pkg_name},pac.test.appstudio.openshift.io/event-type=push",
+                "-o", "jsonpath={.items[0].metadata.name}"
+            ],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout.strip() if result.stdout.strip() else None
+    except subprocess.CalledProcessError as e:
+        console.print(f"[red]Error running 'oc get snapshot' for {pkg_name} commit {commit_id}:[/red]")
+        console.print(f"[red]Return code: {e.returncode}[/red]")
+        if e.stdout:
+            console.print(f"[yellow]stdout: {e.stdout}[/yellow]")
+        if e.stderr:
+            console.print(f"[yellow]stderr: {e.stderr}[/yellow]")
+        raise
 
 
 def analyze_package(pkg_dir: Path) -> Dict[str, Any]:

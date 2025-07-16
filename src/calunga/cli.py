@@ -7,6 +7,7 @@ from rich.panel import Panel
 from calunga import __version__
 from calunga.commands.generate import generate
 from calunga.commands.find_issues import find_issues
+from calunga.commands.fix_issues import fix_issues
 
 console = Console()
 
@@ -20,6 +21,7 @@ app = typer.Typer(
 # Add subcommands
 app.command(name="generate")(generate)
 app.command(name="find-issues")(find_issues)
+app.command(name="fix-issues")(fix_issues)
 
 
 @app.callback(invoke_without_command=False)

@@ -129,8 +129,8 @@ class TestIndexVersion:
         """Test when request fails."""
         mock_get.side_effect = requests.RequestException("Network error")
 
-        result = index_version("test-package")
-        assert result is None
+        with pytest.raises(requests.RequestException, match="Network error"):
+            index_version("test-package")
 
 
 class TestLatestBuiltCommitId:
@@ -169,8 +169,8 @@ class TestLatestBuiltCommitId:
         """Test when subprocess fails."""
         mock_run.side_effect = subprocess.CalledProcessError(1, "oc")
 
-        result = latest_built_commit_id("test-package")
-        assert result is None
+        with pytest.raises(subprocess.CalledProcessError):
+            latest_built_commit_id("test-package")
 
 
 class TestLatestCommitId:
@@ -193,8 +193,8 @@ class TestLatestCommitId:
         mock_run.side_effect = subprocess.CalledProcessError(1, "git")
 
         pkg_dir = Path("/tmp/test-package")
-        result = latest_commit_id(pkg_dir)
-        assert result is None
+        with pytest.raises(subprocess.CalledProcessError):
+            latest_commit_id(pkg_dir)
 
 
 class TestFindSnapshotForCommitId:
@@ -225,8 +225,8 @@ class TestFindSnapshotForCommitId:
         """Test when subprocess fails."""
         mock_run.side_effect = subprocess.CalledProcessError(1, "oc")
 
-        result = find_snapshot_for_commit_id("test-package", "abc123def456")
-        assert result is None
+        with pytest.raises(subprocess.CalledProcessError):
+            find_snapshot_for_commit_id("test-package", "abc123def456")
 
 
 class TestAnalyzePackage:
@@ -500,7 +500,7 @@ class TestFindIssuesParallelProcessing:
     @patch("calunga.commands.find_issues.find_packages")
     @patch("calunga.commands.find_issues.analyze_package")
     def test_find_issues_parallel_processing_with_errors(self, mock_analyze, mock_find_packages, tmp_path):
-        """Test that parallel processing handles errors gracefully."""
+        """Test that parallel processing propagates errors."""
         # Setup mock packages
         packages = [Path(f"package-{i}") for i in range(5)]
         mock_find_packages.return_value = packages
@@ -531,28 +531,12 @@ class TestFindIssuesParallelProcessing:
         with patch("calunga.commands.find_issues.Path") as mock_path:
             mock_path.return_value.__truediv__.return_value = packages_dir
 
-            # Run the command
+            # Run the command - should fail due to error propagation
             result = runner.invoke(app, ["find-issues", "--workers", "3"])
 
-            # Verify command succeeded
-            assert result.exit_code == 0
-
-            # Verify all packages were analyzed
-            assert mock_analyze.call_count == len(packages)
-
-            # Extract JSON from output
-            json_start = result.stdout.find('{')
-            json_end = result.stdout.rfind('}') + 1
-            output_json = result.stdout[json_start:json_end]
-            output = json.loads(output_json)
-
-            assert output["summary"]["total_packages"] == len(packages)
-            assert len(output["all_packages"]) == len(packages)
-
-            # Verify error package is marked as error
-            error_packages = [p for p in output["all_packages"] if p.get("issue_type") == "error"]
-            assert len(error_packages) == 1
-            assert error_packages[0]["package_name"] == "package-2"
+            # Verify command failed due to error propagation
+            assert result.exit_code == 1
+            assert "Test error for package-2" in str(result.exception)
 
     def test_find_issues_workers_option_help(self):
         """Test that the workers option is properly documented."""

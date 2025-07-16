@@ -19,6 +19,17 @@ This project is converting bash scripts to a modern Python CLI for better testab
 - Follow PEP 8 and type hints for all functions
 - Use meaningful docstrings for all public functions
 
+### Exception Handling
+- **NEVER use broad `try: ... except Exception:` patterns**
+- **Let errors propagate by default** - this is safer than silencing errors
+- Only catch specific exceptions when you have a meaningful way to handle them
+- Common cases where catching specific exceptions is appropriate:
+  - `subprocess.CalledProcessError` for subprocess calls that might fail
+  - `yaml.YAMLError` for YAML parsing that might be malformed
+  - `ValueError`, `TypeError` for data validation with clear recovery
+- If you must catch a broad exception, document why and ensure it's truly necessary
+- Remember: unexpected errors should propagate to help with debugging
+
 ### CLI Development
 - Use Typer for all CLI commands
 - Use Rich for all user-facing output (panels, console, etc.)

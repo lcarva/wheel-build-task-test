@@ -27,116 +27,102 @@ def package_version(pkg_dir: Path) -> Optional[str]:
     if not req_file.exists():
         return None
 
-    try:
-        with open(req_file, "r") as f:
-            content = f.read()
+    with open(req_file, "r") as f:
+        content = f.read()
 
-        # Use regex to find the package version
-        # Handle line continuations and clean up the version
-        pattern = rf"^{re.escape(pkg_name)}==([^\\\s]+)"
-        match = re.search(pattern, content, re.MULTILINE | re.IGNORECASE)
+    # Use regex to find the package version
+    # Handle line continuations and clean up the version
+    pattern = rf"^{re.escape(pkg_name)}==([^\\\s]+)"
+    match = re.search(pattern, content, re.MULTILINE | re.IGNORECASE)
 
-        if match:
-            version = match.group(1).strip()
-            # Remove any trailing backslashes and whitespace
-            version = re.sub(r'\\+$', '', version).strip()
-            return version
-        return None
-    except Exception:
-        return None
+    if match:
+        version = match.group(1).strip()
+        # Remove any trailing backslashes and whitespace
+        version = re.sub(r'\\+$', '', version).strip()
+        return version
+    return None
 
 
 def index_version(pkg_name: str) -> Optional[str]:
     """Get the version of a package from the PyPI index."""
-    try:
-        url = f"{PYPI_INDEX_URL}/{pkg_name}/"
-        response = requests.get(url, timeout=30)
+    url = f"{PYPI_INDEX_URL}/{pkg_name}/"
 
-        if response.status_code == 404:
-            return "MISSING"
+    response = requests.get(url, timeout=30)
 
-        if response.status_code != 200:
-            return None
+    if response.status_code == 404:
+        return "MISSING"
 
-        # Parse HTML content to extract version
-        # This is a simplified version of the yq parsing from the bash script
-        html_content = response.text
-
-        # Look for .tar.gz files and extract versions
-        tar_gz_pattern = r'<a[^>]*>([^<]*\.tar\.gz)</a>'
-        matches = re.findall(tar_gz_pattern, html_content)
-
-        if not matches:
-            return None
-
-        # Extract versions from filenames
-        versions = []
-        for match in matches:
-            # Remove .tar.gz and extract version
-            filename = match.replace(".tar.gz", "")
-            # Split by dash and take the last part as version
-            parts = filename.split("-")
-            if len(parts) > 1:
-                version = parts[-1]
-                versions.append(version)
-
-        if versions:
-            # Sort versions and return the latest
-            versions.sort()
-            return versions[-1]
-
+    if response.status_code != 200:
         return None
-    except Exception:
+
+    # Parse HTML content to extract version
+    # This is a simplified version of the yq parsing from the bash script
+    html_content = response.text
+
+    # Look for .tar.gz files and extract versions
+    tar_gz_pattern = r'<a[^>]*>([^<]*\.tar\.gz)</a>'
+    matches = re.findall(tar_gz_pattern, html_content)
+
+    if not matches:
         return None
+
+    # Extract versions from filenames
+    versions = []
+    for match in matches:
+        # Remove .tar.gz and extract version
+        filename = match.replace(".tar.gz", "")
+        # Split by dash and take the last part as version
+        parts = filename.split("-")
+        if len(parts) > 1:
+            version = parts[-1]
+            versions.append(version)
+
+    if versions:
+        # Sort versions and return the latest
+        versions.sort()
+        return versions[-1]
+
+    return None
 
 
 def latest_built_commit_id(pkg_name: str) -> Optional[str]:
     """Get the latest built commit ID for a package from OpenShift."""
-    try:
-        result = subprocess.run(
-            ["oc", "get", "component", pkg_name, "-o", "yaml"],
-            capture_output=True,
-            text=True,
-            check=True
-        )
+    result = subprocess.run(
+        ["oc", "get", "component", pkg_name, "-o", "yaml"],
+        capture_output=True,
+        text=True,
+        check=True
+    )
 
-        # Parse YAML output to extract lastBuiltCommit
-        data = yaml.safe_load(result.stdout)
-        return data.get("status", {}).get("lastBuiltCommit")
-    except (subprocess.CalledProcessError, yaml.YAMLError):
-        return None
+    # Parse YAML output to extract lastBuiltCommit
+    data = yaml.safe_load(result.stdout)
+    return data.get("status", {}).get("lastBuiltCommit")
 
 
 def latest_commit_id(pkg_dir: Path) -> Optional[str]:
     """Get the latest commit ID that changed a package directory."""
-    try:
-        result = subprocess.run(
-            ["git", "log", "-1", "--format=%H", "--first-parent", "--", str(pkg_dir)],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        return result.stdout.strip()
-    except subprocess.CalledProcessError:
-        return None
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%H", "--first-parent", "--", str(pkg_dir)],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    return result.stdout.strip()
 
 
 def find_snapshot_for_commit_id(pkg_name: str, commit_id: str) -> Optional[str]:
     """Find snapshot for a specific commit ID."""
-    try:
-        result = subprocess.run(
-            [
-                "oc", "get", "snapshot",
-                "-l", f"pac.test.appstudio.openshift.io/sha={commit_id},appstudio.openshift.io/component={pkg_name},pac.test.appstudio.openshift.io/event-type=push",
-                "-o", "jsonpath={.items[0].metadata.name}"
-            ],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        return result.stdout.strip() if result.stdout.strip() else None
-    except subprocess.CalledProcessError:
-        return None
+    result = subprocess.run(
+        [
+            "oc", "get", "snapshot",
+            "-l", f"pac.test.appstudio.openshift.io/sha={commit_id},appstudio.openshift.io/component={pkg_name},pac.test.appstudio.openshift.io/event-type=push",
+            "-o", "jsonpath={.items[0].metadata.name}"
+        ],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    return result.stdout.strip() if result.stdout.strip() else None
 
 
 def analyze_package(pkg_dir: Path) -> Dict[str, Any]:
@@ -252,18 +238,8 @@ def find_issues(
             # Collect results as they complete
             for future in as_completed(future_to_package):
                 pkg_dir = future_to_package[future]
-                try:
-                    result = future.result()
-                    results.append(result)
-                except Exception as e:
-                    console.print(f"[yellow]Warning: Error analyzing {pkg_dir.name}: {e}[/yellow]")
-                    results.append({
-                        "package_name": pkg_dir.name,
-                        "error": str(e),
-                        "issue_type": "error",
-                        "issue_description": f"Error during analysis: {e}",
-                        "action_needed": "investigate"
-                    })
+                result = future.result()
+                results.append(result)
 
     # Sort results to maintain consistent order
     results.sort(key=lambda x: x.get("package_name", ""))

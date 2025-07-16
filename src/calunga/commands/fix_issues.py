@@ -1,6 +1,9 @@
 """Fix issues command for Calunga CLI."""
 
 import json
+import subprocess
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
@@ -11,14 +14,198 @@ from rich.panel import Panel
 console = Console()
 
 
+def mark_package_for_rebuild(package_name: str) -> None:
+    """Mark a package for rebuild by adding a comment to its argfile.conf.
+
+    Args:
+        package_name: Name of the package to mark for rebuild
+    """
+    argfile_path = Path(f"packages/{package_name}/argfile.conf")
+
+    # Read current content
+    with open(argfile_path, "r") as f:
+        content = f.read()
+
+    # Remove any existing force rebuild comments
+    lines = content.splitlines()
+    lines = [line for line in lines if not line.startswith("# Add comment to force rebuild")]
+
+    # Add new force rebuild comment with current timestamp
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S+00:00")
+    lines.append(f"# Add comment to force rebuild, {timestamp}")
+
+    # Write back to file
+    with open(argfile_path, "w") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+def commit_and_push_changes(package_names: List[str]) -> str:
+    """Commit and push changes for the modified packages.
+
+    Args:
+        package_names: List of package names that were modified
+
+    Returns:
+        The commit SHA of the pushed commit
+    """
+    # Add all modified argfile.conf files
+    for package_name in package_names:
+        argfile_path = f"packages/{package_name}/argfile.conf"
+        subprocess.run(["git", "add", argfile_path], check=True, capture_output=True, text=True)
+
+    # Create commit
+    commit_message = f"Mark packages for rebuild: {', '.join(package_names)}"
+    subprocess.run(
+        ["git", "commit", "-m", commit_message, "--signoff"],
+        check=True, capture_output=True, text=True
+    )
+
+    # Get the commit SHA
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        check=True, capture_output=True, text=True
+    )
+    commit_sha = result.stdout.strip()
+
+    # Push the commit
+    subprocess.run(["git", "push"], check=True, capture_output=True, text=True)
+
+    return commit_sha
+
+
+def wait_for_commit_checks(commit_sha: str, max_wait_minutes: int = 5) -> bool:
+    """Wait for commit checks to appear and complete.
+
+    Args:
+        commit_sha: The commit SHA to monitor
+        max_wait_minutes: Maximum time to wait for checks to appear
+
+    Returns:
+        True if all checks passed, False otherwise
+    """
+    console.print(f"[blue]Waiting for commit checks to appear for {commit_sha[:8]}...[/blue]")
+
+    # Wait for checks to appear (up to max_wait_minutes)
+    start_time = time.time()
+    checks_found = False
+
+    while time.time() - start_time < max_wait_minutes * 60:
+        # Check if any checks exist for this commit
+        result = subprocess.run(
+            ["gh", "api", f"repos/lcarva/calunga/commits/{commit_sha}/check-runs"],
+            check=True, capture_output=True, text=True
+        )
+
+        checks_data = json.loads(result.stdout)
+        if checks_data.get("check_runs") and len(checks_data["check_runs"]) > 0:
+            checks_found = True
+            console.print(f"[green]Found {len(checks_data['check_runs'])} checks for commit[/green]")
+            break
+
+        console.print("[yellow]No checks found yet, waiting...[/yellow]")
+        time.sleep(30)  # Wait 30 seconds before checking again
+
+    if not checks_found:
+        console.print(f"[red]Error: No commit checks appeared after {max_wait_minutes} minutes[/red]")
+        return False
+
+    # Now wait for all checks to complete
+    console.print("[blue]Waiting for all checks to complete...[/blue]")
+
+    while True:
+        result = subprocess.run(
+            ["gh", "api", f"repos/lcarva/calunga/commits/{commit_sha}/check-runs"],
+            check=True, capture_output=True, text=True
+        )
+
+        checks_data = json.loads(result.stdout)
+        check_runs = checks_data.get("check_runs", [])
+
+        if not check_runs:
+            console.print("[yellow]No checks found, waiting...[/yellow]")
+            time.sleep(30)
+            continue
+
+        # Check status of all checks
+        all_completed = True
+        all_successful = True
+
+        for check in check_runs:
+            status = check.get("status", "unknown")
+            conclusion = check.get("conclusion", "unknown")
+            name = check.get("name", "unknown")
+
+            if status == "queued" or status == "in_progress":
+                all_completed = False
+                console.print(f"[yellow]Check '{name}' still running (status: {status})[/yellow]")
+            elif conclusion == "failure" or conclusion == "cancelled":
+                all_successful = False
+                console.print(f"[red]Check '{name}' failed (conclusion: {conclusion})[/red]")
+            elif conclusion == "success":
+                console.print(f"[green]Check '{name}' passed[/green]")
+            else:
+                console.print(f"[yellow]Check '{name}' has unexpected conclusion: {conclusion}[/yellow]")
+
+        if all_completed:
+            if all_successful:
+                console.print("[green]All checks passed successfully![/green]")
+                return True
+            else:
+                console.print("[red]Some checks failed[/red]")
+                return False
+
+        time.sleep(30)  # Wait 30 seconds before checking again
+
+
 def process_batch_rebuild(package_names: List[str]) -> None:
     """Process a batch of packages that need rebuilding.
 
-    This is a placeholder function that will be implemented later.
-    For now, it just emits a warning that it's not yet implemented.
+    This function:
+    1. Marks each package for rebuild by adding a comment to its argfile.conf
+    2. Commits and pushes the changes
+    3. Waits for GitHub commit checks to complete
+    4. Verifies all checks passed
+
+    Args:
+        package_names: List of package names to mark for rebuild
     """
-    console.print(f"[yellow]Warning: Batch rebuild functionality not yet implemented.[/yellow]")
-    console.print(f"[yellow]Would rebuild {len(package_names)} packages: {', '.join(package_names)}[/yellow]")
+    if not package_names:
+        console.print("[yellow]No packages to rebuild[/yellow]")
+        return
+
+    console.print(f"[blue]Processing {len(package_names)} packages for rebuild: {', '.join(package_names)}[/blue]")
+
+    # Step 1: Mark each package for rebuild
+    console.print("[blue]Marking packages for rebuild...[/blue]")
+    for package_name in package_names:
+        try:
+            mark_package_for_rebuild(package_name)
+            console.print(f"[green]✓ Marked {package_name} for rebuild[/green]")
+        except Exception as e:
+            console.print(f"[red]✗ Failed to mark {package_name} for rebuild: {e}[/red]")
+            raise
+
+    # Step 2: Commit and push changes
+    console.print("[blue]Committing and pushing changes...[/blue]")
+    try:
+        commit_sha = commit_and_push_changes(package_names)
+        console.print(f"[green]✓ Successfully pushed commit {commit_sha[:8]}[/green]")
+    except Exception as e:
+        console.print(f"[red]✗ Failed to commit and push changes: {e}[/red]")
+        raise
+
+    # Step 3: Wait for commit checks to complete
+    console.print("[blue]Monitoring commit checks...[/blue]")
+    try:
+        success = wait_for_commit_checks(commit_sha)
+        if success:
+            console.print(f"[green]✓ All checks passed for rebuild batch[/green]")
+        else:
+            console.print(f"[red]✗ Some checks failed for rebuild batch[/red]")
+            raise typer.Exit(1)
+    except Exception as e:
+        console.print(f"[red]✗ Error monitoring commit checks: {e}[/red]")
+        raise
 
 
 def fix_issues(

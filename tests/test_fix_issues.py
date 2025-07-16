@@ -3,6 +3,7 @@
 import json
 import tempfile
 from pathlib import Path
+from unittest.mock import Mock, patch
 
 import pytest
 from typer.testing import CliRunner
@@ -26,8 +27,16 @@ def test_fix_issues_no_issues():
         Path(issues_file).unlink()
 
 
-def test_fix_issues_needs_rebuild():
+@patch("calunga.commands.fix_issues.mark_package_for_rebuild")
+@patch("calunga.commands.fix_issues.commit_and_push_changes")
+@patch("calunga.commands.fix_issues.wait_for_commit_checks")
+def test_fix_issues_needs_rebuild(mock_wait_checks, mock_commit_push, mock_mark_rebuild):
     """Test fix_issues with needs_rebuild issues."""
+    # Mock the functions to avoid actual git/GitHub operations
+    mock_mark_rebuild.return_value = None
+    mock_commit_push.return_value = "abc123def456"
+    mock_wait_checks.return_value = True
+
     issues_data = {
         "issues": [
             {
@@ -53,14 +62,25 @@ def test_fix_issues_needs_rebuild():
         result = runner.invoke(app, ["fix-issues", issues_file])
         assert result.exit_code == 0
         assert "Processing 2 needs_rebuild issues" in result.stdout
-        assert "Batch rebuild functionality not yet implemented" in result.stdout
-        assert "Would rebuild 2 packages: package1, package2" in result.stdout
+        assert "Processing batch 1 (2 packages)" in result.stdout
+        assert "✓ Marked package1 for rebuild" in result.stdout
+        assert "✓ Marked package2 for rebuild" in result.stdout
+        assert "✓ Successfully pushed commit abc123de" in result.stdout  # Note: truncated in output
+        assert "✓ All checks passed for rebuild batch" in result.stdout
     finally:
         Path(issues_file).unlink()
 
 
-def test_fix_issues_needs_rebuild_batch():
+@patch("calunga.commands.fix_issues.mark_package_for_rebuild")
+@patch("calunga.commands.fix_issues.commit_and_push_changes")
+@patch("calunga.commands.fix_issues.wait_for_commit_checks")
+def test_fix_issues_needs_rebuild_batch(mock_wait_checks, mock_commit_push, mock_mark_rebuild):
     """Test fix_issues with needs_rebuild issues using custom batch size."""
+    # Mock the functions to avoid actual git/GitHub operations
+    mock_mark_rebuild.return_value = None
+    mock_commit_push.return_value = "abc123def456"
+    mock_wait_checks.return_value = True
+
     issues_data = {
         "issues": [
             {
@@ -166,8 +186,16 @@ def test_fix_issues_custom_type():
         Path(issues_file).unlink()
 
 
-def test_fix_issues_mixed_types():
+@patch("calunga.commands.fix_issues.mark_package_for_rebuild")
+@patch("calunga.commands.fix_issues.commit_and_push_changes")
+@patch("calunga.commands.fix_issues.wait_for_commit_checks")
+def test_fix_issues_mixed_types(mock_wait_checks, mock_commit_push, mock_mark_rebuild):
     """Test fix_issues with mixed issue types."""
+    # Mock the functions to avoid actual git/GitHub operations
+    mock_mark_rebuild.return_value = None
+    mock_commit_push.return_value = "abc123def456"
+    mock_wait_checks.return_value = True
+
     issues_data = {
         "issues": [
             {
@@ -248,3 +276,90 @@ def test_fix_issues_help():
     assert "Fix issues identified by calunga find-issues" in result.stdout
     assert "--batch-rebuild" in result.stdout
     assert "Number of 'needs_rebuild' issues" in result.stdout
+
+
+# Additional tests for the new functions
+def test_mark_package_for_rebuild():
+    """Test mark_package_for_rebuild function."""
+    from calunga.commands.fix_issues import mark_package_for_rebuild
+
+    # Create a temporary argfile.conf
+    with tempfile.TemporaryDirectory() as temp_dir:
+        package_dir = Path(temp_dir) / "test_package"
+        package_dir.mkdir()
+        argfile_path = package_dir / "argfile.conf"
+
+        # Create initial argfile.conf
+        with open(argfile_path, "w") as f:
+            f.write("PACKAGE_NAME=test_package\n")
+
+        # Mock the Path to point to our temp file
+        with patch("calunga.commands.fix_issues.Path") as mock_path:
+            mock_path.return_value = argfile_path
+
+            # Test marking for rebuild
+            mark_package_for_rebuild("test_package")
+
+            # Verify the file was updated
+            with open(argfile_path, "r") as f:
+                content = f.read()
+
+            assert "PACKAGE_NAME=test_package" in content
+            assert "# Add comment to force rebuild" in content
+            assert "2025-" in content  # Should contain current year
+
+
+def test_mark_package_for_rebuild_missing_file():
+    """Test mark_package_for_rebuild with missing argfile.conf."""
+    from calunga.commands.fix_issues import mark_package_for_rebuild
+
+    # Mock the Path to return a non-existent file path
+    with patch("calunga.commands.fix_issues.Path") as mock_path:
+        mock_path.return_value = Path("/nonexistent/path/argfile.conf")
+
+        with pytest.raises(FileNotFoundError):
+            mark_package_for_rebuild("nonexistent_package")
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_commit_and_push_changes(mock_run):
+    """Test commit_and_push_changes function."""
+    from calunga.commands.fix_issues import commit_and_push_changes
+
+    # There are two packages, so two git add calls, then commit, rev-parse, push
+    mock_add1 = Mock(returncode=0)
+    mock_add2 = Mock(returncode=0)
+    mock_commit = Mock(returncode=0)
+    mock_rev_parse = Mock(returncode=0, stdout="abc123def456\n")
+    mock_push = Mock(returncode=0)
+
+    mock_run.side_effect = [mock_add1, mock_add2, mock_commit, mock_rev_parse, mock_push]
+
+    result = commit_and_push_changes(["package1", "package2"])
+    assert result == "abc123def456"
+    assert mock_run.call_count == 5
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_wait_for_commit_checks(mock_run):
+    """Test wait_for_commit_checks function."""
+    from calunga.commands.fix_issues import wait_for_commit_checks
+
+    # Mock successful API response
+    mock_response = {
+        "check_runs": [
+            {
+                "name": "test-check",
+                "status": "completed",
+                "conclusion": "success"
+            }
+        ]
+    }
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout=json.dumps(mock_response)
+    )
+
+    result = wait_for_commit_checks("abc123def456")
+    assert result is True

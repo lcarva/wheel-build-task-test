@@ -157,6 +157,205 @@ def wait_for_commit_checks(commit_sha: str, max_wait_minutes: int = 5) -> bool:
         time.sleep(30)  # Wait 30 seconds before checking again
 
 
+def find_snapshot_for_commit_id(package_name: str, commit_id: str) -> str:
+    """Find the snapshot name for a given package and commit ID.
+
+    Args:
+        package_name: Name of the package
+        commit_id: The commit ID to search for
+
+    Returns:
+        The snapshot name for the given package and commit
+
+    Raises:
+        subprocess.CalledProcessError: If the oc command fails
+        ValueError: If no snapshot is found
+    """
+    # Construct the label selector
+    label_selector = (
+        f"pac.test.appstudio.openshift.io/sha={commit_id},"
+        f"appstudio.openshift.io/component={package_name},"
+        f"pac.test.appstudio.openshift.io/event-type=push"
+    )
+
+    # Run the oc command to get the snapshot
+    result = subprocess.run(
+        [
+            "oc", "get", "snapshot",
+            "-l", label_selector,
+            "-o", "jsonpath={.items[0].metadata.name}"
+        ],
+        check=True, capture_output=True, text=True
+    )
+
+    snapshot_name = result.stdout.strip()
+    if not snapshot_name:
+        raise ValueError(f"No snapshot found for package {package_name} and commit {commit_id}")
+
+    return snapshot_name
+
+
+def create_release_for_snapshot(snapshot_name: str) -> str:
+    """Create a release for a given snapshot.
+
+    Args:
+        snapshot_name: Name of the snapshot to release
+
+    Returns:
+        The name of the created release
+
+    Raises:
+        subprocess.CalledProcessError: If the oc command fails
+    """
+    # Create the release YAML content
+    release_yaml = f"""apiVersion: appstudio.redhat.com/v1alpha1
+kind: Release
+metadata:
+  generateName: managed-
+spec:
+  releasePlan: test-calunga
+  snapshot: {snapshot_name}
+  data:
+    releaseNotes:
+    references: ""
+    synopsis: ""
+    topic: ""
+    description: ""
+"""
+
+    # Create the release using oc
+    result = subprocess.run(
+        ["oc", "create", "-f", "-"],
+        input=release_yaml,
+        text=True,
+        check=True,
+        capture_output=True
+    )
+
+    # Extract the release name from the output
+    # Output format: "release.appstudio.redhat.com/managed-xxxxx created"
+    output_lines = result.stdout.strip().split('\n')
+    for line in output_lines:
+        if 'release.appstudio.redhat.com/' in line:
+            release_name = line.split('/')[-1].split()[0]
+            return release_name
+
+    raise ValueError("Could not extract release name from oc create output")
+
+
+def wait_for_release_completion(release_name: str, max_wait_minutes: int = 10) -> bool:
+    """Wait for a release to complete.
+
+    Args:
+        release_name: Name of the release to monitor
+        max_wait_minutes: Maximum time to wait for completion
+
+    Returns:
+        True if release completed successfully, False otherwise
+
+    Raises:
+        subprocess.CalledProcessError: If the oc command fails
+    """
+    console.print(f"[blue]Waiting for release {release_name} to complete...[/blue]")
+
+    start_time = time.time()
+    while time.time() - start_time < max_wait_minutes * 60:
+        # Get the release status
+        result = subprocess.run(
+            [
+                "oc", "get", "release", release_name,
+                "-o", "jsonpath={.status.conditions[?(@.type==\"Released\")].reason}"
+            ],
+            check=True, capture_output=True, text=True
+        )
+
+        reason = result.stdout.strip()
+
+        if reason == "Succeeded":
+            console.print(f"[green]✓ Release {release_name} completed successfully[/green]")
+            return True
+        elif reason == "Failed":
+            console.print(f"[red]✗ Release {release_name} failed[/red]")
+            return False
+        else:
+            # Reason is empty or unknown, still waiting
+            console.print(f"[yellow]Release {release_name} still in progress...[/yellow]")
+            time.sleep(30)  # Wait 30 seconds before checking again
+
+    console.print(f"[red]✗ Release {release_name} did not complete within {max_wait_minutes} minutes[/red]")
+    return False
+
+
+def process_batch_release(release_issues: List[Dict[str, Any]]) -> None:
+    """Process a batch of packages that need releasing.
+
+    This function:
+    1. Finds the snapshot for each package using its built_commit_id
+    2. Creates a release for each snapshot
+    3. Waits for all releases to complete
+    4. Verifies all releases succeeded
+
+    Args:
+        release_issues: List of release issue dictionaries containing package_name and built_commit_id
+    """
+    if not release_issues:
+        console.print("[yellow]No packages to release[/yellow]")
+        return
+
+    console.print(f"[blue]Processing {len(release_issues)} packages for release: {', '.join([issue['package_name'] for issue in release_issues])}[/blue]")
+
+    # Step 1: Find snapshots and create releases
+    console.print("[blue]Finding snapshots and creating releases...[/blue]")
+    releases_created = []
+    for issue in release_issues:
+        package_name = issue["package_name"]
+        built_commit_id = issue["built_commit_id"]
+
+        try:
+            # Find the snapshot
+            snapshot_name = find_snapshot_for_commit_id(package_name, built_commit_id)
+            console.print(f"[green]✓ Found snapshot {snapshot_name} for {package_name}[/green]")
+
+            # Create the release
+            release_name = create_release_for_snapshot(snapshot_name)
+            console.print(f"[green]✓ Created release {release_name} for {package_name}[/green]")
+
+            releases_created.append({
+                "package_name": package_name,
+                "release_name": release_name,
+                "snapshot_name": snapshot_name
+            })
+
+        except Exception as e:
+            console.print(f"[red]✗ Failed to process {package_name}: {e}[/red]")
+            raise
+
+    # Step 2: Wait for all releases to complete
+    console.print(f"[blue]Waiting for {len(releases_created)} releases to complete...[/blue]")
+
+    all_successful = True
+    for release_info in releases_created:
+        package_name = release_info["package_name"]
+        release_name = release_info["release_name"]
+
+        try:
+            success = wait_for_release_completion(release_name)
+            if success:
+                console.print(f"[green]✓ Release for {package_name} completed successfully[/green]")
+            else:
+                console.print(f"[red]✗ Release for {package_name} failed[/red]")
+                all_successful = False
+        except Exception as e:
+            console.print(f"[red]✗ Error monitoring release for {package_name}: {e}[/red]")
+            all_successful = False
+
+    if not all_successful:
+        console.print("[red]✗ Some releases failed[/red]")
+        raise typer.Exit(1)
+    else:
+        console.print(f"[green]✓ All {len(releases_created)} releases completed successfully[/green]")
+
+
 def process_batch_rebuild(package_names: List[str]) -> None:
     """Process a batch of packages that need rebuilding.
 
@@ -288,8 +487,11 @@ def fix_issues(
                 process_batch_rebuild(batch)
 
         elif issue_type == "needs_release":
-            console.print(f"[yellow]Warning: 'needs_release' issue type not yet implemented.[/yellow]")
-            console.print(f"[yellow]Would process {len(type_issues)} release issues[/yellow]")
+            # Process release issues in batches
+            for i in range(0, len(type_issues), batch_rebuild):
+                batch = type_issues[i:i + batch_rebuild]
+                console.print(f"[blue]Processing batch {i // batch_rebuild + 1} ({len(batch)} packages)[/blue]")
+                process_batch_release(batch)
 
         elif issue_type == "unknown":
             console.print(f"[yellow]Warning: 'unknown' issue type not yet implemented.[/yellow]")

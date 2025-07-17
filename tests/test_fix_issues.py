@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
+import typer
 from typer.testing import CliRunner
 
 from calunga.cli import app
@@ -108,12 +109,21 @@ def test_fix_issues_needs_rebuild_batch(mock_wait_checks, mock_commit_push, mock
         Path(issues_file).unlink()
 
 
-def test_fix_issues_needs_release():
+@patch("calunga.commands.fix_issues.find_snapshot_for_commit_id")
+@patch("calunga.commands.fix_issues.create_release_for_snapshot")
+@patch("calunga.commands.fix_issues.wait_for_release_completion")
+def test_fix_issues_needs_release(mock_wait_release, mock_create_release, mock_find_snapshot):
     """Test fix_issues with needs_release issues."""
+    # Mock the functions to avoid actual oc operations
+    mock_find_snapshot.return_value = "package1-abc123"
+    mock_create_release.return_value = "managed-xyz789"
+    mock_wait_release.return_value = True
+
     issues_data = {
         "issues": [
             {
                 "package_name": "package1",
+                "built_commit_id": "abc123",
                 "issue_type": "needs_release",
                 "issue_description": "Build exists but not released",
                 "action_needed": "release"
@@ -128,8 +138,12 @@ def test_fix_issues_needs_release():
     try:
         result = runner.invoke(app, ["fix-issues", issues_file])
         assert result.exit_code == 0
-        assert "Processing 1 needs_release issues" in result.stdout
-        assert "'needs_release' issue type not yet implemented" in result.stdout
+        assert "Processing batch 1 (1 packages)" in result.stdout
+        assert "Processing 1 packages for release: package1" in result.stdout
+        assert "Finding snapshots and creating releases..." in result.stdout
+        assert "Found snapshot package1-abc123 for package1" in result.stdout
+        assert "Created release managed-xyz789 for package1" in result.stdout
+        assert "Release for package1 completed successfully" in result.stdout
     finally:
         Path(issues_file).unlink()
 
@@ -189,12 +203,20 @@ def test_fix_issues_custom_type():
 @patch("calunga.commands.fix_issues.mark_package_for_rebuild")
 @patch("calunga.commands.fix_issues.commit_and_push_changes")
 @patch("calunga.commands.fix_issues.wait_for_commit_checks")
-def test_fix_issues_mixed_types(mock_wait_checks, mock_commit_push, mock_mark_rebuild):
+@patch("calunga.commands.fix_issues.find_snapshot_for_commit_id")
+@patch("calunga.commands.fix_issues.create_release_for_snapshot")
+@patch("calunga.commands.fix_issues.wait_for_release_completion")
+def test_fix_issues_mixed_types(mock_wait_release, mock_create_release, mock_find_snapshot, mock_wait_checks, mock_commit_push, mock_mark_rebuild):
     """Test fix_issues with mixed issue types."""
     # Mock the functions to avoid actual git/GitHub operations
     mock_mark_rebuild.return_value = None
     mock_commit_push.return_value = "abc123def456"
     mock_wait_checks.return_value = True
+
+    # Mock the release functions
+    mock_find_snapshot.return_value = "package2-def456"
+    mock_create_release.return_value = "managed-xyz789"
+    mock_wait_release.return_value = True
 
     issues_data = {
         "issues": [
@@ -206,6 +228,7 @@ def test_fix_issues_mixed_types(mock_wait_checks, mock_commit_push, mock_mark_re
             },
             {
                 "package_name": "package2",
+                "built_commit_id": "def456",
                 "issue_type": "needs_release",
                 "issue_description": "Build exists but not released",
                 "action_needed": "release"
@@ -363,3 +386,186 @@ def test_wait_for_commit_checks(mock_run):
 
     result = wait_for_commit_checks("abc123def456")
     assert result is True
+
+
+# Tests for the new release-related functions
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_find_snapshot_for_commit_id(mock_run):
+    """Test find_snapshot_for_commit_id function."""
+    from calunga.commands.fix_issues import find_snapshot_for_commit_id
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="package1-abc123\n"
+    )
+
+    result = find_snapshot_for_commit_id("package1", "abc123")
+    assert result == "package1-abc123"
+
+    # Verify the oc command was called correctly
+    mock_run.assert_called_once_with(
+        [
+            "oc", "get", "snapshot",
+            "-l", "pac.test.appstudio.openshift.io/sha=abc123,appstudio.openshift.io/component=package1,pac.test.appstudio.openshift.io/event-type=push",
+            "-o", "jsonpath={.items[0].metadata.name}"
+        ],
+        check=True, capture_output=True, text=True
+    )
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_find_snapshot_for_commit_id_not_found(mock_run):
+    """Test find_snapshot_for_commit_id when no snapshot is found."""
+    from calunga.commands.fix_issues import find_snapshot_for_commit_id
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="\n"  # Empty output
+    )
+
+    with pytest.raises(ValueError, match="No snapshot found for package package1 and commit abc123"):
+        find_snapshot_for_commit_id("package1", "abc123")
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_create_release_for_snapshot(mock_run):
+    """Test create_release_for_snapshot function."""
+    from calunga.commands.fix_issues import create_release_for_snapshot
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="release.appstudio.redhat.com/managed-xyz789 created\n"
+    )
+
+    result = create_release_for_snapshot("package1-abc123")
+    assert result == "managed-xyz789"
+
+    # Verify the oc command was called correctly
+    mock_run.assert_called_once()
+    call_args = mock_run.call_args
+    assert call_args[0][0] == ["oc", "create", "-f", "-"]
+    assert call_args[1]["input"] is not None
+    assert "package1-abc123" in call_args[1]["input"]
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_create_release_for_snapshot_extraction_failure(mock_run):
+    """Test create_release_for_snapshot when release name extraction fails."""
+    from calunga.commands.fix_issues import create_release_for_snapshot
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="unexpected output format\n"
+    )
+
+    with pytest.raises(ValueError, match="Could not extract release name from oc create output"):
+        create_release_for_snapshot("package1-abc123")
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_wait_for_release_completion_success(mock_run):
+    """Test wait_for_release_completion with successful completion."""
+    from calunga.commands.fix_issues import wait_for_release_completion
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="Succeeded\n"
+    )
+
+    result = wait_for_release_completion("managed-xyz789")
+    assert result is True
+
+    # Verify the oc command was called correctly
+    mock_run.assert_called_once_with(
+        [
+            "oc", "get", "release", "managed-xyz789",
+            "-o", "jsonpath={.status.conditions[?(@.type==\"Released\")].reason}"
+        ],
+        check=True, capture_output=True, text=True
+    )
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_wait_for_release_completion_failure(mock_run):
+    """Test wait_for_release_completion with failed release."""
+    from calunga.commands.fix_issues import wait_for_release_completion
+
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="Failed\n"
+    )
+
+    result = wait_for_release_completion("managed-xyz789")
+    assert result is False
+
+
+@patch("calunga.commands.fix_issues.subprocess.run")
+def test_wait_for_release_completion_timeout(mock_run):
+    """Test wait_for_release_completion with timeout."""
+    from calunga.commands.fix_issues import wait_for_release_completion
+
+    # Mock empty response to simulate waiting
+    mock_run.return_value = Mock(
+        returncode=0,
+        stdout="\n"
+    )
+
+    result = wait_for_release_completion("managed-xyz789", max_wait_minutes=0.1)
+    assert result is False
+
+
+@patch("calunga.commands.fix_issues.find_snapshot_for_commit_id")
+@patch("calunga.commands.fix_issues.create_release_for_snapshot")
+@patch("calunga.commands.fix_issues.wait_for_release_completion")
+def test_process_batch_release_success(mock_wait_release, mock_create_release, mock_find_snapshot):
+    """Test process_batch_release with successful releases."""
+    from calunga.commands.fix_issues import process_batch_release
+
+    # Mock the functions
+    mock_find_snapshot.return_value = "package1-abc123"
+    mock_create_release.return_value = "managed-xyz789"
+    mock_wait_release.return_value = True
+
+    release_issues = [
+        {
+            "package_name": "package1",
+            "built_commit_id": "abc123"
+        }
+    ]
+
+    process_batch_release(release_issues)
+
+    # Verify all functions were called correctly
+    mock_find_snapshot.assert_called_once_with("package1", "abc123")
+    mock_create_release.assert_called_once_with("package1-abc123")
+    mock_wait_release.assert_called_once_with("managed-xyz789")
+
+
+@patch("calunga.commands.fix_issues.find_snapshot_for_commit_id")
+@patch("calunga.commands.fix_issues.create_release_for_snapshot")
+@patch("calunga.commands.fix_issues.wait_for_release_completion")
+def test_process_batch_release_failure(mock_wait_release, mock_create_release, mock_find_snapshot):
+    """Test process_batch_release with failed releases."""
+    from calunga.commands.fix_issues import process_batch_release
+
+    # Mock the functions
+    mock_find_snapshot.return_value = "package1-abc123"
+    mock_create_release.return_value = "managed-xyz789"
+    mock_wait_release.return_value = False  # Release fails
+
+    release_issues = [
+        {
+            "package_name": "package1",
+            "built_commit_id": "abc123"
+        }
+    ]
+
+    with pytest.raises(typer.Exit):
+        process_batch_release(release_issues)
+
+
+def test_process_batch_release_empty():
+    """Test process_batch_release with empty list."""
+    from calunga.commands.fix_issues import process_batch_release
+
+    process_batch_release([])  # Should not raise any exceptions

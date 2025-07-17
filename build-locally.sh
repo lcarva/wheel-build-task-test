@@ -7,8 +7,22 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 echo "Building ${PACKAGE}"
 
+PREFETCH_DEPS_IMAGE="$(
+    < .tekton/build-pipeline.yaml \
+    yq '.spec.tasks[] | select(.name == "prefetch-dependencies").taskRef.params[] | select(.name == "bundle") | .value'
+)"
+
+# HERMETO_IMAGE="quay.io/konflux-ci/hermeto:latest"
+HERMETO_IMAGE="$(
+    tkn bundle list -o json "${PREFETCH_DEPS_IMAGE}" | \
+    jq -r '.spec.steps[] | select(.name == "prefetch-dependencies") | .image'
+)"
+
+# Make sure we're using the latest and greatest hermeto image
+podman pull "${HERMETO_IMAGE}"
+
 hermeto() {
-    podman run -v "$(pwd):/mnt/workdir:Z" -w /mnt/workdir quay.io/konflux-ci/hermeto:latest "$@"
+    podman run --rm -v "$(pwd):/mnt/workdir:Z" -w /mnt/workdir "${HERMETO_IMAGE}" "$@"
 }
 
 hermeto --version

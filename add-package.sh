@@ -43,9 +43,14 @@ while true; do
     if [[ "${success}" -ne 0 ]]; then
         echo "Build failed, analyzing logs..."
         set +e
+        # This is a bit messy, but tries to extract the missing package name from the error output
+        # when the package name could be split across multiple lines.
         missing_package="$(
             echo "${error_output}" | \
-            grep -oP "ERROR: No matching distribution found for \K[\w-]+" | \
+            tr '\n' ' ' | \
+            sed 's/  */ /g' | \
+            grep -oP "ERROR: No matching distribution found for \K[\s\w\-]+" | \
+            sed 's/ //g' | \
             head -n 1)"
         success=$?
         set -e
@@ -55,6 +60,20 @@ while true; do
             yq -i '.packages["'${PKG_NAME}'"].requirements_in += ["'${missing_package}'"] | sort_keys(..)' \
                 'packages/additional-requirements.yaml'
             rm -vf packages/${PKG_NAME}/requirements*
+            continue
+        fi
+
+        # Handle inconsistent package name.
+        set +e
+        cp_error=$(echo "${error_output}" | grep -o "cp: -r not specified; omitting directory")
+        success=$?
+        set -e
+
+        if [[ -n "${cp_error}" ]]; then
+            echo "Package name inconsistency detected. Setting package_name to match package name."
+            yq -i '.packages["'${PKG_NAME}'"].package_name = "'${PKG_NAME}'"' \
+                'packages/additional-requirements.yaml'
+            rm -vf packages/${PKG_NAME}/argfile.conf
             continue
         fi
 

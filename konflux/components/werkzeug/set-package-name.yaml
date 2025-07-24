@@ -3,17 +3,17 @@ apiVersion: appstudio.redhat.com/v1alpha1
 kind: ImageRepository
 metadata:
   labels:
-    appstudio.redhat.com/component: lucarval-test-werkzeug
-  name: lucarval-test-werkzeug
+    appstudio.redhat.com/component: werkzeug-lucarval-test
+  name: werkzeug-lucarval-test
 spec:
   image:
-    name: calunga-tenant/lucarval-test-werkzeug
+    name: calunga-tenant/werkzeug-lucarval-test
 
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: Component
 metadata:
-  name: lucarval-test-werkzeug
+  name: werkzeug-lucarval-test
 spec:
-  componentName: lucarval-test-werkzeug
-  containerImage: quay.io/redhat-user-workloads/calunga-tenant/lucarval-test-werkzeug
+  componentName: werkzeug-lucarval-test
+  containerImage: quay.io/redhat-user-workloads/calunga-tenant/werkzeug-lucarval-test

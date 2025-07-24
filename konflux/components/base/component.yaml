@@ -6,10 +6,10 @@ metadata:
     build.appstudio.openshift.io/status: '{"pac":{"state":"enabled"},"message":"done"}'
   name: package-name
 spec:
-  application: calunga
+  application: calunga-lucarval-test
   componentName: package-name
   containerImage: quay.io/redhat-user-workloads/calunga-tenant/package-name
   source:
     git:
       dockerfileUrl: Containerfile
-      url: https://github.com/lcarva/calunga.git
+      url: https://github.com/lcarva/wheel-build-task-test.git
